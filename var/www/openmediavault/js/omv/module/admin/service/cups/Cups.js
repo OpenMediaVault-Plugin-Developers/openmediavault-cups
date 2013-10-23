@@ -25,6 +25,5 @@ OMV.WorkspaceManager.registerNode({
 	path: "/service",
 	text:_("Printing"),
 	icon16:"images/cups.png",
-	iconSvg: "images/cups.svg",
-	position: 100
+	iconSvg: "images/cups.svg"
 });
