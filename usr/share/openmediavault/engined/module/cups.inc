@@ -24,7 +24,7 @@ require_once("openmediavault/error.inc");
 require_once("openmediavault/initscript.inc");
 require_once("openmediavault/log.inc");
 
-class OMVModuleMiniDlna extends OMVModuleServiceAbstract
+class OMVModuleMiniCups extends OMVModuleServiceAbstract
   implements OMVINotifyListener, OMVIModuleServiceStatus {
     /**
      * Get the module name.
