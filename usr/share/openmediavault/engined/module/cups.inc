@@ -33,6 +33,26 @@ class OMVModuleMiniDlna extends OMVModuleServiceAbstract
         return "cups";
     }
 
+  /**
+     * Get the status of the managed service.
+     */
+    public function getStatus() {
+        global $xmlConfig;
+        // Get the configuration object
+        $xpath  = "//services/cups";
+        $object = $xmlConfig->get($xpath);
+        if (is_null($object)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                                   $xpath);
+        }
+        $initd = new OMVSysVInitScript("cups");
+        return array(
+            "name"    => $this->getName(),
+            "title"   => gettext("Printing (cups)"),
+            "enabled" => boolval($object['enable']),
+            "running" => ($initd->status() == 0)
+        );
+    }
 
 
 // Register module.
