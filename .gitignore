@@ -50,9 +50,8 @@ Desktop.ini
 .DS_Store
 
 # Files created by building the deb package
-debian/openmediavault-mysql
+debian/openmediavault-cups
 debian/files
 debian/*.debhelper.log
 debian/*.debhelper
 debian/*substvars
-/sqlbuddy
