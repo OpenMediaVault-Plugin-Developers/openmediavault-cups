@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# $Id: postrm 43 2011-11-28 22:27:26Z imooreyahoo@gmail.com $
+#
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+if [ "$1" = "purge" ]; then
+    # Check for XML config
+    if omv_config_exists "//services/cups"; then
+        xmlstarlet ed -P -L -d "//services/cups" ${OMV_CONFIG_FILE}
+    fi
+    # Generate samba confing
+    omv-mkconf samba
+fi
+
+#DEBHELPER#
+
+exit 0

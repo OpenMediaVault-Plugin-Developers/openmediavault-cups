@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+include ./openmediavault.mk
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	dh_install
+	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/share/openmediavault/scripts/cups
+	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/share/openmediavault/scripts/samba.d/40printers
+	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/local/bin/omvcups-avahi.py
+	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/local/bin/omvcups.py
+
+binary-indep: install omv_clean_scm
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdebconf
+	dh_lintian
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch:
+# We have nothing to do by default.
+
+build:
+# We have nothing to do by default.
+
+binary: binary-indep binary-arch
+.PHONY: clean binary-indep binary-arch binary install

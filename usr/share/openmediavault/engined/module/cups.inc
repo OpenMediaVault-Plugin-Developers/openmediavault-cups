@@ -24,7 +24,7 @@ require_once("openmediavault/error.inc");
 require_once("openmediavault/initscript.inc");
 require_once("openmediavault/log.inc");
 
-class OMVModuleMiniCups extends OMVModuleServiceAbstract
+class OMVModuleCups extends OMVModuleServiceAbstract
   implements OMVINotifyListener, OMVIModuleServiceStatus {
     /**
      * Get the module name.
@@ -42,8 +42,7 @@ class OMVModuleMiniCups extends OMVModuleServiceAbstract
         $xpath  = "//services/cups";
         $object = $xmlConfig->get($xpath);
         if (is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                                   $xpath);
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
         $initd = new OMVSysVInitScript("cups");
         return array(
@@ -61,10 +60,10 @@ $moduleMgr->registerModule(new OMVModuleCups());
 
 // Register new logfile type
 OMVLogFile::registerType("cupsaccess", array(
-	"filename" => "access_log",
-	"filepath" => "/var/log/cups/access_log",
-	"regex"    => "/^(.*?)\s+[^\s]+\s+(.*?)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-	"columns"  => array(
+    "filename" => "access_log",
+    "filepath" => "/var/log/cups/access_log",
+    "regex"    => "/^(.*?)\s+[^\s]+\s+(.*?)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
+    "columns"  => array(
              "host"  => 1,
              "user"  => 2,
              "date"  => array(
@@ -78,10 +77,10 @@ OMVLogFile::registerType("cupsaccess", array(
 
 // Register new logfile type
 OMVLogFile::registerType("cupserror", array(
-	"filename" => "error_log",
-	"filepath" => "/var/log/cups/error_log",
-	"regex"    => "/^(.)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-	"columns"  => array(
+    "filename" => "error_log",
+    "filepath" => "/var/log/cups/error_log",
+    "regex"    => "/^(.)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
+    "columns"  => array(
              "severity" => 1,
              "date"     => array(
                  "index" => 2,

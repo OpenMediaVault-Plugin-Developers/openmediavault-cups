@@ -1,5 +1,5 @@
 /**
- * This file is part of OpenMediaVault.
+
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
@@ -21,9 +21,9 @@
 // require("js/omv/WorkspaceManager.js")
 
 OMV.WorkspaceManager.registerNode({
-	id: "cups",
-	path: "/service",
-	text:_("Printing"),
-	icon16:"images/cups.png",
-	iconSvg: "images/cups.svg"
+    id: "cups",
+    path: "/service",
+    text:_("Printing"),
+    icon16:"images/cups.png",
+    iconSvg: "images/cups.svg"
 });
