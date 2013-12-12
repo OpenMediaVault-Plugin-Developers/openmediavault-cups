@@ -2,6 +2,8 @@
 
 include ./openmediavault.mk
 
+PLUGIN_NAME=cups
+
 clean:
 	dh_testdir
 	dh_testroot
@@ -13,10 +15,10 @@ install:
 	dh_prep
 	dh_installdirs
 	dh_install
-	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/share/openmediavault/scripts/cups
-	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/share/openmediavault/scripts/samba.d/40printers
-	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/local/bin/omvcups-avahi.py
-	chmod +x $(CURDIR)/debian/openmediavault-cups/usr/local/bin/omvcups.py
+#	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/share/openmediavault/mkconf/${PLUGIN_NAME}
+#	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/share/openmediavault/mkconf/samba.d/40printers
+#	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/local/bin/omvcups-avahi.py
+#	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/local/bin/omvcups.py
 
 binary-indep: install omv_clean_scm
 	dh_testdir

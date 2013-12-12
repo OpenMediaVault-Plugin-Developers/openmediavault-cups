@@ -17,11 +17,21 @@
  */
 
 // require("js/omv/WorkspaceManager.js")
+// require("js/omv/workspace/form/Panel.js")
 
-OMV.WorkspaceManager.registerNode({
-    id      : "cups",
-    path    : "/service",
-    text    : _("Printing"),
-    icon16  : "images/cups.png",
-    iconSvg : "images/cups.svg"
+Ext.define("OMV.module.admin.service.cups.Settings", {
+    extend : "OMV.workspace.form.Panel",
+
+    rpcService   : "Cups",
+    rpcGetMethod : "getSettings",
+    rpcSetMethod : "setSettings",
+
+});
+
+OMV.WorkspaceManager.registerPanel({
+    id        : "settings",
+    path      : "/service/cups",
+    text      : _("Settings"),
+    position  : 10,
+    className : "OMV.module.admin.service.cups.Settings"
 });

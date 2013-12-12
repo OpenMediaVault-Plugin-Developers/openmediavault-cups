@@ -1,3 +1,2 @@
-usr/share/openmediavault/*  usr/share/openmediavault
-var/www/openmediavault/*    var/www/openmediavault
-usr/local/bin/*             usr/local/bin
+usr/share/openmediavault/* usr/share/openmediavault
+var/www/openmediavault/*   var/www/openmediavault

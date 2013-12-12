@@ -50,7 +50,7 @@ Desktop.ini
 .DS_Store
 
 # Files created by building the deb package
-debian/openmediavault-cups
+debian/openmediavault-*
 debian/files
 debian/*.debhelper.log
 debian/*.debhelper

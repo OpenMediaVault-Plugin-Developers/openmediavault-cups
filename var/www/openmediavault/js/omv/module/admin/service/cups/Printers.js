@@ -17,11 +17,17 @@
  */
 
 // require("js/omv/WorkspaceManager.js")
+// require("js/omv/workspace/grid/Panel.js")
 
-OMV.WorkspaceManager.registerNode({
-    id      : "cups",
-    path    : "/service",
-    text    : _("Printing"),
-    icon16  : "images/cups.png",
-    iconSvg : "images/cups.svg"
+Ext.define("OMV.module.admin.service.cups.Printers", {
+    extend : "OMV.workspace.grid.Panel",
+
+});
+
+OMV.WorkspaceManager.registerPanel({
+    id        : "printers",
+    path      : "/service/cups",
+    text      : _("Printers"),
+    position  : 20,
+    className : "OMV.module.admin.service.cups.Printers"
 });
