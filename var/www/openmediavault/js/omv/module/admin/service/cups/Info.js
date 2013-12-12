@@ -22,6 +22,14 @@
 Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
 
+    initComponent : function() {
+        var me = this;
+
+        me.callParent(arguments);
+
+        me.on("activate", me.renderPrinterLists, me);
+    },
+
     getFormItems : function() {
         var me = this;
 
@@ -31,15 +39,6 @@ Ext.define("OMV.module.admin.service.cups.Info", {
             frame      : false,
             border     : false,
             disabled   : true,
-            listeners  : {
-                show : function () {
-                    // TODO: These variables don't tell anyone anything
-                    var l = Ext.getCmp("OMV.module.admin.service.cups.CUPSInfoPanel-ipp-list");
-                    //l.fireEvent("afterrender", l);
-                    var l = Ext.getCmp("OMV.module.admin.service.cups.CUPSInfoPanel-smb-list");
-                    //l.fireEvent("afterrender", l);
-                }
-            },
             items      : [{
                 // IPP shared printer list
                 xtype  : "fieldset",
@@ -49,17 +48,7 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 items  : [{
                     xtype     : "box",
                     name      : "ipp-list",
-                    html      : "",
-                    listeners : {
-                        afterrender:function (t) {
-                            // TODO: Semantics should be a list. Avoid br tags
-                            // TODO: The t variable don't tell anyone anything
-                            try {
-                                t.update(Ext.getCmp("OMV.module.admin.service.cups.Settings").ippList.join('<br /><br />'));
-                            } catch (err) {
-                            }
-                        }
-                    }
+                    html      : ""
                 }]
             },{
                 // SMB shared printer list
@@ -70,17 +59,7 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 items  : [{
                     xtype     : "box",
                     name      : "smb-list",
-                    html      : "",
-                    listeners : {
-                        afterrender:function (t) {
-                            // TODO: Semantics should be a list. Avoid br tags.
-                            // TODO: The t variable don't tell anyone anything
-                            try {
-                                t.update(Ext.getCmp("OMV.module.admin.service.cups.Settings").smbList.join('<br /><br />'));
-                            } catch (err) {
-                            }
-                        }
-                    }
+                    html      : ""
                 }]
             },{
                 /* Windows sharing info */
@@ -179,6 +158,41 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                }]
             }]
         }];
+    },
+
+    renderPrinterLists : function() {
+        var me = this;
+        var ippList = me.findField('ipp-list');
+        var smbList = me.findField('smb-list');
+        var parent  = me.up('tabpanel');
+
+        if (!parent)
+            return;
+
+        var printersPanel = parent.down('panel[title=' + _("Printers") + ']');
+
+        if (printersPanel) {
+            var ippListHtml,
+                smbListHtml;
+
+            Ext.each(printersPanel.ippList, function(item) {
+                ippListHtml += me.generateHtmlTagWithText("li", item);
+            });
+
+            Ext.each(printersPanel.smbList, function(item) {
+                smbListHtml += me.generateHtmlTagWithText("li", item);
+            });
+
+            ippListHtml = me.generateHtmlTagWithText("ul");
+            smbListHtml = me.generateHtmlTagWithText("ul");
+
+            ippList.update(ippListHtml);
+            smbList.update(smbListHtml);
+        }
+    },
+
+    generateHtmlTagWithText : function(tag, text) {
+        return "<" + tag + ">" + text + "</" + tag + ">";
     }
 });
 
