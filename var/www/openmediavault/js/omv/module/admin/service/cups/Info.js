@@ -22,10 +22,6 @@
 Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
 
-    rpcService   : "Btsync",
-    rpcGetMethod : "getSettings",
-    rpcSetMethod : "setSettings",
-
     getFormItems : function() {
         var me = this;
 
