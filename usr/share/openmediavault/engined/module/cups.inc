@@ -76,6 +76,27 @@ class OMVModuleCups extends OMVModuleServiceAbstract
                 $cmd, implode("\n", $output));
     }
 
+    public function stopService() {
+        $initd = new OMVSysVInitScript($this->getName(), false);
+        $initd->exec();
+    }
+
+    public function startService() {
+        global $xmlConfig;
+
+        $object = $xmlConfig->get($this->getXPath());
+
+        if (is_null($object))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath());
+
+        if (!boolval($object['enable']))
+            return;
+
+        $initd = new OMVSysVInitScript($this->getName(), true);
+        $initd->exec();
+    }
+
     /**
      * Bind listeners.
      */

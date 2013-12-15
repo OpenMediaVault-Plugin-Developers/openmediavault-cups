@@ -45,11 +45,11 @@ case "$1" in
         chmod -R g+w /var/lib/samba/printers
 
         # Make sure python scripts are setup correctly
-        ##chown root /usr/local/bin/omvcups.py
-        ##chmod 700 /usr/local/bin/omvcups.py
+        chown root /usr/local/bin/omvcups.py
+        chmod 700 /usr/local/bin/omvcups.py
 
-        ##chown root /usr/local/bin/omvcups-avahi.py
-        ##chmod 700 /usr/local/bin/omvcups-avahi.py
+        chown root /usr/local/bin/omvcups-avahi.py
+        chmod 700 /usr/local/bin/omvcups-avahi.py
 
         # Check for en_US.UTF-8 locale
         if [ "$(grep -c '^\s*en_US.UTF-8' /etc/locale.gen)" = "0" ]; then
@@ -67,22 +67,22 @@ case "$1" in
 
         # Perform actions if we're enabled
         if [ "$(omv_config_get "${SERVICE_XPATH}/enable")" = "1" ]; then
-            ##cupsctl --no-remote-printers
+            cupsctl --no-remote-printers
 
             # Generate cups config
-            ##omv-mkconf cups
+            omv-mkconf cups
 
             # Restart cups
-            ##/etc/init.d/cups restart
+            /etc/init.d/cups restart
 
             # Avahi files
-            ##/usr/local/bin/omvcups-avahi.py
+            /usr/local/bin/omvcups-avahi.py
 
             # Check for diff of samba config
             HASH="$(md5sum /etc/samba/smb.conf)"
 
             # Generate samba confing
-            ##omv-mkconf samba
+            omv-mkconf samba
 
             if [ "$(omv_config_get "//services/smb/enable")" = "1" ]; then
                 if [ "$(md5sum /etc/samba/smb.conf)" != "${HASH}" ]; then
@@ -91,7 +91,7 @@ case "$1" in
             fi
         fi
 
-        ##pip install cloudprint
+        #pip install cloudprint
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
