@@ -22,6 +22,8 @@
 Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
 
+    autoLoadData    : false,
+    mode            : "local",
     hideOkButton    : true,
     hideResetButton : true,
 

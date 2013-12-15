@@ -41,24 +41,82 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
         $this->registerMethod('getPrinters');
-
-        // CRUD
         $this->registerMethod('getPrinter');
         $this->registerMethod('setPrinter');
         $this->registerMethod('deletePrinter');
+        $this->registerMethod('getJobs');
     }
 
     public function getSettings($params, $context)
     {
+        global $xmlConfig;
 
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Get the configuration object.
+        $xpath = "//services/pptp";
+        $object = $xmlConfig->get($xpath);
+
+        $object = $xmlConfig->get($this->getXPath());
+        if (is_null($object))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath());
+
+        return var_export($object, true);
+
+        // Modify result data
+        $settingsObject['enable']       = boolval($object['enable']);
+        $settingsObject['enable_samba'] = boolval($object['enable_samba']);
+        $settingsObject['airprint']     = boolval($object['airprint']);
+        $settingsObject['maxjobs']      = intval($object['maxjobs']);
+
+        return $settingsObject;
     }
 
     public function setSettings($params, $context)
     {
+        global $xmlConfig;
 
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "enable"       : { "type" : "boolean" },
+                "enable_samba" : { "type" : "boolean" },
+                "airprint"     : { "type" : "boolean" },
+                "maxjobs"      : { "type" : "integer" }
+            }
+        }');
+
+        // Prepare configuration data
+        $object = array(
+            "enable"       => array_boolval($params, 'enable'),
+            'enable_samba' => array_boolval($params, 'enable_samba'),
+            'airprint'     => array_boolval($params, 'airprint'),
+            'maxjobs'      => $params['maxjobs']
+        );
+
+        // Set configuration object
+        if (false === $xmlConfig->replace($this->getXPath(), $object))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPath());
+
+        // Notify configuration changes
+        $dispatcher = &OMVNotifyDispatcher::getInstance();
+        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.cups", $object);
+
+        return $object;
     }
 
-    function getPrinters($params, $context)
+    public function getPrinters($params, $context)
     {
         global $xmlConfig;
 
@@ -70,7 +128,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         return $this->runCupsCommand("getPrinters");
     }
 
-    function getPrinter($params, $context)
+    public function getPrinter($params, $context)
     {
 
     }
@@ -83,6 +141,63 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function deletePrinter($params, $context)
     {
 
+    }
+
+    public function getJobs($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "start"     : { "type" : "integer" },
+                "limit"     : {' . $GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'] . '},
+                "sortfield" : {' . $GLOBALS['OMV_JSONSCHEMA_SORTFIELD'] . '},
+                "sortdir"   : {' . $GLOBALS['OMV_JSONSCHEMA_SORTDIR'] . '},
+                "which"     : { "type" : "string", "optional" : true }
+            }
+        }');
+
+        // Default to showing only not completed jobs
+        if (isset($params['which']) === false)
+            $params['which'] = 'not-completed';
+
+        // Filter result
+        return $this->applyFilter(
+            $this->runCupsCommand(
+                'getJobs',
+                array($params['which'])
+            ),
+            $params['start'],
+            $params['limit'],
+            $params['sortfield'],
+            $params['sortdir']
+        );
+    }
+
+    /**
+     * Cancel a single job
+     */
+    function cancelJob($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type        : "object",
+            "properties" : {
+                "jobid" : { "type" : "integer" }
+            }
+        }');
+
+        $this->runCupsCommand('cancelJob', array($params['jobid']));
     }
 
     /**

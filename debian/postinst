@@ -12,7 +12,7 @@ case "$1" in
 
         # Check for XML config
         if ! omv_config_exists "${SERVICE_XPATH}"; then
-            omv_config_add_element "//services" "${SERVICE_XPATH_NAME}" ""
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}" ""
         fi
 
         if ! omv_config_exists "${SERVICE_XPATH}/enable"; then
