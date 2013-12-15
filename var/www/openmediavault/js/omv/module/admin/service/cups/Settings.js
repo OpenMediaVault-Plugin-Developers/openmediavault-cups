@@ -26,6 +26,52 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    getFormItems : function() {
+        return [{
+            xtype    : "fieldset",
+            title    : _("General Settings"),
+            defaults : {
+                labelSeparator : ""
+            },
+            items : [{
+                xtype      : "checkbox",
+                name       : "enable",
+                fieldLabel : _("Enable"),
+                checked    : false
+            },{
+                xtype         : "numberfield",
+                name          : "maxjobs",
+                fieldLabel    : _("Max Jobs"),
+                minValue      : 0,
+                maxValue      : 65535,
+                value         : 100,
+                width         : 70,
+                allowDecimals : false,
+                allowNegative : false,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Once the number of print jobs reaches the limit, the oldest completed job is automatically purged from the system to make room for the new one. If all of the known jobs are still pending or active then the new job will be rejected.")
+                }]
+            },{
+                xtype      : "checkbox",
+                name       : "enable_samba",
+                fieldLabel : _("Enable SMB Sharing"),
+                boxLabel   : _("Enable sharing of printers over OpenMediaVault's SMB/CIFS service."),
+                checked    : true
+            },{
+                xtype      : "checkbox",
+                name       : "airprint",
+                fieldLabel : _("Enable AirPrint"),
+                boxLabel   : _("<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS devices."),
+                checked    : false
+            },{
+                border : false,
+                html   : "<p>"
+                       + _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.")
+                       + "</p>"
+            }]
+        }];
+    }
 });
 
 OMV.WorkspaceManager.registerPanel({
