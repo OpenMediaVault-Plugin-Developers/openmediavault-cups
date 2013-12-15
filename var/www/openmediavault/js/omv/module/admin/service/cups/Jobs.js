@@ -255,7 +255,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
 
     onCancelButton : function() {
         var me     = this;
-            record = me.getSelectionModel().getSelected();
+            record = me.getSelected();
 
         me.doCancel(record.get('JobId'));
     },

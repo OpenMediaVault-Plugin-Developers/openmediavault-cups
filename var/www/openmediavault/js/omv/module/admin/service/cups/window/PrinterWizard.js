@@ -29,6 +29,9 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
     title  : _("Add printer"),
     height : 360,
 
+    rpcService   : "Cups",
+    rpcSetMethod : "addPrinter",
+
     getCardItems : function() {
         var me = this;
 
@@ -54,8 +57,8 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     valueField     : 'uuid',
                     displayField   : 'DeviceInfo',
                     emptyText      : _("Select a printer ..."),
-                    allowBlank     : false,
-                    allowNone      : false,
+                    allowBlank     : true,
+                    allowNone      : true,
                     editable       : false,
                     triggerAction  : "all",
                     store          : Ext.create("OMV.data.Store", {
@@ -141,18 +144,17 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                         }
                     }),
                     listeners : {
-                        select:function (combo, record) {
-                            var modelField = me.findField("model");
+                        select:function (combo, records) {
+                            var modelField = me.findField("ppd");
                             var modelStore = modelField.getStore();
+                            var record     = records.pop();
 
                             modelField.setDisabled(false);
                             modelField.setValue(null);
                             modelStore.removeAll();
 
                             Ext.each(record.get('models'), function (model) {
-                                modelStore.add([
-                                    new Ext.data.Record(model)
-                                ]);
+                                modelStore.add(modelStore.model.create(model));
                             });
                         }
                     }
@@ -164,7 +166,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                 border : false,
                 items  : [{
                     xtype          : 'combo',
-                    name           : 'model',
+                    name           : 'ppd',
                     hideFieldLabel : 'true',
                     valueField     : 'uuid',
                     displayField   : 'PpdMakeAndModel',
@@ -180,8 +182,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                         fields : [
                             { name : "uuid" },
                             { name : "PpdMakeAndModel" }
-                        ],
-                        data : []
+                        ]
                     })
                 }]
             }]
@@ -193,7 +194,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
             },{
                 xtype    : "fieldset",
                 layout   : 'form',
-                border   : true,
+                border   : false,
                 defaults : {
                     anchor : '100%'
                 },

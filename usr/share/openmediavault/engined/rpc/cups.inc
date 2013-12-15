@@ -40,11 +40,34 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
+
         $this->registerMethod('getPrinters');
         $this->registerMethod('getPrinter');
         $this->registerMethod('setPrinter');
+        $this->registerMethod('addPrinter');
         $this->registerMethod('deletePrinter');
+
+        $this->registerMethod('printTestPage');
+        $this->registerMethod('resumePrinting');
+        $this->registerMethod('pausePrinting');
+        $this->registerMethod('getMakesModels');
+        $this->registerMethod('findDirectPrinters');
+
         $this->registerMethod('getJobs');
+        $this->registerMethod('cancelJob');
+        $this->registerMethod('cancelJobs');
+    }
+
+    /**
+     * Resync avahi service definitions
+     */
+    private function resync()
+    {
+        # Regenerate service definitions
+        $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
+        OMVUtil::exec($cmd, $output, $result);
+        if ($result !== 0)
+            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
     }
 
     public function getSettings($params, $context)
@@ -128,19 +151,215 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         return $this->runCupsCommand("getPrinters");
     }
 
+    /**
+     * Get a specific printer
+     */
     public function getPrinter($params, $context)
     {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
 
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type        : "object",
+            "properties" : {
+                "uuid" : { "type" : "integer" }
+            }
+        }');
+
+        $this->runCupsCommand('getPrinter', array($params['uuid']));
     }
 
     public function setPrinter($params, $context)
     {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
 
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type        : "object",
+            "properties" : {
+                "uuid"            : { "type" : "string" },
+                "PrinterLocation" : { "type" : "string" , "optional" : true },
+                "PrinterInfo"     : { "type" : "string" }
+            }
+        }');
+
+        $this->runCupsCommand(
+            'setPrinter',
+            array(
+                $params['uuid'],
+                $params['PrinterInfo'],
+                $params['PrinterLocation']
+            )
+        );
     }
 
+    /**
+     * Add a printer
+     */
+    public function addPrinter($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "device"      : { "type" : "string" },
+                "ppd"         : { "type" : "string" },
+                "name"        : { "type" : "string" },
+                "location"    : { "type" : "string", "optional" : true },
+                "description" : { "type" : "string" }
+            }
+        }');
+
+        // Search for existing printer with that name
+        $printer = null;
+
+        try {
+            $printer = $this->getPrinter($params['name']);
+        } catch (Exception $e) {
+            // Nothing
+        }
+
+        if ($printer)
+            throw new Exception("A printer with the name {$params['name']} already exists.");
+
+        // fname, fppdname, finfo, flocation, fdevice
+        if (empty($params['location']))
+            $params['location'] = '';
+
+        $this->runCupsCommand(
+            'addPrinter',
+            array(
+                $params['name'],
+                $params['ppd'],
+                $params['description'],
+                $params['location'],
+                $params['device']
+            )
+        );
+
+        // Resync services
+        $this->resync();
+    }
+
+    /**
+     * Delete a printer
+     */
     public function deletePrinter($params, $context)
     {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
 
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type        : "object",
+            "properties" : {
+                "pname" : { "type" : "integer" }
+            }
+        }');
+
+        $this->runCupsCommand('deletePrinter', array($params['pname']));
+    }
+
+    /**
+     * Send a test page to printer
+     */
+    public function printTestPage($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "pname" : { "type" : "string" }
+            }
+        }');
+
+        $this->runCupsCommand('printTestPage', array($params['pname']));
+    }
+
+    /**
+     * Resume printing
+     */
+    public function resumePrinting($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "pname" : { "type" : "string" }
+            }
+        }');
+
+        $this->runCupsCommand('resumePrinting', array($params['pname']));
+    }
+
+    /**
+     * Pause printing
+     */
+    public function pausePrinting($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "pname" : { "type" : "string" }
+            }
+        }');
+
+        $this->runCupsCommand('pausePrinting', array($params['pname']));
+    }
+
+    /**
+     * Get a list of makes and models
+     */
+    public function getMakesModels($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        return $this->runCupsCommand('getMakesModels');
+    }
+
+    /**
+     * Get a list of directly connected devices
+     */
+    public function findDirectPrinters($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        return $this->runCupsCommand('findDirectPrinters');
     }
 
     public function getJobs($params, $context)
@@ -198,6 +417,27 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }');
 
         $this->runCupsCommand('cancelJob', array($params['jobid']));
+    }
+
+    /**
+     * Cancel all jobs for printer
+     */
+    function cancelJobs($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type        : "object",
+            "properties" : {
+                "pname" : { "type" : "integer" }
+            }
+        }');
+
+        $this->runCupsCommand('cancelJobs', array($params['pname']));
     }
 
     /**
