@@ -17,18 +17,13 @@
  */
 
 // require("js/omv/WorkspaceManager.js")
-// require("js/omv/workspace/form/Panel.js")
+// require("js/omv/form/Panel.js")
 
 Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
 
-    initComponent : function() {
-        var me = this;
-
-        me.callParent(arguments);
-
-        me.on("activate", me.renderPrinterLists, me);
-    },
+    hideOkButton    : true,
+    hideResetButton : true,
 
     getFormItems : function() {
         var me = this;
@@ -47,8 +42,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 layout : "fit",
                 items  : [{
                     xtype     : "box",
-                    name      : "ipp-list",
-                    html      : ""
+                    html      : "",
+                    listeners : {
+                        afterrender : function(element) {
+                            element.update(me.renderPrinterList(element, true));
+                        }
+                    }
                 }]
             },{
                 // SMB shared printer list
@@ -58,8 +57,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 layout : "fit",
                 items  : [{
                     xtype     : "box",
-                    name      : "smb-list",
-                    html      : ""
+                    html      : "",
+                    listeners : {
+                        afterrender : function(element) {
+                            element.update(me.renderPrinterList(element));
+                        }
+                    }
                 }]
             },{
                 /* Windows sharing info */
@@ -160,11 +163,10 @@ Ext.define("OMV.module.admin.service.cups.Info", {
         }];
     },
 
-    renderPrinterLists : function() {
-        var me = this;
-        var ippList = me.findField('ipp-list');
-        var smbList = me.findField('smb-list');
-        var parent  = me.up('tabpanel');
+    renderPrinterList : function(element, isIppList) {
+        var me       = this,
+            listHtml = "",
+            parent   = me.up('tabpanel');
 
         if (!parent)
             return;
@@ -172,23 +174,25 @@ Ext.define("OMV.module.admin.service.cups.Info", {
         var printersPanel = parent.down('panel[title=' + _("Printers") + ']');
 
         if (printersPanel) {
-            var ippListHtml,
-                smbListHtml;
+            var printerStore = printersPanel.getStore();
 
-            Ext.each(printersPanel.ippList, function(item) {
-                ippListHtml += me.generateHtmlTagWithText("li", item);
-            });
+            printerStore.each(function(item, index, count) {
+                var ippLink;
 
-            Ext.each(printersPanel.smbList, function(item) {
-                smbListHtml += me.generateHtmlTagWithText("li", item);
-            });
+                var uuid = item.get("uuid");
 
-            ippListHtml = me.generateHtmlTagWithText("ul");
-            smbListHtml = me.generateHtmlTagWithText("ul");
+                if (isIppList)
+                    ippLink = 'http://' + location.hostname + ':631/printers/' + uuid;
+                else
+                    ippLink = '\\\\' + location.hostname + '\\' + uuid;
 
-            ippList.update(ippListHtml);
-            smbList.update(smbListHtml);
+                listHtml = listHtml + me.generateHtmlTagWithText("li", ippLink);
+            }, me);
+
+            listHtml = me.generateHtmlTagWithText("ul", listHtml);
         }
+
+        return listHtml;
     },
 
     generateHtmlTagWithText : function(tag, text) {
