@@ -35,6 +35,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
     hideDeleteButton  : true,
     hideRefreshButton : false,
     hidePagingToolbar : true,
+    reloadOnActivate  : true,
 
     columns:[{
         header    : _("Job Id"),
@@ -155,8 +156,6 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             })
         });
 
-        me.doReload();
-
         var selModel = me.getSelectionModel();
         selModel.on("selectionchange", me.updateButtonState, me);
 
@@ -232,9 +231,10 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         return items;
     },
 
-    updateButtonState : function(model, records) {
+    updateButtonState : function() {
         var me = this;
 
+        var records = me.getSelection();
         var button = me.queryById(me.getId() + "-cancel");
 
         if (records.length === 1) {

@@ -88,8 +88,6 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPath());
 
-        return var_export($object, true);
-
         // Modify result data
         $settingsObject['enable']       = boolval($object['enable']);
         $settingsObject['enable_samba'] = boolval($object['enable_samba']);
