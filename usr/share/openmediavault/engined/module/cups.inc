@@ -79,7 +79,6 @@ class OMVModuleCups extends OMVModuleServiceAbstract
     public function stopService() {
         $initd = new OMVSysVInitScript($this->getName(), false);
         $initd->exec();
-        $this->regenerateServiceDefinitions();
     }
 
     public function startService() {

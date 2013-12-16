@@ -144,18 +144,19 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                         }
                     }),
                     listeners : {
-                        select:function (combo, records) {
-                            var modelField = me.findField("ppd");
-                            var modelStore = modelField.getStore();
+                        select : function (combo, records) {
+                            var modelCombo = me.findField("ppd");
+                            var modelStore = modelCombo.getStore();
                             var record     = records.pop();
 
-                            modelField.setDisabled(false);
-                            modelField.setValue(null);
                             modelStore.removeAll();
 
                             Ext.each(record.get('models'), function (model) {
                                 modelStore.add(modelStore.model.create(model));
                             });
+
+                            modelCombo.enable();
+                            modelCombo.setValue(null);
                         }
                     }
                 }]
@@ -176,7 +177,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     editable       : false,
                     triggerAction  : "all",
                     disabled       : true,
-                    mode           : "local",
+                    queryMode      : "local",
                     autoLoad       : false,
                     store          : Ext.create("Ext.data.SimpleStore", {
                         fields : [
