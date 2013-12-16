@@ -91,6 +91,12 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 boxLabel   : _("<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS devices."),
                 checked    : false
             },{
+                xtype      : "checkbox",
+                name       : "remote_printers",
+                fieldLabel : _("Remote printers"),
+                boxLabel   : _("Enables listing of remote printers when adding a printer."),
+                checked    : false
+            },{
                 border : false,
                 html   : "<p>"
                        + _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.")

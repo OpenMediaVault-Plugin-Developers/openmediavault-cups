@@ -32,6 +32,10 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "maxjobs" "100"
         fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/remote_printers"; then
+            omv_config_add_element "${SERVICE_XPATH}" "remote_printers" "0"
+        fi
+
         # Add lpadmin group
         groupadd -f lpadmin
 

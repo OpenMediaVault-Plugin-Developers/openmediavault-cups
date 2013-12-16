@@ -86,10 +86,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
                 $this->getXPath());
 
         // Modify result data
-        $settingsObject['enable']       = boolval($object['enable']);
-        $settingsObject['enable_samba'] = boolval($object['enable_samba']);
-        $settingsObject['airprint']     = boolval($object['airprint']);
-        $settingsObject['maxjobs']      = intval($object['maxjobs']);
+        $settingsObject['enable']          = boolval($object['enable']);
+        $settingsObject['enable_samba']    = boolval($object['enable_samba']);
+        $settingsObject['airprint']        = boolval($object['airprint']);
+        $settingsObject['maxjobs']         = intval($object['maxjobs']);
+        $settingsObject['remote_printers'] = boolval($object['remote_printers']);
 
         return $settingsObject;
     }
@@ -107,19 +108,21 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "enable"       : { "type" : "boolean" },
-                "enable_samba" : { "type" : "boolean" },
-                "airprint"     : { "type" : "boolean" },
-                "maxjobs"      : { "type" : "integer" }
+                "enable"          : { "type" : "boolean" },
+                "enable_samba"    : { "type" : "boolean" },
+                "airprint"        : { "type" : "boolean" },
+                "maxjobs"         : { "type" : "integer" },
+                "remote_printers" : { "type" : "boolean" }
             }
         }');
 
         // Prepare configuration data
         $object = array(
-            "enable"       => array_boolval($params, 'enable'),
-            'enable_samba' => array_boolval($params, 'enable_samba'),
-            'airprint'     => array_boolval($params, 'airprint'),
-            'maxjobs'      => $params['maxjobs']
+            "enable"          => array_boolval($params, 'enable'),
+            'enable_samba'    => array_boolval($params, 'enable_samba'),
+            'airprint'        => array_boolval($params, 'airprint'),
+            'maxjobs'         => $params['maxjobs'],
+            'remote_printers' => array_boolval($params, 'remote_printers'),
         );
 
         // Set configuration object
@@ -358,7 +361,18 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "role" => OMV_ROLE_ADMINISTRATOR
         ));
 
-        return $this->runCupsCommand('findDirectPrinters');
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
+
+        // Get the configuration object.
+        $scanForRemotePrinters = $xmlConfig->get($this->getXPath() . "/remote_printers");
+        $arg = $scanForRemotePrinters ? "--network" : "--no-network";
+
+        return $this->runCupsCommand('findDirectPrinters', array($arg));
     }
 
     public function getJobs($params, $context)

@@ -57,8 +57,8 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     valueField     : 'uuid',
                     displayField   : 'DeviceInfo',
                     emptyText      : _("Select a printer ..."),
-                    allowBlank     : true,
-                    allowNone      : true,
+                    allowBlank     : false,
+                    allowNone      : false,
                     editable       : false,
                     triggerAction  : "all",
                     store          : Ext.create("OMV.data.Store", {
@@ -83,7 +83,6 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                                 OMV.MessageBox.wait(null, _("Scanning for attached printers ..."));
                             },
                             load : function (store, records) {
-
                                 OMV.MessageBox.updateProgress(1);
                                 OMV.MessageBox.hide();
 
@@ -91,19 +90,21 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                                     OMV.MessageBox.error(null, _("No printers found."));
                                     return;
                                 }
-
-                                var makeCombo = me.findField("make").setDisabled(false);
                             }
                         }
                     }),
                     listeners : {
-                        select : function (combo, record) {
+                        select : function (combo, records) {
+                            var record = records.pop();
                             var deviceInfo = record.get("DeviceInfo");
                             var nameField = me.findField("name");
                             var descriptionField = me.findField("description");
 
-                            nameField.setValue(mm.replace(/[\s|#|\/]/g, '_'));
+                            nameField.setValue(deviceInfo.replace(/[\s|#|\/]/g, '_'));
                             descriptionField.setValue(deviceInfo);
+
+                            var makeCombo = me.findField("make");
+                            makeCombo.enable();
                         }
                     }
                 }]
@@ -205,7 +206,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     fieldLabel : _("Name"),
                     plugins    : [{
                         ptype : "fieldinfo",
-                        text  : _("May contain any printable characters except \"/\", \"#\", and space")
+                        text  : _("May contain any printable characters except \"/\", \"#\" and space")
                     }],
                     vtype      : "printername",
                     allowBlank : false
