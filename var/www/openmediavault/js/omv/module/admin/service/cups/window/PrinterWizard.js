@@ -61,6 +61,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     allowNone      : false,
                     editable       : false,
                     triggerAction  : "all",
+                    queryMode      : "local",
                     store          : Ext.create("OMV.data.Store", {
                         autoLoad : true,
                         model    : OMV.data.Model.createImplicit({
@@ -126,6 +127,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     editable       : false,
                     triggerAction  : "all",
                     disabled       : true,
+                    queryMode      : "local",
                     store          : Ext.create("OMV.data.Store", {
                         autoLoad : true,
                         model    : OMV.data.Model.createImplicit({
