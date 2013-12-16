@@ -80,9 +80,6 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Get the configuration object.
-        $xpath = "//services/pptp";
-        $object = $xmlConfig->get($xpath);
-
         $object = $xmlConfig->get($this->getXPath());
         if (is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
@@ -133,6 +130,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
         $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.cups", $object);
+
+        $oldConf = $xmlConfig->get($this->getXPath());
+
+        if ($oldConf['enable'] != $object['enable'])
+            $this->notifySamba($object['enable']);
 
         return $object;
     }
@@ -434,7 +436,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('cancelJobs', array($params['pname']));
+        $this->runCupsCommand('cancelAllJobs', array($params['pname']));
     }
 
     /**
@@ -462,6 +464,18 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             throw new Exception($obj['error']);
 
         return $obj;
+    }
+
+    private function notifySamba($enabled)
+    {
+        global $xmlConfig;
+
+        $object = $xmlConfig->get("//services/smb");
+        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.smb", $object);
+
+        // If we're enabled, make sure sharing is enabled
+        if ($enabled)
+            $this->runCupsCommand('enableSharing');
     }
 }
 
