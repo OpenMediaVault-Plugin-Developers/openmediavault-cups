@@ -36,6 +36,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
     hideRefreshButton : false,
     hidePagingToolbar : true,
     reloadOnActivate  : true,
+    rememberSelected  : false,
 
     columns:[{
         header    : _("Job Id"),

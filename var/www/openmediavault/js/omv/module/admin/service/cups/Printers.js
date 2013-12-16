@@ -34,6 +34,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 
     hideRefreshButton : false,
     reloadOnActivate  : true,
+    rememberSelected  : false,
 
     columns : [{
         header    : _("Printer / Queue Name"),

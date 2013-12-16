@@ -23,9 +23,9 @@ Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
 
     autoLoadData    : false,
-    mode            : "local",
     hideOkButton    : true,
     hideResetButton : true,
+    mode            : "local",
 
     getFormItems : function() {
         var me = this;
@@ -213,16 +213,18 @@ Ext.define("OMV.module.admin.service.cups.Info", {
             listHtml = "";
 
         printerStore.each(function(item, index, count) {
-            var ippLink;
+            var link;
 
             var uuid = item.get("uuid");
 
-            if (isIppList)
-                ippLink = 'http://' + location.hostname + ':631/printers/' + uuid;
-            else
-                ippLink = '\\\\' + location.hostname + '\\' + uuid;
+            if (isIppList) {
+                link = 'http://' + location.hostname + ':631/printers/' + uuid;
+                link = '<a target="_blank" href="' + link + '">' + link + '</a>';
+            } else {
+                link = '\\\\' + location.hostname + '\\' + uuid;
+            }
 
-            listHtml = listHtml + me.generateHtmlTagWithText("li", ippLink);
+            listHtml = listHtml + me.generateHtmlTagWithText("li", link);
         }, me);
 
         listHtml = me.generateHtmlTagWithText("ul", listHtml);
