@@ -190,7 +190,6 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 
             me.queryById(me.getId() + "-" + buttonName).disable();
         }
-
     },
 
     onAddButton : function() {

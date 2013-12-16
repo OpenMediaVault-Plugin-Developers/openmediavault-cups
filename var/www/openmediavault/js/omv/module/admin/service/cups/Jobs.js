@@ -246,6 +246,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                 case 3:
                 case 5:
                     button.enable();
+                    break;
             }
         } else {
             button.disable();

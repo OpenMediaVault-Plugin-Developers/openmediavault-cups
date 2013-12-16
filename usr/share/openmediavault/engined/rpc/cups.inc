@@ -231,7 +231,6 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         if ($printer)
             throw new Exception("A printer with the name {$params['name']} already exists.");
 
-        // fname, fppdname, finfo, flocation, fdevice
         if (empty($params['location']))
             $params['location'] = '';
 
