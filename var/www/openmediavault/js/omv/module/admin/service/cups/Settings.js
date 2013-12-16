@@ -26,6 +26,32 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    initComponent : function() {
+        var me = this;
+
+        me.on('load', function () {
+            var checked = me.findField('enable').checked;
+            var parent = me.up('tabpanel');
+            var panels = [
+                _("Printers"),
+                _("Jobs"),
+                _("Printer sharing")
+            ];
+
+            if (!parent)
+                return;
+
+            Ext.Array.each(panels, function(title) {
+                var panel = parent.down('panel[title=' + title + ']');
+
+                if (panel)
+                    checked ? panel.enable() : panel.disable();
+            });
+        });
+
+        me.callParent(arguments);
+    },
+
     getFormItems : function() {
         return [{
             xtype    : "fieldset",

@@ -205,7 +205,7 @@ Ext.define("OMV.module.admin.service.cups.Info", {
 OMV.WorkspaceManager.registerPanel({
     id        : "info",
     path      : "/service/cups",
-    text      : _("Printer Sharing"),
+    text      : _("Printer sharing"),
     position  : 40,
     className : "OMV.module.admin.service.cups.Info"
 });
