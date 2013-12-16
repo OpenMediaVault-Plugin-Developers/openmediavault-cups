@@ -47,7 +47,21 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                     html      : "",
                     listeners : {
                         afterrender : function(element) {
-                            element.update(me.renderPrinterList(element, true));
+                            var html;
+
+                            // Get printer store
+                            var store = me.getPrinterStore();
+                            html = me.renderPrinterList(element, store, true);
+
+                            // Update element
+                            element.update(html);
+
+                            // Listen for changes in the store
+                            // and update element when necessary
+                            store.on("datachanged", function(thisStore) {
+                                html = me.renderPrinterList(element, thisStore, true);
+                                element.update(html);
+                            });
                         }
                     }
                 }]
@@ -62,7 +76,21 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                     html      : "",
                     listeners : {
                         afterrender : function(element) {
-                            element.update(me.renderPrinterList(element));
+                            var html;
+
+                            // Get printer store
+                            var store = me.getPrinterStore();
+                            html = me.renderPrinterList(element, store);
+
+                            // Update element
+                            element.update(html);
+
+                            // Listen for changes in the store
+                            // and update element when necessary
+                            store.on("datachanged", function(thisStore) {
+                                html = me.renderPrinterList(element, thisStore);
+                                element.update(html);
+                            });
                         }
                     }
                 }]
@@ -165,9 +193,8 @@ Ext.define("OMV.module.admin.service.cups.Info", {
         }];
     },
 
-    renderPrinterList : function(element, isIppList) {
+    getPrinterStore : function() {
         var me       = this,
-            listHtml = "",
             parent   = me.up('tabpanel');
 
         if (!parent)
@@ -175,24 +202,30 @@ Ext.define("OMV.module.admin.service.cups.Info", {
 
         var printersPanel = parent.down('panel[title=' + _("Printers") + ']');
 
-        if (printersPanel) {
-            var printerStore = printersPanel.getStore();
+        if (printersPanel)
+            return printersPanel.getStore();
 
-            printerStore.each(function(item, index, count) {
-                var ippLink;
+        return null;
+    },
 
-                var uuid = item.get("uuid");
+    renderPrinterList : function(element, printerStore, isIppList) {
+        var me       = this,
+            listHtml = "";
 
-                if (isIppList)
-                    ippLink = 'http://' + location.hostname + ':631/printers/' + uuid;
-                else
-                    ippLink = '\\\\' + location.hostname + '\\' + uuid;
+        printerStore.each(function(item, index, count) {
+            var ippLink;
 
-                listHtml = listHtml + me.generateHtmlTagWithText("li", ippLink);
-            }, me);
+            var uuid = item.get("uuid");
 
-            listHtml = me.generateHtmlTagWithText("ul", listHtml);
-        }
+            if (isIppList)
+                ippLink = 'http://' + location.hostname + ':631/printers/' + uuid;
+            else
+                ippLink = '\\\\' + location.hostname + '\\' + uuid;
+
+            listHtml = listHtml + me.generateHtmlTagWithText("li", ippLink);
+        }, me);
+
+        listHtml = me.generateHtmlTagWithText("ul", listHtml);
 
         return listHtml;
     },
