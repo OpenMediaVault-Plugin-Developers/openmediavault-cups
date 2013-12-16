@@ -21,7 +21,6 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
-// require("js/omv/module/admin/service/cups/window/PrinterWizard.js")
 
 Ext.define("OMV.module.admin.service.cups.Jobs", {
     extend   : "OMV.workspace.grid.Panel",
@@ -272,23 +271,12 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                 if (answer == "no")
                     return;
 
-                var onSubmit = function (id, response, error) {
-                    OMV.MessageBox.updateProgress(1);
-                    OMV.MessageBox.hide();
-
-                    if (error === null) {
-                        me.doReload();
-                    } else {
-                        OMV.MessageBox.error(null, error);
-                    }
-                };
-
                 // Display waiting dialog
                 OMV.MessageBox.wait(null, _("Cancelling job ..."));
 
                 OMV.Rpc.request({
                     scope : me,
-                    callback : onSubmit,
+                    callback : onCancel,
                     rpcData : {
                         service : "Cups",
                         method  : "cancelJob",
@@ -301,6 +289,17 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             scope : me,
             icon  : Ext.MessageBox.QUESTION
         });
+    },
+
+    onCancel : function(id, success, response) {
+        OMV.MessageBox.updateProgress(1);
+        OMV.MessageBox.hide();
+
+        if (error === null) {
+            me.doReload();
+        } else {
+            OMV.MessageBox.error(null, error);
+        }
     }
 });
 

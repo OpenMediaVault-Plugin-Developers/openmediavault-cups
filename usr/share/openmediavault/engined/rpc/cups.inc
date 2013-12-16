@@ -163,13 +163,13 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type        : "object",
+            "type"       : "object",
             "properties" : {
-                "uuid" : { "type" : "integer" }
+                "uuid" : { "type" : "string" }
             }
         }');
 
-        $this->runCupsCommand('getPrinter', array($params['uuid']));
+        return $this->runCupsCommand('getPrinter', array($params['uuid']));
     }
 
     public function setPrinter($params, $context)
@@ -181,7 +181,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type        : "object",
+            "type"       : "object",
             "properties" : {
                 "uuid"            : { "type" : "string" },
                 "PrinterLocation" : { "type" : "string" , "optional" : true },
@@ -264,9 +264,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type        : "object",
+            "type"       : "object",
             "properties" : {
-                "pname" : { "type" : "integer" }
+                "pname" : { "type" : "string" }
             }
         }');
 
@@ -410,7 +410,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type        : "object",
+            "type"       : "object",
             "properties" : {
                 "jobid" : { "type" : "integer" }
             }
@@ -431,9 +431,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type        : "object",
+            "type"       : "object",
             "properties" : {
-                "pname" : { "type" : "integer" }
+                "pname" : { "type" : "string" }
             }
         }');
 
