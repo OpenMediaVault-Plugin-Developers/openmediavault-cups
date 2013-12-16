@@ -91,7 +91,7 @@ case "$1" in
             fi
         fi
 
-        #pip install cloudprint
+        pip install cloudprint
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
