@@ -23,6 +23,7 @@ require_once "openmediavault/error.inc";
 require_once "openmediavault/util.inc";
 require_once "openmediavault/rpc.inc";
 require_once "openmediavault/notify.inc";
+require_once "openmediavault/initscript.inc";
 
 class OMVRpcServiceCups extends OMVRpcServiceAbstract
 {
@@ -151,7 +152,8 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "role" => OMV_ROLE_ADMINISTRATOR
         ));
 
-        return $this->runCupsCommand("getPrinters");
+        return $this->isRunning() ?
+            $this->runCupsCommand("getPrinters") : array();
     }
 
     /**
@@ -398,12 +400,18 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         if (isset($params['which']) === false)
             $params['which'] = 'not-completed';
 
-        // Filter result
-        return $this->applyFilter(
-            $this->runCupsCommand(
+        $jobs = array();
+
+        if ($this->isRunning()) {
+            $jobs = $this->runCupsCommand(
                 'getJobs',
                 array($params['which'])
-            ),
+            );
+        }
+
+        // Filter result
+        return $this->applyFilter(
+            $jobs,
             $params['start'],
             $params['limit'],
             $params['sortfield'],
@@ -490,6 +498,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         // If we're enabled, make sure sharing is enabled
         if ($enabled)
             $this->runCupsCommand('enableSharing');
+    }
+
+    private function isRunning()
+    {
+        $initd = new OMVSysVInitScript("cups");
+        return $initd->status() == 0;
     }
 }
 
