@@ -79,6 +79,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract
     public function stopService() {
         $initd = new OMVSysVInitScript($this->getName(), false);
         $initd->exec();
+        $this->regenerateServiceDefinitions();
     }
 
     public function startService() {
@@ -95,6 +96,18 @@ class OMVModuleCups extends OMVModuleServiceAbstract
 
         $initd = new OMVSysVInitScript($this->getName(), true);
         $initd->exec();
+
+        $this->regenerateServiceDefinitions();
+    }
+
+    private function regenerateServiceDefinitions()
+    {
+        $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
+
+        OMVUtil::exec($cmd, $output, $result);
+        if ($result !== 0)
+            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
+                $cmd, implode("\n", $output));
     }
 
     /**
