@@ -18,18 +18,16 @@
 
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/grid/Panel.js")
-// require("js/omv/data/Store.js")
-// require("js/omv/data/Model.js")
-// require("js/omv/data/proxy/Rpc.js")
+// require("js/omv/module/admin/service/cups/stores/PrinterStore.js")
 // require("js/omv/module/admin/service/cups/window/PrinterWizard.js")
+// require("js/omv/module/admin/service/cups/window/Printer.js")
 
 Ext.define("OMV.module.admin.service.cups.Printers", {
     extend : "OMV.workspace.grid.Panel",
     requires : [
-        "OMV.data.Store",
-        "OMV.data.Model",
-        "OMV.data.proxy.Rpc",
-        "OMV.module.admin.service.cups.window.PrinterWizard"
+        "OMV.module.admin.service.cups.stores.PrinterStore",
+        "OMV.module.admin.service.cups.window.PrinterWizard",
+        "OMV.module.admin.service.cups.window.Printer"
     ],
 
     hideRefreshButton : false,
@@ -81,34 +79,10 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
         }
     }],
 
+    store : OMV.module.admin.service.cups.stores.PrinterStore,
+
     initComponent : function() {
         var me = this;
-
-        Ext.apply(me, {
-            store : Ext.create("OMV.data.Store", {
-                autoLoad   : true,
-                remoteSort : false,
-                model      : OMV.data.Model.createImplicit({
-                    idProperty   : 'uuid',
-                    totalPoperty : 'total',
-                    fields       : [
-                        { name : "uuid" },
-                        { name : "PrinterInfo" },
-                        { name : "PrinterLocation" },
-                        { name : "PrinterMakeAndModel" },
-                        { name : "PrinterState" },
-                        { name : "PrinterStateMessage" }
-                    ]
-                }),
-                proxy : {
-                    type    : 'rpc',
-                    rpcData : {
-                        service : "Cups",
-                        method  : "getPrinters"
-                    }
-                }
-            })
-        });
 
         var selModel = me.getSelectionModel();
         selModel.on("selectionchange", me.updateButtonState, me);

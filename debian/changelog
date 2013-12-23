@@ -1,3 +1,9 @@
+openmediavault-cups (0.5.1) stable; urgency=low
+
+  * Fix requires 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 23 Dec 2013 16:46:13 +0100
+
 openmediavault-cups (0.5) stable; urgency=low
 
   * Initial port to OMV 0.5

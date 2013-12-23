@@ -18,6 +18,7 @@
 
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/form/Panel.js")
+// require("js/omv/module/admin/service/cups/stores/PrinterStore.js")
 
 Ext.define("OMV.module.admin.service.cups.Info", {
     extend : "OMV.workspace.form.Panel",
@@ -194,18 +195,7 @@ Ext.define("OMV.module.admin.service.cups.Info", {
     },
 
     getPrinterStore : function() {
-        var me       = this,
-            parent   = me.up('tabpanel');
-
-        if (!parent)
-            return;
-
-        var printersPanel = parent.down('panel[title=' + _("Printers") + ']');
-
-        if (printersPanel)
-            return printersPanel.getStore();
-
-        return null;
+        return OMV.module.admin.service.cups.stores.PrinterStore;
     },
 
     renderPrinterList : function(element, printerStore, isIppList) {
