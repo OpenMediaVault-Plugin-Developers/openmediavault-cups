@@ -42,7 +42,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         header    : _("Job Id"),
         sortable  : true,
         dataIndex : "JobId",
-        width     : 20,
+        width     : 60,
         renderer  : function (value, metaData, record) {
             return record.get("PrinterUri").replace(/.*\//, '') + ' ' + value;
         }
@@ -65,7 +65,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         header    : _("User"),
         sortable  : true,
         dataIndex : "JobOriginatingUserName",
-        width     : 40,
+        width     : 80,
         renderer  : function (value, metaData, record) {
             return value + '@' + record.get("JobOriginatingHostName");
         }
@@ -73,7 +73,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         header    : _("Size"),
         sortable  : true,
         dataIndex : "JobKOctets",
-        width     : 20,
+        width     : 60,
         renderer  : function (value) {
             return value + 'k';
         }
@@ -81,7 +81,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         header    : _("Pages"),
         sortable  : true,
         dataIndex : "JobMediaSheetsCompleted",
-        width     : 20,
+        width     : 60,
         renderer  : function (value) {
             return (val ? val : 'Unknown');
         }
