@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# zubr139 <zubr139@ukr.net>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2013-12-20 01:27+0000\n"
+"Last-Translator: zubr139 <zubr139@ukr.net>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/openmediavault-cups/language/uk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr ""
+
+msgid "Active"
+msgstr "Активний"
+
+msgid "Add printer"
+msgstr "Додати принтер"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr ""
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Cancel job"
+msgstr "Скасувати завдання"
+
+msgid "Cancel jobs"
+msgstr "Скасування завдань"
+
+msgid "Cancelling job ..."
+msgstr "Скасування завдання ..."
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Date & Time"
+msgstr "Дата і Час"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Edit printer"
+msgstr "Редагувати принтер"
+
+msgid "Enable"
+msgstr "Увімкнути"
+
+msgid "Enable AirPrint"
+msgstr "Увімкнути AirPrint"
+
+msgid "Enable SMB Sharing"
+msgstr ""
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr ""
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr ""
+
+msgid "Event"
+msgstr "Подія"
+
+msgid "Finish"
+msgstr ""
+
+msgid "General Settings"
+msgstr "Загальні налаштування"
+
+msgid "Host"
+msgstr ""
+
+msgid "Idle"
+msgstr ""
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr ""
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr ""
+
+msgid "Invalid printer name"
+msgstr ""
+
+msgid "Job Id"
+msgstr ""
+
+msgid "Jobs"
+msgstr ""
+
+msgid "Linux"
+msgstr "Лінукс"
+
+msgid "Location"
+msgstr "Розташування"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr ""
+
+msgid "Make and Model / Driver"
+msgstr "Марка та модель / Драйвер"
+
+msgid "Max Jobs"
+msgstr ""
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr ""
+
+msgid "Model / Driver"
+msgstr "Модель / Драйвер"
+
+msgid "Name"
+msgstr ""
+
+msgid "Next"
+msgstr "Наступний"
+
+msgid "No printers found."
+msgstr "Принтери не знайдено."
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr ""
+
+msgid "Pages"
+msgstr "Сторінки"
+
+msgid "Pause printing"
+msgstr "Призупинити друк"
+
+msgid "Paused"
+msgstr "Призупинено"
+
+msgid "Pausing printer ..."
+msgstr "Призупинення принтера ..."
+
+msgid "Previous"
+msgstr ""
+
+msgid "Print test page"
+msgstr "Друк тестової сторінки"
+
+msgid "Printer"
+msgstr "Принтер"
+
+msgid "Printer / Queue Name"
+msgstr ""
+
+msgid "Printer sharing"
+msgstr "Спільний принтер"
+
+msgid "Printers"
+msgstr "Принтери"
+
+msgid "Printing"
+msgstr "Друк"
+
+msgid "Printing Access Log"
+msgstr ""
+
+msgid "Printing Error Log"
+msgstr "Друк журналу помилок"
+
+msgid "Printing test page ..."
+msgstr "Друк тестової сторінки ..."
+
+msgid "Processing"
+msgstr "Обробка"
+
+msgid "Remote printers"
+msgstr ""
+
+msgid "Resume printing"
+msgstr ""
+
+msgid "Resuming printer ..."
+msgstr ""
+
+msgid "SMB Shared Printer Paths"
+msgstr ""
+
+msgid "Saving ..."
+msgstr "Збереження ..."
+
+msgid "Scanning for attached printers ..."
+msgstr "Пошук підключених принтерів ..."
+
+msgid "Select a make ..."
+msgstr "Вибір виробника ..."
+
+msgid "Select a model ..."
+msgstr "Вибір модельі ..."
+
+msgid "Select a printer ..."
+msgstr "Виберіть принтера ..."
+
+msgid "Settings"
+msgstr "Налаштування"
+
+msgid "Severity"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Size"
+msgstr "Розмір"
+
+msgid "State"
+msgstr "Стан"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Unknown"
+msgstr ""
+
+msgid "User"
+msgstr "Користувач"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr ""
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Wizard"
+msgstr ""

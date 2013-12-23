@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# артур Мудрых <arturmon82@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2013-12-23 12:45+0000\n"
+"Last-Translator: артур Мудрых <arturmon82@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-cups/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr "<i>Experimental</i>. Обеспечивает совместимость 'AirPrint' с устройствами Apple, IOS."
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Add printer"
+msgstr "Добавить принтер"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr "AirPrint совместимые устройства Apple, IOS"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr "Вы уверенный, что хотите отменить все задания печати на"
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr "Вы уверены, что хотите отменить выбранное задание печати?"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Cancel job"
+msgstr "Отменить задание"
+
+msgid "Cancel jobs"
+msgstr "Отменить задания"
+
+msgid "Cancelling job ..."
+msgstr "Отмена задания..."
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+msgid "Created"
+msgstr "Создать"
+
+msgid "Date & Time"
+msgstr "Дата и Время"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Edit printer"
+msgstr "Редактировать принтер"
+
+msgid "Enable"
+msgstr "Включить"
+
+msgid "Enable AirPrint"
+msgstr "Включить AirPrint"
+
+msgid "Enable SMB Sharing"
+msgstr "Включить SMB совместное использование"
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr "Включить общий доступ к принтерам SMB / CIFS службы в OpenMediaVault."
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr "Включает при добавлении принтера в удаленный список принтеров."
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Finish"
+msgstr "Финиш"
+
+msgid "General Settings"
+msgstr "Общие настройки"
+
+msgid "Host"
+msgstr "Хост"
+
+msgid "Idle"
+msgstr "Простой"
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr "Если Ваш принтер не перечислен здесь, выберете: Универсальная модель: Универсальный Принтер Postscript. Если есть драйвер для Вашей модели (рекомендуется), выберете тот, у которого такая же марка или экспериментируйте, чтобы найти драйвер, который работает лучше всего у Вас."
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr "Internet Printing Protocol (IPP) Общие URL-адреса принтера"
+
+msgid "Invalid printer name"
+msgstr "Неверное имя принтера"
+
+msgid "Job Id"
+msgstr "id задания"
+
+msgid "Jobs"
+msgstr "задания"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr "Марка"
+
+msgid "Make and Model / Driver"
+msgstr "Марка и Модель / Драйвер"
+
+msgid "Max Jobs"
+msgstr "Максимум заданий"
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr "Может содержать любые печатные символы, кроме \"/\", \"#\" и пробел"
+
+msgid "Model / Driver"
+msgstr "Модель / Драйвер"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "No printers found."
+msgstr "Никакие принтеры не найдены."
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr "Как только число заданий печати достигнет предела, старейшее завершенное задание будет автоматически удалено из системы, чтобы освободить место для новых. Если все известные задания по-прежнему в ожидании или активны, то новые задания будут отклонены."
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Pause printing"
+msgstr "Приостановить печать"
+
+msgid "Paused"
+msgstr "Приостановлено"
+
+msgid "Pausing printer ..."
+msgstr "Приостановка принтера ..."
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Print test page"
+msgstr "Печать тестовой страницы"
+
+msgid "Printer"
+msgstr "Принтер"
+
+msgid "Printer / Queue Name"
+msgstr "Принтер / Имя Очереди"
+
+msgid "Printer sharing"
+msgstr "Совместное использование принтера"
+
+msgid "Printers"
+msgstr "Принтеры"
+
+msgid "Printing"
+msgstr "Печать"
+
+msgid "Printing Access Log"
+msgstr "Печать журнала доступа"
+
+msgid "Printing Error Log"
+msgstr "Печать журнала ошибок"
+
+msgid "Printing test page ..."
+msgstr "Печать тестовой страницы ..."
+
+msgid "Processing"
+msgstr "Обработка"
+
+msgid "Remote printers"
+msgstr "Удаленные принтеры"
+
+msgid "Resume printing"
+msgstr "Возобновить печать"
+
+msgid "Resuming printer ..."
+msgstr "Возобновление принтера ..."
+
+msgid "SMB Shared Printer Paths"
+msgstr "SMB совместно используемые пути принтера"
+
+msgid "Saving ..."
+msgstr "Сохранение ..."
+
+msgid "Scanning for attached printers ..."
+msgstr "Проверка наличия подключенных принтеров ..."
+
+msgid "Select a make ..."
+msgstr "Выбрать производителя ..."
+
+msgid "Select a model ..."
+msgstr "Выбрать модель ..."
+
+msgid "Select a printer ..."
+msgstr "Выберите принтер ..."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Severity"
+msgstr ""
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "State"
+msgstr "Состояние"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Unknown"
+msgstr "Неизвестный"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr "Пользователи в группе <b>lpadmin</b> OpenMediaVault будут в состоянии администрировать принтеры, используя их в OpenMediaVault имя пользователя  / пароль."
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Wizard"
+msgstr "Мастер"

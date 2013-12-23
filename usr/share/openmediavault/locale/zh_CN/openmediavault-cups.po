@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# dezi121 <by@songming.me>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2013-12-21 13:22+0000\n"
+"Last-Translator: dezi121 <by@songming.me>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-cups/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr "<i>试验性</i>。提供苹果 IOS 设备 'AirPrint' 兼容性。"
+
+msgid "Active"
+msgstr "激活"
+
+msgid "Add printer"
+msgstr "添加打印"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr "苹果 IOS 设备的 AirPrint 功能"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr "确定取消所有打印任务吗？"
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr "确认取消选中的打印任务吗？"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cancel job"
+msgstr "取消任务"
+
+msgid "Cancel jobs"
+msgstr "取消任务"
+
+msgid "Cancelling job ..."
+msgstr "取消任务中..."
+
+msgid "Completed"
+msgstr "完成"
+
+msgid "Confirmation"
+msgstr "确认"
+
+msgid "Created"
+msgstr "创建"
+
+msgid "Date & Time"
+msgstr "日期和时间"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Edit printer"
+msgstr "编辑打印机"
+
+msgid "Enable"
+msgstr "启动"
+
+msgid "Enable AirPrint"
+msgstr "启动AirPrint"
+
+msgid "Enable SMB Sharing"
+msgstr "启动SMB共享"
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr "启用基于OpenMediaVault's SMB/CIFS 服务器的打印机共享。"
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr "添加打印机时启用远程打印机列表。"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "Finish"
+msgstr "完成"
+
+msgid "General Settings"
+msgstr "常规设置"
+
+msgid "Host"
+msgstr "主机"
+
+msgid "Idle"
+msgstr "闲置"
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr ""
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr ""
+
+msgid "Invalid printer name"
+msgstr "无效打印机名"
+
+msgid "Job Id"
+msgstr "任务ID"
+
+msgid "Jobs"
+msgstr "任务"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr ""
+
+msgid "Make and Model / Driver"
+msgstr ""
+
+msgid "Max Jobs"
+msgstr "最大任务数"
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr ""
+
+msgid "Model / Driver"
+msgstr ""
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Next"
+msgstr ""
+
+msgid "No printers found."
+msgstr "未找到打印机。"
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr ""
+
+msgid "Pages"
+msgstr "页面"
+
+msgid "Pause printing"
+msgstr "暂停打印"
+
+msgid "Paused"
+msgstr "暂停"
+
+msgid "Pausing printer ..."
+msgstr "暂停打印..."
+
+msgid "Previous"
+msgstr ""
+
+msgid "Print test page"
+msgstr "打印测试页"
+
+msgid "Printer"
+msgstr "打印机"
+
+msgid "Printer / Queue Name"
+msgstr "打印机/队列名称"
+
+msgid "Printer sharing"
+msgstr "打印机共享"
+
+msgid "Printers"
+msgstr "打印机"
+
+msgid "Printing"
+msgstr "打印中"
+
+msgid "Printing Access Log"
+msgstr "打印访问日志"
+
+msgid "Printing Error Log"
+msgstr "打印错误日志"
+
+msgid "Printing test page ..."
+msgstr "打印测试页"
+
+msgid "Processing"
+msgstr "进程"
+
+msgid "Remote printers"
+msgstr "远程打印机"
+
+msgid "Resume printing"
+msgstr "回复打印"
+
+msgid "Resuming printer ..."
+msgstr "恢复打印..."
+
+msgid "SMB Shared Printer Paths"
+msgstr "SMB 共享打印机路径"
+
+msgid "Saving ..."
+msgstr "保存中..."
+
+msgid "Scanning for attached printers ..."
+msgstr "扫描连接的打印机 ..."
+
+msgid "Select a make ..."
+msgstr ""
+
+msgid "Select a model ..."
+msgstr ""
+
+msgid "Select a printer ..."
+msgstr "选择打印机 ..."
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Severity"
+msgstr ""
+
+msgid "Show"
+msgstr "显示"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "State"
+msgstr "状态"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "User"
+msgstr "用户"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr ""
+
+msgid "Windows"
+msgstr "窗口"
+
+msgid "Wizard"
+msgstr "向导"
