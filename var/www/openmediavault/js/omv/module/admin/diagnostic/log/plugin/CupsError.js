@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,14 +38,14 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.CupsError", {
 		flex      : 1,
 		renderer  : function (value) {
 			switch (value) {
-				case 'E':
-					return _('Error');
-				case 'W':
-					return _('Warning');
-				case 'I':
-					return _('Info');
-				case 'D':
-					return _('Debug');
+				case "E":
+					return _("Error");
+				case "W":
+					return _("Warning");
+				case "I":
+					return _("Info");
+				case "D":
+					return _("Debug");
 			}
 
 			return value;

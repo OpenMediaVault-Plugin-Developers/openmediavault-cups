@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,8 +59,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract
         return array(
             "name"    => $this->getName(),
             "title"   => gettext("Printing"),
-            "enabled" => boolval($object['enable']),
-            "running" => ($initd->status() == 0)
+            "enabled" => boolval($object["enable"]),
+            "running" => $initd->status() == 0
         );
     }
 
@@ -69,16 +69,11 @@ class OMVModuleCups extends OMVModuleServiceAbstract
      */
     public function applyConfig()
     {
-        $cmd = "sudo omv-mkconf " . $this->getName() . " 2>&1";
+        $cmd = sprintf("sudo omv-mkconf %s 2>&1", $this->getName());
 
         if (0 !== $this->exec($cmd, $output))
             throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
                 $cmd, implode("\n", $output));
-    }
-
-    public function stopService() {
-        $initd = new OMVSysVInitScript($this->getName(), false);
-        $initd->exec();
     }
 
     public function startService() {
@@ -90,13 +85,18 @@ class OMVModuleCups extends OMVModuleServiceAbstract
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPath());
 
-        if (!boolval($object['enable']))
+        if (!boolval($object["enable"]))
             return;
 
         $initd = new OMVSysVInitScript($this->getName(), true);
         $initd->exec();
 
         $this->regenerateServiceDefinitions();
+    }
+
+    public function stopService() {
+        $initd = new OMVSysVInitScript($this->getName(), false);
+        $initd->exec();
     }
 
     private function regenerateServiceDefinitions()
@@ -137,7 +137,7 @@ OMVLogFile::registerType(
             "user" => 2,
             "date" => array(
                 "index" => 3,
-                "func"  => create_function('$v', 'return strpdate($v,"j/M/Y:G:i:s");')
+                "func"  => create_function("\$v", "return strpdate(\$v,\"j/M/Y:G:i:s\");")
             ),
             "event" => 4
         )
@@ -155,7 +155,7 @@ OMVLogFile::registerType(
             "severity" => 1,
             "date"     => array(
                 "index" => 2,
-                "func"  => create_function('$v', 'return strpdate($v,"j/M/Y:G:i:s");')
+                "func"  => create_function("\$v", "return strpdate(\$v,\"j/M/Y:G:i:s\");")
             ),
             "event" => 3
         )

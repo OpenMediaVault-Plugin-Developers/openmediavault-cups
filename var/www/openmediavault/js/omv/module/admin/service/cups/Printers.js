@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -186,7 +186,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 
         Ext.create("OMV.module.admin.service.cups.window.Printer", {
             title     : _("Edit printer"),
-            uuid      : record.get('uuid'),
+            uuid      : record.get("uuid"),
             listeners : {
                 scope  : me,
                 submit : function() {
@@ -300,7 +300,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 
         Ext.MessageBox.show({
             title   : _("Confirmation"),
-            msg     : _("Are you sure you want to cancel all printing jobs on") + ' ' + printerName + "?",
+            msg     : _("Are you sure you want to cancel all printing jobs on") + " " + printerName + "?",
             buttons : Ext.MessageBox.YESNO,
             fn      : function(answer) {
                 if (answer == "no")

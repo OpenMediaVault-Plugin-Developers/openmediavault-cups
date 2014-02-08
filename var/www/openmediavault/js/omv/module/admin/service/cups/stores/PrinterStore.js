@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@ Ext.define("OMV.module.admin.service.cups.stores.PrinterStore", {
     autoLoad   : true,
     remoteSort : false,
     model      : OMV.data.Model.createImplicit({
-        idProperty   : 'uuid',
-        totalPoperty : 'total',
+        idProperty   : "uuid",
+        totalPoperty : "total",
         fields       : [
             { name : "uuid" },
             { name : "PrinterInfo" },
@@ -43,7 +43,7 @@ Ext.define("OMV.module.admin.service.cups.stores.PrinterStore", {
         ]
     }),
     proxy : {
-        type    : 'rpc',
+        type    : "rpc",
         rpcData : {
             service : "Cups",
             method  : "getPrinters"

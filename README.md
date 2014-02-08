@@ -1,4 +1,4 @@
 openmediavault-cups
 ===================
 
-cups plugin
+CUPS plugin for OpenMediaVault

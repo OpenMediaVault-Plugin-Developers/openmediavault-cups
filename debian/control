@@ -2,12 +2,12 @@ Source: openmediavault-cups
 Section: misc
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 7 )
+Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.3
 
 Package: openmediavault-cups
 Architecture: all
-Depends: ${misc:Depends}, openmediavault (>= 0.5), openmediavault (<< 0.6), cups, 
+Depends: ${misc:Depends}, openmediavault (>= 0.6), cups, 
   python2.6, python-cups, python-lxml, openprinting-ppds, foo2zjs, 
   foomatic-filters, foomatic-filters-ppds, ghostscript-cups, hp-ppd, hpijs-ppds,
   hplip-cups, cups-driver-gutenprint, splix, python-pip, python-daemon,

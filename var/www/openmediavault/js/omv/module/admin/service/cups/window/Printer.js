@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ Ext.define("OMV.module.admin.service.cups.window.Printer", {
                 fieldLabel : _("Description"),
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _('Human-readable description such as "HP LaserJet with Duplexer"'),
+                    text  : _("Human-readable description such as 'HP LaserJet with Duplexer'"),
                 }],
                 allowBlank : false
             },
@@ -61,7 +61,7 @@ Ext.define("OMV.module.admin.service.cups.window.Printer", {
                 fieldLabel : "Location",
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _('Human-readable location such as "Lab 1"')
+                    text  : _("Human-readable location such as 'Lab 1'")
                 }]
             }
         ];

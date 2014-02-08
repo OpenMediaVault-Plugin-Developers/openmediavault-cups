@@ -1,5 +1,5 @@
 /**uid/
-* Copyright (C) 2013 OpenMediaVault Plugin Developers
+* Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -36,9 +36,9 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
         var me = this;
 
         return [{
-            xtype : 'panel',
+            xtype : "panel",
             items : [{
-                html   : '<h1>' + _('Printer Hardware') + '</h1>',
+                html   : "<h1>" + _("Printer Hardware") + "</h1>",
                 border : false
             },{
                 border : false,
@@ -46,16 +46,16 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                        + _("If your printer is not listed here, try Make: Generic, Model: Generic Postscript Printer. If there is more than one driver for your make / model choose one that is labeled (recommended) if available, or experiment to find the driver that works best for you.")
                        + "</p>"
             },{
-                xtype  : 'fieldset',
-                layout : 'fit',
+                xtype  : "fieldset",
+                layout : "fit",
                 title  : _("Printer"),
                 border : false,
                 items  : [{
-                    xtype          : 'combo',
-                    name           : 'device',
-                    hideFieldLabel : 'true',
-                    valueField     : 'uuid',
-                    displayField   : 'DeviceInfo',
+                    xtype          : "combo",
+                    name           : "device",
+                    hideFieldLabel : "true",
+                    valueField     : "uuid",
+                    displayField   : "DeviceInfo",
                     emptyText      : _("Select a printer ..."),
                     allowBlank     : false,
                     allowNone      : false,
@@ -101,7 +101,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                             var nameField = me.findField("name");
                             var descriptionField = me.findField("description");
 
-                            nameField.setValue(deviceInfo.replace(/[\s|#|\/]/g, '_'));
+                            nameField.setValue(deviceInfo.replace(/[\s|#|\/]/g, "_"));
                             descriptionField.setValue(deviceInfo);
 
                             var makeCombo = me.findField("make");
@@ -110,16 +110,16 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     }
                 }]
             },{
-                xtype  : 'fieldset',
-                layout : 'fit',
+                xtype  : "fieldset",
+                layout : "fit",
                 title  : _("Make"),
                 border : false,
                 items  : [{
-                    xtype          : 'combo',
-                    name           : 'make',
-                    hideFieldLabel : 'true',
-                    valueField     : 'make',
-                    displayField   : 'make',
+                    xtype          : "combo",
+                    name           : "make",
+                    hideFieldLabel : "true",
+                    valueField     : "make",
+                    displayField   : "make",
                     submitValue    : false,
                     emptyText      : _("Select a make ..."),
                     allowBlank     : false,
@@ -154,7 +154,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
 
                             modelStore.removeAll();
 
-                            Ext.each(record.get('models'), function (model) {
+                            Ext.each(record.get("models"), function (model) {
                                 modelStore.add(modelStore.model.create(model));
                             });
 
@@ -164,16 +164,16 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     }
                 }]
             },{
-                xtype  : 'fieldset',
-                layout : 'fit',
+                xtype  : "fieldset",
+                layout : "fit",
                 title  : _("Model / Driver"),
                 border : false,
                 items  : [{
-                    xtype          : 'combo',
-                    name           : 'ppd',
-                    hideFieldLabel : 'true',
-                    valueField     : 'uuid',
-                    displayField   : 'PpdMakeAndModel',
+                    xtype          : "combo",
+                    name           : "ppd",
+                    hideFieldLabel : "true",
+                    valueField     : "uuid",
+                    displayField   : "PpdMakeAndModel",
                     emptyText      : _("Select a model ..."),
                     allowBlank     : false,
                     allowNone      : false,
@@ -191,16 +191,16 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                 }]
             }]
         },{
-            xtype : 'panel',
+            xtype : "panel",
             items : [{
-                html   : '<h1>' + _('Printer Description') + '</h1>',
+                html   : "<h1>" + _("Printer Description") + "</h1>",
                 border : false
             },{
                 xtype    : "fieldset",
-                layout   : 'form',
+                layout   : "form",
                 border   : false,
                 defaults : {
-                    anchor : '100%'
+                    anchor : "100%"
                 },
                 items : [{
                     xtype      : "textfield",
@@ -218,7 +218,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     fieldLabel : _("Description"),
                     plugins    : [{
                         ptype : "fieldinfo",
-                        text  : _('Human-readable description such as "HP LaserJet with Duplexer"')
+                        text  : _("Human-readable description such as 'HP LaserJet with Duplexer'")
                     }],
                     allowBlank : false
                 },{
@@ -227,7 +227,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     fieldLabel : _("Location"),
                     plugins    : [{
                         ptype : "fieldinfo",
-                        text  : _('Human-readable location such as "Lab 1"')
+                        text  : _("Human-readable location such as 'Lab 1'")
                     }]
                 }]
             }]

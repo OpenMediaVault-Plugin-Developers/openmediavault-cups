@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
     initComponent : function() {
         var me = this;
 
-        me.on('load', function () {
-            var checked = me.findField('enable').checked;
-            var parent = me.up('tabpanel');
+        me.on("load", function () {
+            var checked = me.findField("enable").checked;
+            var parent = me.up("tabpanel");
             var panels = [
                 _("Printers"),
                 _("Jobs"),
@@ -42,7 +42,7 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 return;
 
             Ext.Array.each(panels, function(title) {
-                var panel = parent.down('panel[title=' + title + ']');
+                var panel = parent.down("panel[title=" + title + "]");
 
                 if (panel)
                     checked ? panel.enable() : panel.disable();

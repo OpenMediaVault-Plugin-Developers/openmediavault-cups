@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,29 +34,29 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
     public function getName()
     {
-        return 'Cups';
+        return "Cups";
     }
 
     public function initialize()
     {
-        $this->registerMethod('getSettings');
-        $this->registerMethod('setSettings');
+        $this->registerMethod("getSettings");
+        $this->registerMethod("setSettings");
 
-        $this->registerMethod('getPrinters');
-        $this->registerMethod('getPrinter');
-        $this->registerMethod('setPrinter');
-        $this->registerMethod('addPrinter');
-        $this->registerMethod('deletePrinter');
+        $this->registerMethod("getPrinters");
+        $this->registerMethod("getPrinter");
+        $this->registerMethod("setPrinter");
+        $this->registerMethod("addPrinter");
+        $this->registerMethod("deletePrinter");
 
-        $this->registerMethod('printTestPage');
-        $this->registerMethod('resumePrinting');
-        $this->registerMethod('pausePrinting');
-        $this->registerMethod('getMakesModels');
-        $this->registerMethod('findDirectPrinters');
+        $this->registerMethod("printTestPage");
+        $this->registerMethod("resumePrinting");
+        $this->registerMethod("pausePrinting");
+        $this->registerMethod("getMakesModels");
+        $this->registerMethod("findDirectPrinters");
 
-        $this->registerMethod('getJobs');
-        $this->registerMethod('cancelJob');
-        $this->registerMethod('cancelJobs');
+        $this->registerMethod("getJobs");
+        $this->registerMethod("cancelJob");
+        $this->registerMethod("cancelJobs");
     }
 
     /**
@@ -87,11 +87,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
                 $this->getXPath());
 
         // Modify result data
-        $settingsObject['enable']          = boolval($object['enable']);
-        $settingsObject['enable_samba']    = boolval($object['enable_samba']);
-        $settingsObject['airprint']        = boolval($object['airprint']);
-        $settingsObject['maxjobs']         = intval($object['maxjobs']);
-        $settingsObject['remote_printers'] = boolval($object['remote_printers']);
+        $settingsObject["enable"]          = boolval($object["enable"]);
+        $settingsObject["enable_samba"]    = boolval($object["enable_samba"]);
+        $settingsObject["airprint"]        = boolval($object["airprint"]);
+        $settingsObject["maxjobs"]         = intval($object["maxjobs"]);
+        $settingsObject["remote_printers"] = boolval($object["remote_printers"]);
 
         return $settingsObject;
     }
@@ -119,11 +119,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Prepare configuration data
         $object = array(
-            "enable"          => array_boolval($params, 'enable'),
-            'enable_samba'    => array_boolval($params, 'enable_samba'),
-            'airprint'        => array_boolval($params, 'airprint'),
-            'maxjobs'         => $params['maxjobs'],
-            'remote_printers' => array_boolval($params, 'remote_printers'),
+            "enable"          => array_boolval($params, "enable"),
+            "enable_samba"    => array_boolval($params, "enable_samba"),
+            "airprint"        => array_boolval($params, "airprint"),
+            "maxjobs"         => $params["maxjobs"],
+            "remote_printers" => array_boolval($params, "remote_printers"),
         );
 
         // Set configuration object
@@ -137,8 +137,8 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $oldConf = $xmlConfig->get($this->getXPath());
 
-        if ($oldConf['enable'] != $object['enable'])
-            $this->notifySamba($object['enable']);
+        if ($oldConf["enable"] != $object["enable"])
+            $this->notifySamba($object["enable"]);
 
         return $object;
     }
@@ -174,7 +174,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        return $this->runCupsCommand('getPrinter', array($params['uuid']));
+        return $this->runCupsCommand("getPrinter", array($params["uuid"]));
     }
 
     public function setPrinter($params, $context)
@@ -195,11 +195,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }');
 
         $this->runCupsCommand(
-            'setPrinter',
+            "setPrinter",
             array(
-                $params['uuid'],
-                $params['PrinterInfo'],
-                $params['PrinterLocation']
+                $params["uuid"],
+                $params["PrinterInfo"],
+                $params["PrinterLocation"]
             )
         );
     }
@@ -230,7 +230,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $printer = null;
 
         try {
-            $printer = $this->getPrinter($params['name']);
+            $printer = $this->getPrinter($params["name"]);
         } catch (Exception $e) {
             // Nothing
         }
@@ -238,17 +238,17 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         if ($printer)
             throw new Exception("A printer with the name {$params['name']} already exists.");
 
-        if (empty($params['location']))
-            $params['location'] = '';
+        if (empty($params["location"]))
+            $params["location"] = "";
 
         $this->runCupsCommand(
-            'addPrinter',
+            "addPrinter",
             array(
-                $params['name'],
-                $params['ppd'],
-                $params['description'],
-                $params['location'],
-                $params['device']
+                $params["name"],
+                $params["ppd"],
+                $params["description"],
+                $params["location"],
+                $params["device"]
             )
         );
 
@@ -274,7 +274,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('deletePrinter', array($params['pname']));
+        $this->runCupsCommand("deletePrinter", array($params["pname"]));
     }
 
     /**
@@ -295,7 +295,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('printTestPage', array($params['pname']));
+        $this->runCupsCommand("printTestPage", array($params["pname"]));
     }
 
     /**
@@ -316,7 +316,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('resumePrinting', array($params['pname']));
+        $this->runCupsCommand("resumePrinting", array($params["pname"]));
     }
 
     /**
@@ -337,7 +337,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('pausePrinting', array($params['pname']));
+        $this->runCupsCommand("pausePrinting", array($params["pname"]));
     }
 
     /**
@@ -350,7 +350,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "role" => OMV_ROLE_ADMINISTRATOR
         ));
 
-        return $this->runCupsCommand('getMakesModels');
+        return $this->runCupsCommand("getMakesModels");
     }
 
     /**
@@ -374,7 +374,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $scanForRemotePrinters = $xmlConfig->get($this->getXPath() . "/remote_printers");
         $arg = $scanForRemotePrinters ? "--network" : "--no-network";
 
-        return $this->runCupsCommand('findDirectPrinters', array($arg));
+        return $this->runCupsCommand("findDirectPrinters", array($arg));
     }
 
     public function getJobs($params, $context)
@@ -389,33 +389,33 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "type"       : "object",
             "properties" : {
                 "start"     : { "type" : "integer" },
-                "limit"     : {' . $GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'] . '},
-                "sortfield" : {' . $GLOBALS['OMV_JSONSCHEMA_SORTFIELD'] . '},
-                "sortdir"   : {' . $GLOBALS['OMV_JSONSCHEMA_SORTDIR'] . '},
+                "limit"     : {' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . '},
+                "sortfield" : {' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . '},
+                "sortdir"   : {' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . '},
                 "which"     : { "type" : "string", "optional" : true }
             }
         }');
 
         // Default to showing only not completed jobs
-        if (isset($params['which']) === false)
-            $params['which'] = 'not-completed';
+        if (isset($params["which"]) === false)
+            $params["which"] = "not-completed";
 
         $jobs = array();
 
         if ($this->isRunning()) {
             $jobs = $this->runCupsCommand(
-                'getJobs',
-                array($params['which'])
+                "getJobs",
+                array($params["which"])
             );
         }
 
         // Filter result
         return $this->applyFilter(
             $jobs,
-            $params['start'],
-            $params['limit'],
-            $params['sortfield'],
-            $params['sortdir']
+            $params["start"],
+            $params["limit"],
+            $params["sortfield"],
+            $params["sortdir"]
         );
     }
 
@@ -437,7 +437,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('cancelJob', array($params['jobid']));
+        $this->runCupsCommand("cancelJob", array($params["jobid"]));
     }
 
     /**
@@ -458,7 +458,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }
         }');
 
-        $this->runCupsCommand('cancelAllJobs', array($params['pname']));
+        $this->runCupsCommand("cancelAllJobs", array($params["pname"]));
     }
 
     /**
@@ -467,9 +467,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     private function runCupsCommand($fn, $args = array())
     {
         if (count($args)) {
-            $args = implode(" ", array_map('escapeshellarg', $args));
+            $args = implode(" ", array_map("escapeshellarg", $args));
         } else {
-            $args = '';
+            $args = "";
         }
 
         $cmd = "sudo /usr/local/bin/omvcups.py {$fn} {$args} 2>&1";
@@ -482,8 +482,8 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $obj = json_decode($output, true);
 
-        if (!empty($obj['error']))
-            throw new Exception($obj['error']);
+        if (!empty($obj["error"]))
+            throw new Exception($obj["error"]);
 
         return $obj;
     }
@@ -497,7 +497,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // If we're enabled, make sure sharing is enabled
         if ($enabled)
-            $this->runCupsCommand('enableSharing');
+            $this->runCupsCommand("enableSharing");
     }
 
     private function isRunning()

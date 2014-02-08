@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2011 Ian Moore
- * Copyright (C) 2013 OpenMediaVault Plugin Developers
+ * Copyright (C)      2011 Ian Moore
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         dataIndex : "JobId",
         width     : 60,
         renderer  : function (value, metaData, record) {
-            return record.get("PrinterUri").replace(/.*\//, '') + ' ' + value;
+            return record.get("PrinterUri").replace(/.*\//, "") + " " + value;
         }
     },{
         header    : _("Created"),
@@ -67,7 +67,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         dataIndex : "JobOriginatingUserName",
         width     : 80,
         renderer  : function (value, metaData, record) {
-            return value + '@' + record.get("JobOriginatingHostName");
+            return value + "@" + record.get("JobOriginatingHostName");
         }
     },{
         header    : _("Size"),
@@ -75,7 +75,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         dataIndex : "JobKOctets",
         width     : 60,
         renderer  : function (value) {
-            return value + 'k';
+            return value + "k";
         }
     },{
         header    : _("Pages"),
@@ -83,7 +83,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         dataIndex : "JobMediaSheetsCompleted",
         width     : 60,
         renderer  : function (value) {
-            return (val ? val : 'Unknown');
+            return (val ? val : "Unknown");
         }
     },{
         header    : _("State"),
@@ -100,24 +100,24 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             // IPP_JOB_STOPPED = 6
             switch (parseInt(value)) {
                 case 8:
-                    return _('Aborted');
+                    return _("Aborted");
                 case 7:
-                    return _('Canceled');
+                    return _("Canceled");
                 case 9:
                     var myTime = new Date();
                     myTime.setTime(record.get("TimeAtCompleted") * 1000);
-                    return _('Completed') + ' ' + myTime.toLocaleString();
+                    return _("Completed") + " " + myTime.toLocaleString();
                 case 4:
-                    return _('Held');
+                    return _("Held");
                 case 3:
-                    return _('Pending');
+                    return _("Pending");
                 case 5:
-                    return _('Processing');
+                    return _("Processing");
                 case 6:
-                    return _('Stopped');
+                    return _("Stopped");
             }
 
-            return _('Unknown') + ' (' + value + ')';
+            return _("Unknown") + " (" + value + ")";
         }
     }],
 
@@ -129,8 +129,8 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                 autoLoad   : true,
                 remoteSort : false,
                 model      : OMV.data.Model.createImplicit({
-                    idProperty   : 'id',
-                    totalPoperty : 'total',
+                    idProperty   : "id",
+                    totalPoperty : "total",
                     fields       : [
                         { name : "JobId" },
                         { name : "JobName" },
@@ -145,7 +145,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                     ]
                 }),
                 proxy : {
-                    type    : 'rpc',
+                    type    : "rpc",
                     rpcData : {
                         service     : "Cups",
                         method      : "getJobs"
@@ -179,13 +179,13 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         },{
             xtype : "tbseparator"
         },{
-            xtype : 'tbspacer',
+            xtype : "tbspacer",
             width : 20
         },{
             xtype : "label",
-            text  : _("Show") + ': '
+            text  : _("Show") + ": "
         },{
-            xtype : 'tbspacer',
+            xtype : "tbspacer",
             width : 5
         },{
             xtype         : "combo",
@@ -213,7 +213,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                     var value = combo.getValue();
 
                     store.setProxy({
-                        type    : 'rpc',
+                        type    : "rpc",
                         rpcData : {
                             service     : "Cups",
                             method      : "getJobs"
@@ -258,7 +258,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         var me     = this;
             record = me.getSelected();
 
-        me.doCancel(record.get('JobId'));
+        me.doCancel(record.get("JobId"));
     },
 
     doCancel : function(jobId) {

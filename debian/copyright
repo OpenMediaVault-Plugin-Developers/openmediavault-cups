@@ -1,7 +1,8 @@
 Format: http://dep.debian.net/deps/dep5
 Upstream-Contact: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 Source: https://github.com/OpenMediaVault-Plugin-Developers/openmediavault-cups
-Copyright: 2013 OpenMediaVault Plugin Developers <plugins@omv-extras.org>
- 2012 Marcel Beck <marcel.beck@mbeck.org>
- 2011 Ian Moore <imooreyahoo@gmail.com>
-License: GPL-3
+
+Files: *
+Copyright: 2013-2014 OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+                2011 Ian Moore <imooreyahoo@gmail.com>
+License: GPL-3+

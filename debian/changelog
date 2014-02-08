@@ -1,3 +1,9 @@
+openmediavault-cups (1.0.0) UNRELEASED; urgency=medium
+
+  * OMV 1.0 compatibility
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 08 Feb 2014 16:03:34 +0100
+
 openmediavault-cups (0.5.1) stable; urgency=low
 
   * Fix requires 
