@@ -83,7 +83,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         dataIndex : "JobMediaSheetsCompleted",
         width     : 60,
         renderer  : function (value) {
-            return (val ? val : "Unknown");
+            return (value ? value : "Unknown");
         }
     },{
         header    : _("State"),
