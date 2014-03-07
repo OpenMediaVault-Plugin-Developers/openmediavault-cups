@@ -85,7 +85,7 @@ case "$1" in
             # Check for diff of samba config
             HASH="$(md5sum /etc/samba/smb.conf)"
 
-            # Generate samba confing
+            # Generate samba config
             omv-mkconf samba
 
             if [ "$(omv_config_get "//services/smb/enable")" = "1" ]; then
