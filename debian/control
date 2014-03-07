@@ -7,9 +7,9 @@ Standards-Version: 3.9.3
 
 Package: openmediavault-cups
 Architecture: all
-Depends: ${misc:Depends}, openmediavault (>= 0.6), cups, 
-  python2.6, python-cups, python-lxml, openprinting-ppds, foo2zjs, 
-  foomatic-filters, foomatic-filters-ppds, ghostscript-cups, hp-ppd, hpijs-ppds,
-  hplip-cups, cups-driver-gutenprint, splix, python-pip, python-daemon,
-  locales
+Depends: ${misc:Depends}, openmediavault (>= 0.6), cups,
+  printer-driver-foo2zjs, printer-driver-gutenprint, printer-driver-hpcups, printer-driver-splix,
+  python2.7, python-cups, python-daemon, python-lxml, python-pip,
+  foomatic-filters, foomatic-db-engine, foomatic-db,
+  ghostscript-cups, openprinting-ppds, hp-ppd, hpijs-ppds
 Description: OpenMediaVault CUPS (network printer server) plugin
