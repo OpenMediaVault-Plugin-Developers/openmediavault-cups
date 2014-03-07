@@ -34,7 +34,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
     hideEditButton    : true,
     hideDeleteButton  : true,
     hideRefreshButton : false,
-    hidePagingToolbar : true,
+    hidePagingToolbar : false,
     reloadOnActivate  : true,
     rememberSelected  : false,
 
