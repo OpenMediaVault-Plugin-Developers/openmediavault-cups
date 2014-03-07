@@ -60,7 +60,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         header    : _("Name"),
         sortable  : true,
         dataIndex : "JobName",
-        flex      : 1,
+        flex      : 1
     },{
         header    : _("User"),
         sortable  : true,
@@ -98,7 +98,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             // IPP_JOB_PENDING = 3
             // IPP_JOB_PROCESSING = 5
             // IPP_JOB_STOPPED = 6
-            switch (parseInt(value)) {
+            switch (parseInt(value, 10)) {
                 case 8:
                     return _("Aborted");
                 case 7:

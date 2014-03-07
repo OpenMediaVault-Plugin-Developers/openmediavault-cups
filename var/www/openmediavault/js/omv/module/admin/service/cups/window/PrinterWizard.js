@@ -42,9 +42,9 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                 border : false
             },{
                 border : false,
-                html   : "<p>"
-                       + _("If your printer is not listed here, try Make: Generic, Model: Generic Postscript Printer. If there is more than one driver for your make / model choose one that is labeled (recommended) if available, or experiment to find the driver that works best for you.")
-                       + "</p>"
+                html   : "<p>" +
+                         _("If your printer is not listed here, try Make: Generic, Model: Generic Postscript Printer. If there is more than one driver for your make / model choose one that is labeled (recommended) if available, or experiment to find the driver that works best for you.") +
+                         "</p>"
             },{
                 xtype  : "fieldset",
                 layout : "fit",
@@ -240,7 +240,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
  */
 Ext.apply(Ext.form.VTypes, {
     printername : function (value) {
-        return /^[^\s|#|\\]+$/.test(value);
+        return (/^[^\s|#|\\]+$/).test(value);
     },
     printernameText : _("Invalid printer name"),
     printernameMask : /[^\s|#|\\]/

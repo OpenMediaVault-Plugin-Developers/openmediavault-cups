@@ -98,9 +98,9 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 checked    : false
             },{
                 border : false,
-                html   : "<p>"
-                       + _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.")
-                       + "</p>"
+                html   : "<p>" +
+                         _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.") +
+                         "</p>"
             }]
         }];
     }
