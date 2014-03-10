@@ -101,6 +101,18 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 html   : "<p>" +
                          _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.") +
                          "</p>"
+            },{
+                xtype      : "button",
+                name       : "cupsmanage",
+                text       : _("Web Management"),
+                scope      : this,
+                handler    : function () {
+                    var link = 'http://' + location.hostname + ':631';
+                    window.open(link, '_blank');
+                }
+            },{
+                border     : false,
+                html       : "</p>"
             }]
         }];
     }
