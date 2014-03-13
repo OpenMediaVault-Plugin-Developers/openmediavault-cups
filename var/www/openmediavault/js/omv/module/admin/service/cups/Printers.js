@@ -134,6 +134,16 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             handler  : Ext.Function.bind(me.onCancelJobsButton, me, [ me ]),
             scope    : me,
             disabled : true
+        },{
+            xtype : "tbseparator"
+        },{
+            text    : _("Advanced management"),
+            icon    : "images/preferences.png",
+            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler : function() {
+                var href = Ext.String.format("http://{0}:631", location.hostname);
+                window.open(href, "_blank");
+            }
         }]);
 
         return items;
