@@ -1,8 +1,14 @@
-openmediavault-cups (1.0.0) UNRELEASED; urgency=medium
+openmediavault-cups (1.0.0.1) UNRELEASED; urgency=low
+
+  * Conform to OMV 0.6.0.6 trigger standards
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Apr 2014 01:39:39 +0200
+
+openmediavault-cups (1.0.0) unstable; urgency=medium
 
   * OMV 1.0 compatibility
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 08 Feb 2014 16:03:34 +0100
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Apr 2014 01:38:01 +0200
 
 openmediavault-cups (0.5.1) stable; urgency=low
 
