@@ -3,266 +3,266 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014
+# benitude <benjamin.wuthrich@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-cups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-16 13:29-0600\n"
-"PO-Revision-Date: 2014-01-10 14:17+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-cups/language/da/)\n"
+"PO-Revision-Date: 2014-02-10 21:34+0000\n"
+"Last-Translator: benitude <benjamin.wuthrich@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/openmediavault-cups/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid ""
 "<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
 "devices."
-msgstr "<i> Eksperimentel </ i>. Giver 'AirPrint' kompatibilitet for Apple iOS-enheder."
+msgstr "<i>Experimental</i<. Fournit la compatibilité 'AirPrint' pour les périphériques iOS d'Apple."
 
 msgid "Active"
-msgstr "Aktive"
+msgstr "Activer"
 
 msgid "Add printer"
-msgstr "Tilføj printer"
+msgstr "Ajouter imprimante"
 
 msgid "AirPrint capable Apple iOS devices"
-msgstr "AirPrint understøttet Apple iOS enheder"
+msgstr "Périphériques iOS d'apple compatibles AirPrint"
 
 msgid "All"
-msgstr "Alle"
+msgstr "Tous"
 
 msgid "Are you sure you want to cancel all printing jobs on"
-msgstr "Er du sikker på at, du vil annullere alle print opgaver på"
+msgstr "Êtes vous sûr de vouloir annuler toutes les tâches d'impression sur "
 
 msgid "Are you sure you want to cancel the selected printing job?"
-msgstr "Er du sikker på at, du vil annullere den valgte print opgave?"
+msgstr "Êtes-vous sûr de vouloir annuler la tâche d'impression?"
 
 msgid "Cancel"
-msgstr "Annuller"
+msgstr "Annuler"
 
 msgid "Cancel job"
-msgstr "Annuller opgave"
+msgstr "Annuler la tâche"
 
 msgid "Cancel jobs"
-msgstr "Annuller opgaver"
+msgstr "Annuler les tâches"
 
 msgid "Cancelling job ..."
-msgstr "Annullere opgave ..."
+msgstr "Annulation des tâches ..."
 
 msgid "Completed"
-msgstr "Færdiggjort"
+msgstr "Terminé"
 
 msgid "Confirmation"
-msgstr "Bekræftelse"
+msgstr "Confirmation"
 
 msgid "Created"
-msgstr "Oprettet"
+msgstr "Créé"
 
 msgid "Date & Time"
-msgstr "Dato & Tid"
+msgstr "Heure & date"
 
 msgid "Description"
-msgstr "Beskrivelse"
+msgstr "Description"
 
 msgid "Edit printer"
-msgstr "Rediger printer"
+msgstr "Modifier l'imprimante"
 
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "Activer"
 
 msgid "Enable AirPrint"
-msgstr "Aktiver AirPrint"
+msgstr "Activer AirPrint"
 
 msgid "Enable SMB Sharing"
-msgstr "Aktiver SMB Deling"
+msgstr "Activer le partage SMB"
 
 msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
-msgstr "Aktiver deling af printere over OpenMediaVaults SMB/CIFS tjeneste."
+msgstr "Activer le partage des imprimantes à l'aide du service SMB/CIFS d'OpenMediaVault."
 
 msgid "Enables listing of remote printers when adding a printer."
-msgstr "Aktiver en liste af eksterne printer, når der tilføjes en printer."
+msgstr "Afficher la liste des imprimantes lorsqu'on ajoute une nouvelle imprimante."
 
 msgid "Event"
-msgstr "Begivenhed"
+msgstr "Évènement"
 
 msgid "Finish"
-msgstr "Færdig"
+msgstr "Terminé"
 
 msgid "General Settings"
-msgstr "Generelle Indstillinger"
+msgstr "Paramètre généraux"
 
 msgid "Host"
-msgstr "Vært"
+msgstr "Hôte"
 
 msgid "Idle"
-msgstr "Ledig"
+msgstr "Repos"
 
 msgid ""
 "If your printer is not listed here, try Make: Generic, Model: Generic "
 "Postscript Printer. If there is more than one driver for your make / model "
 "choose one that is labeled (recommended) if available, or experiment to find"
 " the driver that works best for you."
-msgstr "Hvis din printer ikke er angivet her, så prøv Producent: Generisk, Model: Generisk Postscript Printer. Hvis der er mere end en driver til din producent / model, skal du vælge den, der er markeret (anbefales) hvis tilgængelig, eller eksperimentere for at finde den driver, der fungerer bedst for dig."
+msgstr "Si votre imprimante n'est pas listée, essayez: Modèle générique: Generic Postscript Printer. Si plus d'un pilote est trouvé, choisissez le pilote recommandé, ou essayez de trouver le pilote opérationnel."
 
 msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
-msgstr "Internet Printing Protokol (IPP) Delte Printer URLér"
+msgstr "Internet Printing Protocol (IPP) Shared Printer URLs"
 
 msgid "Invalid printer name"
-msgstr "Ugyldig printer navn"
+msgstr "Nom d'imprimante incorrect"
 
 msgid "Job Id"
-msgstr "Opgave Id"
+msgstr "Id tâche"
 
 msgid "Jobs"
-msgstr "Opgaver"
+msgstr "Tâches"
 
 msgid "Linux"
 msgstr "Linux"
 
 msgid "Location"
-msgstr "Placering"
+msgstr "Location"
 
 msgid "Mac OS X"
 msgstr "Mac OS X"
 
 msgid "Make"
-msgstr "Producent"
+msgstr "Créer"
 
 msgid "Make and Model / Driver"
-msgstr "Producent og Model / Driver"
+msgstr "Marque et modèle / pilote"
 
 msgid "Max Jobs"
-msgstr "Maks. opgaver"
+msgstr "Tâhes maximales"
 
 msgid "May contain any printable characters except \"/\", \"#\" and space"
-msgstr "Kan indeholde alle printbare tegn undtagen \"/\", \"#\", og mellemrum"
+msgstr "Peut contenir tous les caractères exceptés \"/\", \"#\" et espace"
 
 msgid "Model / Driver"
-msgstr "Model / Driver"
+msgstr "Modèle / pilote"
 
 msgid "Name"
-msgstr "Navn"
+msgstr "Nom"
 
 msgid "Next"
-msgstr "Næste"
+msgstr "Suivant"
 
 msgid "No printers found."
-msgstr "Ingen printere fundet"
+msgstr "Aucune imprimante trouvée"
 
 msgid ""
 "Once the number of print jobs reaches the limit, the oldest completed job is"
 " automatically purged from the system to make room for the new one. If all "
 "of the known jobs are still pending or active then the new job will be "
 "rejected."
-msgstr "Når antallet af print opgaver når grænsen, bliver den ældste færdige opgave automatisk slettet fra systemet for at gøre plads til den nye. Hvis alle kendte opgaver stadig er ventende eller aktive, så vil den nye opgave blive afvist."
+msgstr "Une fois le nombre maximum de tâches atteint, la plus vieille tâche d'impression terminée est automatiquement supprimé. Si toutes les tâches sont actives alors les nouvelles tâches seront rejetées."
 
 msgid "Pages"
-msgstr "Sider"
+msgstr "Pages"
 
 msgid "Pause printing"
-msgstr "Pause printning"
+msgstr "Pause"
 
 msgid "Paused"
-msgstr "Pauset"
+msgstr "En pause"
 
 msgid "Pausing printer ..."
-msgstr "Pauser printer ..."
+msgstr "Imprimante en pause ..."
 
 msgid "Previous"
-msgstr "Forrige"
+msgstr "Précédent"
 
 msgid "Print test page"
-msgstr "Print test side"
+msgstr "Imprimer page de test"
 
 msgid "Printer"
-msgstr "Printer"
+msgstr "Imprimante"
 
 msgid "Printer / Queue Name"
-msgstr "Printer / Kø Navn"
+msgstr "Imprimante / nom de la file"
 
 msgid "Printer sharing"
-msgstr "Printer Deling"
+msgstr "Partage d'imprimantes"
 
 msgid "Printers"
-msgstr "Printere"
+msgstr "Imprimantes"
 
 msgid "Printing"
-msgstr "Printer"
+msgstr "Impression"
 
 msgid "Printing Access Log"
-msgstr "Printer Adgangs Log"
+msgstr "Logs d'impression"
 
 msgid "Printing Error Log"
-msgstr "Printer Fejl Log"
+msgstr "Logs d'erreur impression"
 
 msgid "Printing test page ..."
-msgstr "Printer test side ..."
+msgstr "Impression de la page de test ..."
 
 msgid "Processing"
-msgstr "Behandler"
+msgstr "En cours"
 
 msgid "Remote printers"
-msgstr "Eksterne printere"
+msgstr "Imprimantes distantes"
 
 msgid "Resume printing"
-msgstr "Genoptag printning"
+msgstr "Reprendre l'impression"
 
 msgid "Resuming printer ..."
-msgstr "Genoptager printer ..."
+msgstr "Reprise imprimante ..."
 
 msgid "SMB Shared Printer Paths"
-msgstr "SMB Delte Printer Sti"
+msgstr "Chemin de partage SMB de l'imprimante"
 
 msgid "Saving ..."
-msgstr "Gemmer ..."
+msgstr "Sauvegarde ..."
 
 msgid "Scanning for attached printers ..."
-msgstr "Scanner efter tilsluttede printere ..."
+msgstr "Scanning des imprimantes ..."
 
 msgid "Select a make ..."
-msgstr "Vælg en producent ..."
+msgstr "Sélection de la marque ..."
 
 msgid "Select a model ..."
-msgstr "Vælg en model ..."
+msgstr "Sélection du modèle ..."
 
 msgid "Select a printer ..."
-msgstr "Vælg en printer ..."
+msgstr "Sélection de l'imrpimante ..."
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Paramètres"
 
 msgid "Severity"
-msgstr "Sværhedsgrad"
+msgstr "Gravité"
 
 msgid "Show"
-msgstr "Vis"
+msgstr "Afficher"
 
 msgid "Size"
-msgstr "Størrelse"
+msgstr "Taille"
 
 msgid "State"
-msgstr "Tilstand"
+msgstr "État"
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Unknown"
-msgstr "Ukendt"
+msgstr "Inconnu"
 
 msgid "User"
-msgstr "Bruger"
+msgstr "Utilisateur"
 
 msgid ""
 "Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
 "printers using their OpenMediaVault username / password."
-msgstr "Bruger i <b>lpadmin</b> OpenMediaVault gruppen, vil være i stand til at administrere printere ved brug af deres OpenMediaVault brugernavn / adgangskode. "
+msgstr "Les utilisateurs du groupe <b>lpadmin</b> OpenMediaVault pourront administrer les imprimantes en utilisant leur login / mot de passe OpenMediaVault."
 
 msgid "Windows"
 msgstr "Windows"
 
 msgid "Wizard"
-msgstr "Guide"
+msgstr "Wizard"

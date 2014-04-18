@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2014-01-31 12:37+0000\n"
+"Last-Translator: kansuke <kansuke4649@gmail.com>\n"
+"Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-cups/language/ja_JP/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja_JP\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr "<i>実験的</i>。 Apple iOSデバイスとの'AirPrint'の互換性を提供します。"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Add printer"
+msgstr "プリンタの追加"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr "AirPrintはApple iOSデバイスで利用可能"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr "あなたはすべての印刷ジョブをキャンセルしますか "
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr "あなたが選択した印刷ジョブをキャンセルしてもよろしいですか？"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Cancel job"
+msgstr "ジョブのキャンセル"
+
+msgid "Cancel jobs"
+msgstr "ジョブのキャンセル"
+
+msgid "Cancelling job ..."
+msgstr "ジョブをキャンセルしています ..."
+
+msgid "Completed"
+msgstr "完了しました"
+
+msgid "Confirmation"
+msgstr "確認"
+
+msgid "Created"
+msgstr "作成済み"
+
+msgid "Date & Time"
+msgstr "日付 & 時間"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Edit printer"
+msgstr "プリンタの編集"
+
+msgid "Enable"
+msgstr "有効"
+
+msgid "Enable AirPrint"
+msgstr "AirPrintを有効にする"
+
+msgid "Enable SMB Sharing"
+msgstr "SMB共有を有効にする"
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr "OpenMediaVaultのSMB/CIFSサービス上のプリンタの共有を有効にします。"
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr "プリンタを追加するときにリモートプリンタのリストを有効にします。"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "Finish"
+msgstr "完了"
+
+msgid "General Settings"
+msgstr "一般設定"
+
+msgid "Host"
+msgstr "ホスト"
+
+msgid "Idle"
+msgstr "アイドル"
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr "お使いのプリンタがこのリストにない場合は、製造元:Generic、モデル:Generic Postscript Printerを試してください。もし、あなたのプリンタの製造元/モデルのドライバーがひとつ以上ある場合、可能な場合は(recommended)ラベルが付いたもの、もしくは実験的なものがあなたのために最も適しています。"
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr "Internet Printing Protocol (IPP) 共有プリンタのURL"
+
+msgid "Invalid printer name"
+msgstr "不正なプリンタ名"
+
+msgid "Job Id"
+msgstr "ジョブID"
+
+msgid "Jobs"
+msgstr "ジョブ"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Location"
+msgstr "ロケーション"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr "製造元"
+
+msgid "Make and Model / Driver"
+msgstr "製造元とモデル / ドライバー"
+
+msgid "Max Jobs"
+msgstr "最大ジョブ"
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr " \"/\", \"#\"とスペースを除く、任意の印刷可能文字を含めることができます"
+
+msgid "Model / Driver"
+msgstr "モデル / ドライバー"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "No printers found."
+msgstr "プリンタが見つかりません。"
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr "印刷ジョブの数が限界に達すると、最も古い完了したジョブは、新しいジョブために自動的にシステムからパージされます。既存のすべてのジョブが保留中またはアクティブである場合、新しいジョブは拒否されます。"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Pause printing"
+msgstr "印刷の一時停止"
+
+msgid "Paused"
+msgstr "一時停止"
+
+msgid "Pausing printer ..."
+msgstr "プリンタを一時停止しています ..."
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Print test page"
+msgstr "テストページの印刷"
+
+msgid "Printer"
+msgstr "プリンタ"
+
+msgid "Printer / Queue Name"
+msgstr "プリンタ / キューの名前"
+
+msgid "Printer sharing"
+msgstr "プリンタの共有"
+
+msgid "Printers"
+msgstr "プリンタ"
+
+msgid "Printing"
+msgstr "印刷中"
+
+msgid "Printing Access Log"
+msgstr "印刷のアクセスログ"
+
+msgid "Printing Error Log"
+msgstr "印刷のエラーログ"
+
+msgid "Printing test page ..."
+msgstr "テストページを印刷しています ..."
+
+msgid "Processing"
+msgstr "処理中"
+
+msgid "Remote printers"
+msgstr "リモートプリンタ"
+
+msgid "Resume printing"
+msgstr "印刷の再開"
+
+msgid "Resuming printer ..."
+msgstr "プリンタを再開しています ..."
+
+msgid "SMB Shared Printer Paths"
+msgstr "SMB共有プリンタのパス"
+
+msgid "Saving ..."
+msgstr "セーブしています ..."
+
+msgid "Scanning for attached printers ..."
+msgstr "接続されたプリンタを検索しています ..."
+
+msgid "Select a make ..."
+msgstr "製造元を選択 ..."
+
+msgid "Select a model ..."
+msgstr "モデルを選択 ..."
+
+msgid "Select a printer ..."
+msgstr "プリンタを選択 ..."
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Severity"
+msgstr "重要度"
+
+msgid "Show"
+msgstr "表示"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "State"
+msgstr "状態"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr "OpenMediaVaultの<b>lpadmin</b>グループに所属するユーザーは自分のOpenMediaVaultのユーザー名/パスワードでプリンタを管理できます。"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Wizard"
+msgstr "ウィザード"

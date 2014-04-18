@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# JanN <omv@eingeord.net>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2014-02-17 20:56+0000\n"
+"Last-Translator: JanN <omv@eingeord.net>\n"
+"Language-Team: German (Germany) (http://www.transifex.com/projects/p/openmediavault-cups/language/de_DE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr "<i>Experimentelll</i>. Stellt 'AirPrint'-Kompatibilität mit Apple iOS-Geräten bereit."
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Add printer"
+msgstr "Drucker hinzufügen"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr "AirPrint-fähige Apple-iOS-Geräte"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr "Sicher, dass Sie alle Druckjobs abbrechen wollen auf:"
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr "Sicher, dass Sie alle ausgewählten Druckjobs abbrechen wollen auf:"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Cancel job"
+msgstr "Auftrag abbrechen"
+
+msgid "Cancel jobs"
+msgstr "Aufträge abbrechen"
+
+msgid "Cancelling job ..."
+msgstr "Brechen Auftrag ab ..."
+
+msgid "Completed"
+msgstr "Fertiggestellt"
+
+msgid "Confirmation"
+msgstr "Bestätigung"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Date & Time"
+msgstr "Datum & Uhrzeit"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Edit printer"
+msgstr "Bearbeite Drucker"
+
+msgid "Enable"
+msgstr "Aktivieren"
+
+msgid "Enable AirPrint"
+msgstr "Aktiviere AirPrint"
+
+msgid "Enable SMB Sharing"
+msgstr "Aktiviere SMB-Freigaben"
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr "Aktiviere Druckerfreigabe über OpenMediaVault's SMB/CIFS-Dienst."
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr "Aktiviere Auflistung entfernter Drucker beim Hinzufügen eines neuen Druckers."
+
+msgid "Event"
+msgstr "Ereignis"
+
+msgid "Finish"
+msgstr "Beenden"
+
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Idle"
+msgstr "Leerlauf"
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr "Falls Ihr Drucker hier nicht aufgeführt ist, versuchen Sie Marke: Standard, Modell: gewöhnlicher PostScriptdrucker. Wenn es mehr als einen Treiber für Ihre Marke / Ihr Modell gibt, wählen Sie wenn vorhanden den, der als \"empfohlen\" gekennzeichnet ist, oder experimentieren Sie um herauszufinden, welcher Treiber für Sie am besten funktioniert."
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr "URLs der per Internet Printing Protocol (IPP) freigegebenen Drucker "
+
+msgid "Invalid printer name"
+msgstr "Ungültiger Druckername"
+
+msgid "Job Id"
+msgstr "Auftrags-ID"
+
+msgid "Jobs"
+msgstr "Aufträge"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Location"
+msgstr "Standort"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr "Marke"
+
+msgid "Make and Model / Driver"
+msgstr "Marke und Modell / Treiber"
+
+msgid "Max Jobs"
+msgstr "Max Aufträge"
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr "Kann jedes druckbare Zeichen außer \"/\", \"#\" und Leerzeichen enthalten"
+
+msgid "Model / Driver"
+msgstr "Modell / Treiber"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Next"
+msgstr "Nächste"
+
+msgid "No printers found."
+msgstr "Keine Drucker gefunden."
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr "Sobald die Zahl der Druckaufträge das Limit erreicht, wird der älteste abgeschlossenen Auftrag automatisch vom System entfernt, um Platz für den neuen freizugeben. Wenn alle vorhandenen Aufträge noch anhängig oder aktiv sind wird der neue Auftrag nicht angenommen."
+
+msgid "Pages"
+msgstr "Seiten"
+
+msgid "Pause printing"
+msgstr "Druck pausieren"
+
+msgid "Paused"
+msgstr "Pausiert"
+
+msgid "Pausing printer ..."
+msgstr "Pausiere Drucker ..."
+
+msgid "Previous"
+msgstr "Vorheriger"
+
+msgid "Print test page"
+msgstr "Drucke Testseite"
+
+msgid "Printer"
+msgstr "Drucker"
+
+msgid "Printer / Queue Name"
+msgstr "Drucker / Warteschlangenname"
+
+msgid "Printer sharing"
+msgstr "Druckerfreigabe"
+
+msgid "Printers"
+msgstr "Drucker"
+
+msgid "Printing"
+msgstr "Drucke"
+
+msgid "Printing Access Log"
+msgstr "Druckzugriffs-Log"
+
+msgid "Printing Error Log"
+msgstr "Druckfehler-Log"
+
+msgid "Printing test page ..."
+msgstr "Drucke Testseite ..."
+
+msgid "Processing"
+msgstr "Verarbeitung"
+
+msgid "Remote printers"
+msgstr "Entfernte Drucker"
+
+msgid "Resume printing"
+msgstr "Drucken fortsetzen"
+
+msgid "Resuming printer ..."
+msgstr "Drucker setzt Auftrag fort ..."
+
+msgid "SMB Shared Printer Paths"
+msgstr "SMB-Pfade freigegebener Drucker"
+
+msgid "Saving ..."
+msgstr "Sichere ..."
+
+msgid "Scanning for attached printers ..."
+msgstr "Suche nach angeschlossenen Druckern ..."
+
+msgid "Select a make ..."
+msgstr "Wählen Sie eine Marke aus ..."
+
+msgid "Select a model ..."
+msgstr "Wählen Sie ein Modell aus ..."
+
+msgid "Select a printer ..."
+msgstr "Wählen Sie einen Drucker aus ..."
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Severity"
+msgstr "Schwierigkeitsgrad"
+
+msgid "Show"
+msgstr "Zeige"
+
+msgid "Size"
+msgstr "Größe"
+
+msgid "State"
+msgstr "Zustand"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr "Mitglieder der <b>lpadmin</b> OpenMediaVault Gruppe erhalten die Berechtigung, mit ihrem Openmediavault-Passwort und -Benutzernamen Drucker zu administrieren."
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Wizard"
+msgstr "Assistent"

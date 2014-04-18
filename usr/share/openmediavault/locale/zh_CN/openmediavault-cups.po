@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# dezi121 <by@songming.me>, 2013
+# dezi121 <by@songming.me>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-cups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-16 13:29-0600\n"
-"PO-Revision-Date: 2013-12-21 13:22+0000\n"
+"PO-Revision-Date: 2014-01-09 14:14+0000\n"
 "Last-Translator: dezi121 <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-cups/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -106,10 +106,10 @@ msgid ""
 "Postscript Printer. If there is more than one driver for your make / model "
 "choose one that is labeled (recommended) if available, or experiment to find"
 " the driver that works best for you."
-msgstr ""
+msgstr "如果你的打印机未在列表中，可以尝试品牌：通用，型号：普通PostScript打印机。如果有多个打印机型号/驱动选择那么选择(推荐)标签，或者根据经验尝试最适合你的驱动。"
 
 msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
-msgstr ""
+msgstr "互联网打印协议 (IPP) 共享打印机 URLs地址"
 
 msgid "Invalid printer name"
 msgstr "无效打印机名"
@@ -130,25 +130,25 @@ msgid "Mac OS X"
 msgstr "Mac OS X"
 
 msgid "Make"
-msgstr ""
+msgstr "品牌"
 
 msgid "Make and Model / Driver"
-msgstr ""
+msgstr "品牌和型号 / 驱动"
 
 msgid "Max Jobs"
 msgstr "最大任务数"
 
 msgid "May contain any printable characters except \"/\", \"#\" and space"
-msgstr ""
+msgstr "除了“/” ，“＃” 和空格，可以包含任何可打印字符。"
 
 msgid "Model / Driver"
-msgstr ""
+msgstr "模块 / 驱动"
 
 msgid "Name"
 msgstr "名称"
 
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 msgid "No printers found."
 msgstr "未找到打印机。"
@@ -158,7 +158,7 @@ msgid ""
 " automatically purged from the system to make room for the new one. If all "
 "of the known jobs are still pending or active then the new job will be "
 "rejected."
-msgstr ""
+msgstr "一旦打印任务数达到上限，最先完成的打印任务将从系统清除以给新任务腾出空间。如果所有已知任务处于挂起或者激活状态，那么新任务将被拒绝。"
 
 msgid "Pages"
 msgstr "页面"
@@ -173,7 +173,7 @@ msgid "Pausing printer ..."
 msgstr "暂停打印..."
 
 msgid "Previous"
-msgstr ""
+msgstr "上一步"
 
 msgid "Print test page"
 msgstr "打印测试页"
@@ -191,7 +191,7 @@ msgid "Printers"
 msgstr "打印机"
 
 msgid "Printing"
-msgstr "打印中"
+msgstr "打印服务"
 
 msgid "Printing Access Log"
 msgstr "打印访问日志"
@@ -209,7 +209,7 @@ msgid "Remote printers"
 msgstr "远程打印机"
 
 msgid "Resume printing"
-msgstr "回复打印"
+msgstr "恢复打印"
 
 msgid "Resuming printer ..."
 msgstr "恢复打印..."
@@ -224,10 +224,10 @@ msgid "Scanning for attached printers ..."
 msgstr "扫描连接的打印机 ..."
 
 msgid "Select a make ..."
-msgstr ""
+msgstr "选择品牌 ..."
 
 msgid "Select a model ..."
-msgstr ""
+msgstr "选择型号 ..."
 
 msgid "Select a printer ..."
 msgstr "选择打印机 ..."
@@ -236,7 +236,7 @@ msgid "Settings"
 msgstr "设置"
 
 msgid "Severity"
-msgstr ""
+msgstr "严重性"
 
 msgid "Show"
 msgstr "显示"
@@ -259,7 +259,7 @@ msgstr "用户"
 msgid ""
 "Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
 "printers using their OpenMediaVault username / password."
-msgstr ""
+msgstr "可以使用 OpenMediaVault 用户名/密码在 <b>lpadmin</b> 管理打印机。"
 
 msgid "Windows"
 msgstr "窗口"

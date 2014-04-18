@@ -3,266 +3,266 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Paolo Velati <paolo.velati@gmail.com>, 2014
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-cups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-16 13:29-0600\n"
-"PO-Revision-Date: 2014-02-19 17:25+0000\n"
-"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-cups/language/it/)\n"
+"PO-Revision-Date: 2014-01-19 18:01+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-cups/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid ""
 "<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
 "devices."
-msgstr "<i>Sperimentale</i>. Permette la compatibilità 'AirPrint' con dispositivi Apple iOS."
+msgstr "<i>Experimental</i>. Permite compatibilidad 'AirPrint' con dispositivos Apple iOS."
 
 msgid "Active"
-msgstr "Attivo"
+msgstr "Activo"
 
 msgid "Add printer"
-msgstr "Aggiungi stampante"
+msgstr "Añadir Impresora"
 
 msgid "AirPrint capable Apple iOS devices"
-msgstr "Abilita AirPrint"
+msgstr "Dispositivos compatibles Apple iOS "
 
 msgid "All"
-msgstr "Tutto"
+msgstr "Todos"
 
 msgid "Are you sure you want to cancel all printing jobs on"
-msgstr "Sei sicuro di voler cancellare tutti i lavori di stampa"
+msgstr "¿Esta seguro de que desea cancelar todos los trabajos?"
 
 msgid "Are you sure you want to cancel the selected printing job?"
-msgstr "Sei sicuro di voler cancellare tutti i lavori di stampa selezionati?"
+msgstr "¿Esta seguro de que desea cancelar el trabajo de impresión seleccionado?"
 
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Cancelar"
 
 msgid "Cancel job"
-msgstr "Annulla processo"
+msgstr "Cancelar trabajo"
 
 msgid "Cancel jobs"
-msgstr "Annulla processi"
+msgstr "Cancelar trabajos"
 
 msgid "Cancelling job ..."
-msgstr "Annullamento processo ..."
+msgstr "Cancelando trabajos ..."
 
 msgid "Completed"
-msgstr "Completato"
+msgstr "Completado"
 
 msgid "Confirmation"
-msgstr "Conferma"
+msgstr "Confirmación"
 
 msgid "Created"
-msgstr "Creato"
+msgstr "Creado"
 
 msgid "Date & Time"
-msgstr "Data & Orario"
+msgstr "Fecha y Hora"
 
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Descripción"
 
 msgid "Edit printer"
-msgstr "Modifica stampante"
+msgstr "Editar impresora"
 
 msgid "Enable"
-msgstr "Abilita"
+msgstr "Habilitar"
 
 msgid "Enable AirPrint"
-msgstr "Abilita AirPrint"
+msgstr "Habilitar AirPrint"
 
 msgid "Enable SMB Sharing"
-msgstr "Abilita Condivisione SMB"
+msgstr "Habilitar compartir por  SMB"
 
 msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
-msgstr "Abilita la condivisione delle stampanti sul servizio SMB/CIFS di OpenMediaVault."
+msgstr "Habilitar la compartición de impresoras atraves del servicio SMB/CIFS de OMV"
 
 msgid "Enables listing of remote printers when adding a printer."
-msgstr "Abilita elenco di stampanti remote durante l'aggiunta di una stampante."
+msgstr "Habilitar el listado de impresoras remotas cuando se añada una."
 
 msgid "Event"
 msgstr "Evento"
 
 msgid "Finish"
-msgstr "Finito"
+msgstr "Terminar"
 
 msgid "General Settings"
-msgstr "Impostazioni Generali"
+msgstr "Opciones Generales"
 
 msgid "Host"
 msgstr "Host"
 
 msgid "Idle"
-msgstr "Inattivo"
+msgstr "Idle"
 
 msgid ""
 "If your printer is not listed here, try Make: Generic, Model: Generic "
 "Postscript Printer. If there is more than one driver for your make / model "
 "choose one that is labeled (recommended) if available, or experiment to find"
 " the driver that works best for you."
-msgstr "Se la tua stampante non è in lista, prova Marca: Generico, Model: Stampante Postscript Generiva. Se esiste più di un driver per la tua marca / modello scegli quello che ha l'etichetta (raccomandato), oppure prova il driver che funziona meglio per te.<br /><Br />"
+msgstr "Si su impresora no se encuentra en esta lista, intente con el modelo Genérico: Impresora Postcript Genérica.\nSi existe más de un controlador para su modelo, elija aquel que este etiquetado como (recomendado), o experimente hasta encontrar el más adecuado para usted."
 
 msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
-msgstr "Indirizzo stampante condivisa con Internet Printing Protocol (IPP)"
+msgstr "URL de la impresora compartida en formato (IPP) Internet Printing Protocol"
 
 msgid "Invalid printer name"
-msgstr "Nome stampante non valido"
+msgstr "Nombre de impresora inválido"
 
 msgid "Job Id"
-msgstr "Id processo"
+msgstr "Identificador 'id' del trabajo"
 
 msgid "Jobs"
-msgstr "Processi"
+msgstr "trabajos"
 
 msgid "Linux"
 msgstr "Linux"
 
 msgid "Location"
-msgstr "Posizione"
+msgstr "Ubicación"
 
 msgid "Mac OS X"
 msgstr "Mac OS X"
 
 msgid "Make"
-msgstr "Marca"
+msgstr "Fabricante"
 
 msgid "Make and Model / Driver"
-msgstr "Marca e Modello / Driver"
+msgstr "Fabricante y modelo / dispositivo"
 
 msgid "Max Jobs"
-msgstr "Processi Massimi"
+msgstr "nº max. de trabajos"
 
 msgid "May contain any printable characters except \"/\", \"#\" and space"
-msgstr "Può contenere qualsiasi carattere stampabile eccetto \"/\", \"#\", e spazio"
+msgstr "Puede contener cualquier caracter imprimible, excepto \"/\", \"#\" y espacio"
 
 msgid "Model / Driver"
-msgstr "Modello / Driver"
+msgstr "Modelos / Dispositivo"
 
 msgid "Name"
-msgstr "Nome"
+msgstr "Nombre"
 
 msgid "Next"
-msgstr "Prossimo"
+msgstr "Siguiente"
 
 msgid "No printers found."
-msgstr "Nessuna stampante trovata."
+msgstr "No se encuentran impresoras."
 
 msgid ""
 "Once the number of print jobs reaches the limit, the oldest completed job is"
 " automatically purged from the system to make room for the new one. If all "
 "of the known jobs are still pending or active then the new job will be "
 "rejected."
-msgstr "Una volta raggiunto il numero di lavori di stampa limite, il lavoro più vecchio verrà automaticamente eliminato dal sistema per fare spazio ai lavori più nuovi. Se tutti i lavori in coda sono in attesa, i nuovi lavori saranno tutti rifiutati."
+msgstr "Una vez alcanzado el limite de trabajos de impresión, el trabajo más antiguo completado, será borrado del sitema, para hacer sitio a un nuevo trabajo. Si todos los trabajos están pendientes o activos, el nuevo trabajo será rechazado."
 
 msgid "Pages"
-msgstr "Pagine"
+msgstr "Páginas"
 
 msgid "Pause printing"
-msgstr "Pausa stampa"
+msgstr "Pausar la impresión"
 
 msgid "Paused"
-msgstr "In Pausa"
+msgstr "Pausado"
 
 msgid "Pausing printer ..."
-msgstr "Sospensione della la stampante ..."
+msgstr "Pausando la impresión ..."
 
 msgid "Previous"
-msgstr "Precedente"
+msgstr "Previo"
 
 msgid "Print test page"
-msgstr "Stampa pagina di prova"
+msgstr "Imprimir página de prueba"
 
 msgid "Printer"
-msgstr "Stampante"
+msgstr "Impresora"
 
 msgid "Printer / Queue Name"
-msgstr "Nome Stampante / Coda"
+msgstr "Impresora / Nombre"
 
 msgid "Printer sharing"
-msgstr "Condivisione stampante"
+msgstr "Impresora compartida"
 
 msgid "Printers"
-msgstr "Stampanti"
+msgstr "Impresoras"
 
 msgid "Printing"
-msgstr "Stampa"
+msgstr "Imprimiendo"
 
 msgid "Printing Access Log"
-msgstr "Log Accesso Stampa"
+msgstr "Imprimiendo Logs de acceso"
 
 msgid "Printing Error Log"
-msgstr "Log Errori Stampa"
+msgstr "Imprimiendo Logs de error"
 
 msgid "Printing test page ..."
-msgstr "Pagina di prova in stampa ..."
+msgstr "Imprimiendo página de prueba ..."
 
 msgid "Processing"
-msgstr "Elaborazione"
+msgstr "Procesando"
 
 msgid "Remote printers"
-msgstr "Stampanti remote"
+msgstr "Impresoras remotas"
 
 msgid "Resume printing"
-msgstr "Riprendi stampa"
+msgstr "Continuar impresión"
 
 msgid "Resuming printer ..."
-msgstr "Ripresa stampa ..."
+msgstr "Continuando la impresión ..."
 
 msgid "SMB Shared Printer Paths"
-msgstr "Stampanti condivise SMB/CIFS"
+msgstr "Ruta a las impresoras compartidas SMB"
 
 msgid "Saving ..."
-msgstr "Salvataggio ..."
+msgstr "Salvando ..."
 
 msgid "Scanning for attached printers ..."
-msgstr "Scansione stampanti connesse ..."
+msgstr "Buscando impresoras ..."
 
 msgid "Select a make ..."
-msgstr "Seleziona una marca ..."
+msgstr "Seleccionar un fabricante ..."
 
 msgid "Select a model ..."
-msgstr "Seleziona un modello ..."
+msgstr "Seleccionar un modelo ..."
 
 msgid "Select a printer ..."
-msgstr "Seleziona una stampante ..."
+msgstr "Seleccionar una impresora ..."
 
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "Opciones"
 
 msgid "Severity"
-msgstr "Severità"
+msgstr "Severidad"
 
 msgid "Show"
-msgstr "Mostra"
+msgstr "Mostrar"
 
 msgid "Size"
-msgstr "Dimensioni"
+msgstr "Tamaño"
 
 msgid "State"
-msgstr "Condizione"
+msgstr "Estado"
 
 msgid "Status"
-msgstr "Stato"
+msgstr "Estado"
 
 msgid "Unknown"
-msgstr "Sconosciuto"
+msgstr "Desconocido"
 
 msgid "User"
-msgstr "Utente"
+msgstr "Usuario"
 
 msgid ""
 "Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
 "printers using their OpenMediaVault username / password."
-msgstr "Gli utenti nel gruppo OpenMediaVault <b>lpadmin</b> saranno abilitati a gestire stampanti usando i propri username / password di OpenMediaVault."
+msgstr "Usuarios del grupo <b>lpadmin</b> de OpenMediaVault tienen permisos para administrar impresoras usando su usuario / contraseña de OMV."
 
 msgid "Windows"
 msgstr "Windows"
 
 msgid "Wizard"
-msgstr "Wizard"
+msgstr "Asistente"
