@@ -102,7 +102,8 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 title  : _("Windows"),
                 items  : [{
                     border : false,
-                    html   : "NOTE: The instructions below may vary slightly depending on the version of Windows on which " +
+                    html   : "<p>" +
+                             "NOTE: The instructions below may vary slightly depending on the version of Windows on which " +
                              "the steps are being performed. Some logical deduction may be required on your part." +
                              "</p>" +
                              "<h3>Internet Printing Protocol (IPP)</h3>" +
@@ -153,7 +154,8 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 title  : _("Mac OS X"),
                 items  : [{
                     border : false,
-                    html   : "Shared printers should automatically be available to add in Mac OS X in <b>System Preferences</b> -&gt; <b>Print & Fax</b>. If not, " +
+                    html   : "<p>" +
+                             "Shared printers should automatically be available to add in Mac OS X in <b>System Preferences</b> -&gt; <b>Print & Fax</b>. If not, " +
                              "you can manually add a printer's IPP URL by clicking on <b>IP</b> in the toolbar and selecting the following values:" +
                              "</p>" +
                              "<ul>" +
@@ -172,7 +174,8 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 title  : _("Linux"),
                 items  : [{
                     border : false,
-                    html   : "Consult your window environment's (Gnome, KDE, etc..) or distribution's documentation on adding a shared printer. Printers shared by this system are discoverable and should " +
+                    html   : "<p>" +
+                             "Consult your window environment's (Gnome, KDE, etc..) or distribution's documentation on adding a shared printer. Printers shared by this system are discoverable and should " +
                              "appear when Linux searches for networked printers." +
                              "</p>"
                 }]
@@ -183,7 +186,8 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 title  : _("AirPrint capable Apple iOS devices"),
                 items  : [{
                     border : false,
-                    html   : "If you have enabled AirPrint support, shared printers should be available in the print dialog of the device." +
+                    html   : "<p>" +
+                             "If you have enabled AirPrint support, shared printers should be available in the print dialog of the device." +
                              "</p>"
                }]
             }]
