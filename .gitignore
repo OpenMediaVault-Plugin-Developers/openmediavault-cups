@@ -10,6 +10,22 @@
 .settings/
 *.launch
 .buildpath
+*.pydevproject
+
+# JetBrains
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# Netbeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
 
 # Sublime Text
 *.sublime-workspace
@@ -41,6 +57,3 @@ debian/files
 debian/*.debhelper.log
 debian/*.debhelper
 debian/*substvars
-
-# Project specific
-*.pydevproject
