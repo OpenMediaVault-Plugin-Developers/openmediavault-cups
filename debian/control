@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: openmediavault-cups
 Architecture: all
-Depends: ${misc:Depends}, openmediavault (>= 0.6.0.6), cups,
+Depends: ${misc:Depends}, openmediavault (>= 0.6.0.11), cups,
   printer-driver-foo2zjs, printer-driver-gutenprint, printer-driver-hpcups, printer-driver-splix,
   python2.7, python-cups, python-daemon, python-lxml, python-pip,
   foomatic-filters, foomatic-db-engine, foomatic-db,
