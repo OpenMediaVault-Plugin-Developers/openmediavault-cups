@@ -100,8 +100,6 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 xtype  : "fieldset",
                 layout : "fit",
                 title  : _("Windows"),
-                style: 'padding: 0 5px 10px 10px',
-                bodyStyle: 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
                 items  : [{
                     border : false,
                     html   : "<p>" +
@@ -154,8 +152,6 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 xtype  : "fieldset",
                 layout : "fit",
                 title  : _("Mac OS X"),
-                style: 'padding: 0 5px 10px 10px',
-                bodyStyle: 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
                 items  : [{
                     border : false,
                     html   : "<p>" +
@@ -176,8 +172,6 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 xtype  : "fieldset",
                 layout : "fit",
                 title  : _("Linux"),
-                style: 'padding: 0 5px 10px 10px',
-                bodyStyle: 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
                 items  : [{
                     border : false,
                     html   : "<p>" +
@@ -190,8 +184,6 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 xtype  : "fieldset",
                 layout : "fit",
                 title  : _("AirPrint capable Apple iOS devices"),
-                style: 'padding: 0 5px 10px 10px',
-                bodyStyle: 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
                 items  : [{
                     border : false,
                     html   : "<p>" +
