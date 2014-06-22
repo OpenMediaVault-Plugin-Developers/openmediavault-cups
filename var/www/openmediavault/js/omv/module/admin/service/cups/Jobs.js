@@ -127,10 +127,8 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         Ext.apply(me, {
             store : Ext.create("OMV.data.Store", {
                 autoLoad   : true,
-                remoteSort : false,
                 model      : OMV.data.Model.createImplicit({
-                    idProperty   : "id",
-                    totalPoperty : "total",
+                    idProperty   : "JobId",
                     fields       : [
                         { name : "JobId" },
                         { name : "JobName" },
@@ -153,7 +151,12 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                     extraParams : {
                         which : "not-completed"
                     }
-                }
+                },
+                remoteSort : false,
+                sorters    : [{
+                    direction: "DESC",
+                    property: "JobId"
+                }]
             })
         });
 
