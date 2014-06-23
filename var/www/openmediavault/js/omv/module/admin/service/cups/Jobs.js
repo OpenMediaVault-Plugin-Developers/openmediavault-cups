@@ -152,7 +152,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                         which : "not-completed"
                     }
                 },
-                remoteSort : false,
+                remoteSort : true,
                 sorters    : [{
                     direction: "DESC",
                     property: "JobId"
