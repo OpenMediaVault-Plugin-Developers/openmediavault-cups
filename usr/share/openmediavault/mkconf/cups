@@ -88,6 +88,14 @@ DefaultAuthType Basic
   <Limit All>
     Order deny,allow
   </Limit>
+  # Allow access to default private values: job-name
+  #                                         job-originating-host-name
+  #                                         job-originating-user-name
+  #
+  # Deny access to default private values: phone
+  #
+  # See: http://www.cups.org/documentation.php/ref-cupsd-conf.html#JobPrivateValues
+  JobPrivateValues phone
 </Policy>
 <Policy authenticated>
   <Limit Create-Job Print-Job Print-URI>
