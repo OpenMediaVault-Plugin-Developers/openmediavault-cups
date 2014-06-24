@@ -1,3 +1,9 @@
+openmediavault-cups (1.0.0.3) unstable; urgency=low
+
+  * Revert formatting change
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 24 Jun 2014 15:32:37 -0500
+
 openmediavault-cups (1.0.0.2) unstable; urgency=low
 
   * Conform to OMV 0.6.0.6 trigger standards

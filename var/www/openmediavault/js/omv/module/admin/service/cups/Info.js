@@ -97,10 +97,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 }]
             },{
                 /* Windows sharing info */
-                xtype  : "fieldset",
-                layout : "fit",
-                title  : _("Windows"),
-                items  : [{
+                xtype     : "fieldset",
+                layout    : "fit",
+                title     : _("Windows"),
+                style     : 'padding: 0 5px 10px 10px',
+                bodyStyle : 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
+                items     : [{
                     border : false,
                     html   : "<p>" +
                              "NOTE: The instructions below may vary slightly depending on the version of Windows on which " +
@@ -149,10 +151,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 }]
             },{
                 // OS X sharing info
-                xtype  : "fieldset",
-                layout : "fit",
-                title  : _("Mac OS X"),
-                items  : [{
+                xtype     : "fieldset",
+                layout    : "fit",
+                title     : _("Mac OS X"),
+                style     : 'padding: 0 5px 10px 10px',
+                bodyStyle : 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
+                items     : [{
                     border : false,
                     html   : "<p>" +
                              "Shared printers should automatically be available to add in Mac OS X in <b>System Preferences</b> -&gt; <b>Print & Fax</b>. If not, " +
@@ -169,10 +173,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 }]
             },{
                 // Linux sharing info
-                xtype  : "fieldset",
-                layout : "fit",
-                title  : _("Linux"),
-                items  : [{
+                xtype     : "fieldset",
+                layout    : "fit",
+                title     : _("Linux"),
+                style     : 'padding: 0 5px 10px 10px',
+                bodyStyle : 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
+                items     : [{
                     border : false,
                     html   : "<p>" +
                              "Consult your window environment's (Gnome, KDE, etc..) or distribution's documentation on adding a shared printer. Printers shared by this system are discoverable and should " +
@@ -181,10 +187,12 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 }]
             },{
                 // iOS sharing info
-                xtype  : "fieldset",
-                layout : "fit",
-                title  : _("AirPrint capable Apple iOS devices"),
-                items  : [{
+                xtype     : "fieldset",
+                layout    : "fit",
+                title     : _("AirPrint capable Apple iOS devices"),
+                style     : 'padding: 0 5px 10px 10px',
+                bodyStyle : 'padding-top: ' + (Ext.isIE ? '0' : '10px'),
+                items     : [{
                     border : false,
                     html   : "<p>" +
                              "If you have enabled AirPrint support, shared printers should be available in the print dialog of the device." +
