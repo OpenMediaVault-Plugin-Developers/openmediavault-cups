@@ -1,4 +1,4 @@
-openmediavault-cups (1.0.0.1) unstable; urgency=low
+openmediavault-cups (1.0.0.2) unstable; urgency=low
 
   * Conform to OMV 0.6.0.6 trigger standards
   * Work with OMV 0.6.0.11 
