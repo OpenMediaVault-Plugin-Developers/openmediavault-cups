@@ -18,14 +18,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/module.inc";
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
 require_once "openmediavault/initscript.inc";
 require_once "openmediavault/log.inc";
+require_once "openmediavault/module.inc";
 
-class OMVModuleCups extends OMVModuleServiceAbstract
-    implements OMVINotifyListener, OMVIModuleServiceStatus
+class OMVModuleCups extends OMVModuleServiceAbstract implements
+    OMVINotifyListener,
+    OMVIModuleServiceStatus
 {
     private function getXPath()
     {
@@ -50,9 +51,12 @@ class OMVModuleCups extends OMVModuleServiceAbstract
         // Get the configuration object
         $object = $xmlConfig->get($this->getXPath());
 
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         $initd = new OMVSysVInitScript($this->getName());
 
@@ -71,22 +75,31 @@ class OMVModuleCups extends OMVModuleServiceAbstract
     {
         $cmd = sprintf("sudo omv-mkconf %s 2>&1", $this->getName());
 
-        if (0 !== $this->exec($cmd, $output))
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
-                $cmd, implode("\n", $output));
+        if (0 !== $this->exec($cmd, $output)) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
     }
 
-    public function startService() {
+    public function startService()
+    {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
 
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
-        if (!boolval($object["enable"]))
+        if (!boolval($object["enable"])) {
             return;
+        }
 
         $initd = new OMVSysVInitScript($this->getName(), true);
         $initd->exec();
@@ -94,7 +107,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract
         $this->regenerateServiceDefinitions();
     }
 
-    public function stopService() {
+    public function stopService()
+    {
         $initd = new OMVSysVInitScript($this->getName(), false);
         $initd->exec();
     }
@@ -104,21 +118,26 @@ class OMVModuleCups extends OMVModuleServiceAbstract
         $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
 
         OMVUtil::exec($cmd, $output, $result);
-        if ($result !== 0)
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
-                $cmd, implode("\n", $output));
+        if ($result !== 0) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
     }
 
     /**
      * Bind listeners.
      */
-    public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    {
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
             "org.openmediavault.services.cups",
-            array($this, "setDirty"));
+            array($this, "setDirty")
+        );
     }
-
 }
 
 // Register module.
@@ -137,7 +156,10 @@ OMVLogFile::registerType(
             "user" => 2,
             "date" => array(
                 "index" => 3,
-                "func"  => create_function("\$v", "return strpdate(\$v,\"j/M/Y:G:i:s\");")
+                "func"  => create_function(
+                    "\$v",
+                    "return strpdate(\$v,\"j/M/Y:G:i:s\");"
+                )
             ),
             "event" => 4
         )
@@ -155,7 +177,10 @@ OMVLogFile::registerType(
             "severity" => 1,
             "date"     => array(
                 "index" => 2,
-                "func"  => create_function("\$v", "return strpdate(\$v,\"j/M/Y:G:i:s\");")
+                "func"  => create_function(
+                    "\$v",
+                    "return strpdate(\$v,\"j/M/Y:G:i:s\");"
+                )
             ),
             "event" => 3
         )

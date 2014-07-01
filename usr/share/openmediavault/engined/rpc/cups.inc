@@ -18,12 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/object.inc";
 require_once "openmediavault/error.inc";
-require_once "openmediavault/util.inc";
-require_once "openmediavault/rpc.inc";
-require_once "openmediavault/notify.inc";
 require_once "openmediavault/initscript.inc";
+require_once "openmediavault/notify.inc";
+require_once "openmediavault/object.inc";
+require_once "openmediavault/rpc.inc";
+require_once "openmediavault/util.inc";
 
 class OMVRpcServiceCups extends OMVRpcServiceAbstract
 {
@@ -67,8 +67,10 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         # Regenerate service definitions
         $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
         OMVUtil::exec($cmd, $output, $result);
-        if ($result !== 0)
+
+        if ($result !== 0) {
             throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+        }
     }
 
     public function getSettings($params, $context)
@@ -82,9 +84,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         // Get the configuration object.
         $object = $xmlConfig->get($this->getXPath());
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         // Modify result data
         $settingsObject["enable"]          = boolval($object["enable"]);
@@ -106,16 +111,19 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "enable"          : { "type" : "boolean" },
-                "enable_samba"    : { "type" : "boolean" },
-                "airprint"        : { "type" : "boolean" },
-                "maxjobs"         : { "type" : "integer" },
-                "remote_printers" : { "type" : "boolean" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "enable"          : { "type" : "boolean" },
+                    "enable_samba"    : { "type" : "boolean" },
+                    "airprint"        : { "type" : "boolean" },
+                    "maxjobs"         : { "type" : "integer" },
+                    "remote_printers" : { "type" : "boolean" }
+                }
+            }'
+        );
 
         // Prepare configuration data
         $object = array(
@@ -127,9 +135,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         );
 
         // Set configuration object
-        if (false === $xmlConfig->replace($this->getXPath(), $object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
-                $this->getXPath());
+        if (false === $xmlConfig->replace($this->getXPath(), $object)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $this->getXPath());
+        }
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
@@ -137,8 +145,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $oldConf = $xmlConfig->get($this->getXPath());
 
-        if ($oldConf["enable"] != $object["enable"])
+        if ($oldConf["enable"] != $object["enable"]) {
             $this->notifySamba($object["enable"]);
+        }
 
         return $object;
     }
@@ -167,12 +176,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "uuid" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "uuid" : { "type" : "string" }
+                }
+            }'
+        );
 
         return $this->runCupsCommand("getPrinter", array($params["uuid"]));
     }
@@ -185,14 +197,17 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "uuid"            : { "type" : "string" },
-                "PrinterLocation" : { "type" : "string" , "optional" : true },
-                "PrinterInfo"     : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "uuid"            : { "type" : "string" },
+                    "PrinterLocation" : { "type" : "string" , "optional" : true },
+                    "PrinterInfo"     : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand(
             "setPrinter",
@@ -215,16 +230,19 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "device"      : { "type" : "string" },
-                "ppd"         : { "type" : "string" },
-                "name"        : { "type" : "string" },
-                "location"    : { "type" : "string", "optional" : true },
-                "description" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "device"      : { "type" : "string" },
+                    "ppd"         : { "type" : "string" },
+                    "name"        : { "type" : "string" },
+                    "location"    : { "type" : "string", "optional" : true },
+                    "description" : { "type" : "string" }
+                }
+            }'
+        );
 
         // Search for existing printer with that name
         $printer = null;
@@ -235,11 +253,13 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             // Nothing
         }
 
-        if ($printer)
+        if ($printer) {
             throw new Exception("A printer with the name {$params['name']} already exists.");
+        }
 
-        if (empty($params["location"]))
+        if (empty($params["location"])) {
             $params["location"] = "";
+        }
 
         $this->runCupsCommand(
             "addPrinter",
@@ -267,12 +287,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "pname" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "pname" : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("deletePrinter", array($params["pname"]));
     }
@@ -288,12 +311,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "pname" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "pname" : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("printTestPage", array($params["pname"]));
     }
@@ -309,12 +335,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "pname" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "pname" : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("resumePrinting", array($params["pname"]));
     }
@@ -330,12 +359,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "pname" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "pname" : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("pausePrinting", array($params["pname"]));
     }
@@ -385,20 +417,24 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "start"     : { "type" : "integer" },
-                "limit"     : {' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . '},
-                "sortfield" : {' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . '},
-                "sortdir"   : {' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . '},
-                "which"     : { "type" : "string", "optional" : true }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "start"     : { "type" : "integer" },
+                    "limit"     : {' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . '},
+                    "sortfield" : {' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . '},
+                    "sortdir"   : {' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . '},
+                    "which"     : { "type" : "string", "optional" : true }
+                }
+            }'
+        );
 
         // Default to showing only not completed jobs
-        if (isset($params["which"]) === false)
+        if (isset($params["which"]) === false) {
             $params["which"] = "not-completed";
+        }
 
         $jobs = array();
 
@@ -422,7 +458,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     /**
      * Cancel a single job
      */
-    function cancelJob($params, $context)
+    public function cancelJob($params, $context)
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, array(
@@ -430,12 +466,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "jobid" : { "type" : "integer" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "jobid" : { "type" : "integer" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("cancelJob", array($params["jobid"]));
     }
@@ -443,7 +482,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     /**
      * Cancel all jobs for printer
      */
-    function cancelJobs($params, $context)
+    public function cancelJobs($params, $context)
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, array(
@@ -451,12 +490,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, '{
-            "type"       : "object",
-            "properties" : {
-                "pname" : { "type" : "string" }
-            }
-        }');
+        $this->validateMethodParams(
+            $params,
+            '{
+                "type"       : "object",
+                "properties" : {
+                    "pname" : { "type" : "string" }
+                }
+            }'
+        );
 
         $this->runCupsCommand("cancelAllJobs", array($params["pname"]));
     }
@@ -476,14 +518,15 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         OMVUtil::exec($cmd, $output, $result);
         $output = implode("\n", $output);
 
-        if (0 !== $result)
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
-                $cmd, $output);
+        if (0 !== $result) {
+            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, $output);
+        }
 
         $obj = json_decode($output, true);
 
-        if (!empty($obj["error"]))
+        if (!empty($obj["error"])) {
             throw new Exception($obj["error"]);
+        }
 
         return $obj;
     }
@@ -496,8 +539,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.smb", $object);
 
         // If we're enabled, make sure sharing is enabled
-        if ($enabled)
+        if ($enabled) {
             $this->runCupsCommand("enableSharing");
+        }
     }
 
     private function isRunning()
