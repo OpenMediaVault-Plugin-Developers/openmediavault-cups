@@ -1,3 +1,9 @@
+openmediavault-cups (1.0.0.4) unstable; urgency=low
+
+  * Minor changes to info page
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 18 Jul 2014 09:06:58 -0500
+
 openmediavault-cups (1.0.0.3) unstable; urgency=low
 
   * Revert formatting change
