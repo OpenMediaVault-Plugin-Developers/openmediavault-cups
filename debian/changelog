@@ -1,3 +1,9 @@
+openmediavault-cups (1.0.7) unstable; urgency=low
+
+  * Update to OMV 1.0.7 selectionchange changes 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 22 Jul 2014 10:44:42 +0200
+
 openmediavault-cups (1.0.0.4) unstable; urgency=low
 
   * Minor changes to info page
