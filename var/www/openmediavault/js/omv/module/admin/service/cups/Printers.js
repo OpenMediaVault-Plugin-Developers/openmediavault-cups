@@ -81,15 +81,6 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 
     store : OMV.module.admin.service.cups.stores.PrinterStore,
 
-    initComponent : function() {
-        var me = this;
-
-        var selModel = me.getSelectionModel();
-        selModel.on("selectionchange", me.updateButtonState, me);
-
-        me.callParent(arguments);
-    },
-
     getTopToolbarItems : function() {
         var me = this;
         var items = me.callParent(arguments);
@@ -108,7 +99,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             selectionChangeConfig : {
                 minSelection : 1,
                 maxSelection : 1,
-                enableFn     : function(records) {
+                enableFn     : function(button, records) {
                     var record = records[0];
                     var state = record.get("PrinterState");
 
@@ -131,7 +122,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             selectionChangeConfig : {
                 minSelection : 1,
                 maxSelection : 1,
-                enableFn     : function(records) {
+                enableFn     : function(button, records) {
                     var record = records[0];
                     var state = record.get("PrinterState");
 
@@ -183,34 +174,6 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
         }]);
 
         return items;
-    },
-
-    updateButtonState : function() {
-        var me = this;
-
-        var records = me.getSelection();
-        var state = records.length === 1 ? "enable" : "disable";
-        var buttons = [
-            "resume",
-            "pause",
-            "test",
-            "cancel"
-        ];
-
-        Ext.each(buttons, function(buttonName) {
-            me.queryById(me.getId() + "-" + buttonName)[state]();
-        });
-
-        if (state === "enable") {
-            var record = records.pop();
-            var buttonName = "resume";
-
-            if (record.get("PrinterState") === 5) {
-                buttonName = "pause";
-            }
-
-            me.queryById(me.getId() + "-" + buttonName).disable();
-        }
     },
 
     onAddButton : function() {
