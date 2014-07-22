@@ -179,12 +179,12 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             selectionChangeConfig : {
                 minSelection: 1,
                 maxSelection: 1,
-                enableFln: function(records) {
+                enableFn: function(records) {
                     var record = records[0];
                     var state = record.get("JobState");
 
                     if (state >= 3 && state <=5) {
-                            return true;
+                        return true;
                     }
 
                     return false;
