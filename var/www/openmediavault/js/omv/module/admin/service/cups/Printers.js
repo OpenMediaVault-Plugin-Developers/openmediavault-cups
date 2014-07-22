@@ -104,7 +104,21 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler  : Ext.Function.bind(me.onResumePrintingButton, me, [ me ]),
             scope    : me,
-            disabled : true
+            disabled : true,
+            selectionChangeConfig : {
+                minSelection : 1,
+                maxSelection : 1,
+                enableFn     : function(records) {
+                    var record = records[0];
+                    var state = record.get("PrinterState");
+
+                    if (record.get("PrinterState") !== 5) {
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
         },{
             id       : me.getId() + "-pause",
             xtype    : "button",
@@ -113,7 +127,21 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler  : Ext.Function.bind(me.onPausePrintingButton, me, [ me ]),
             scope    : me,
-            disabled : true
+            disabled : true,
+            selectionChangeConfig : {
+                minSelection : 1,
+                maxSelection : 1,
+                enableFn     : function(records) {
+                    var record = records[0];
+                    var state = record.get("PrinterState");
+
+                    if (record.get("PrinterState") === 5) {
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
         },{
             xtype : "tbseparator"
         },{
@@ -124,7 +152,11 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler  : Ext.Function.bind(me.onPrintTestPageButton, me, [ me ]),
             scope    : me,
-            disabled : true
+            disabled : true,
+            selectionChangeConfig : {
+                minSelection : 1,
+                maxSelection : 1
+            }
         },{
             id       : me.getId() + "-cancel",
             xtype    : "button",
@@ -133,7 +165,11 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler  : Ext.Function.bind(me.onCancelJobsButton, me, [ me ]),
             scope    : me,
-            disabled : true
+            disabled : true,
+            selectionChangeConfig : {
+                minSelection : 1,
+                maxSelection : 1
+            }
         },{
             xtype : "tbseparator"
         },{

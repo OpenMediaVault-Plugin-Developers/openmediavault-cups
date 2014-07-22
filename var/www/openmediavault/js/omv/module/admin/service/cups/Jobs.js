@@ -160,9 +160,6 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             })
         });
 
-        var selModel = me.getSelectionModel();
-        selModel.on("selectionchange", me.updateButtonState, me);
-
         me.callParent(arguments);
     },
 
@@ -178,7 +175,21 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler  : Ext.Function.bind(me.onCancelButton, me, [ me ]),
             scope    : me,
-            disabled : true
+            disabled : true,
+            selectionChangeConfig : {
+                minSelection: 1,
+                maxSelection: 1,
+                enableFln: function(records) {
+                    var record = records[0];
+                    var state = record.get("JobState");
+
+                    if (state >= 3 && state <=5) {
+                            return true;
+                    }
+
+                    return false;
+                }
+            }
         },{
             xtype : "tbseparator"
         },{
@@ -233,28 +244,6 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         }]);
 
         return items;
-    },
-
-    updateButtonState : function() {
-        var me = this;
-
-        var records = me.getSelection();
-        var button = me.queryById(me.getId() + "-cancel");
-
-        if (records.length === 1) {
-            var record = records.pop();
-            var state = record.get("JobState");
-
-            switch (state) {
-                case 4:
-                case 3:
-                case 5:
-                    button.enable();
-                    break;
-            }
-        } else {
-            button.disable();
-        }
     },
 
     onCancelButton : function() {
