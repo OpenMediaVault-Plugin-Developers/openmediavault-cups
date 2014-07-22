@@ -176,7 +176,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             handler  : Ext.Function.bind(me.onCancelButton, me, [ me ]),
             scope    : me,
             disabled : true,
-            selectionChangeConfig : {
+            selectionConfig : {
                 minSelection: 1,
                 maxSelection: 1,
                 enableFn: function(button, records) {

@@ -96,7 +96,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             handler  : Ext.Function.bind(me.onResumePrintingButton, me, [ me ]),
             scope    : me,
             disabled : true,
-            selectionChangeConfig : {
+            selectionConfig : {
                 minSelection : 1,
                 maxSelection : 1,
                 enableFn     : function(button, records) {
@@ -119,7 +119,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             handler  : Ext.Function.bind(me.onPausePrintingButton, me, [ me ]),
             scope    : me,
             disabled : true,
-            selectionChangeConfig : {
+            selectionConfig : {
                 minSelection : 1,
                 maxSelection : 1,
                 enableFn     : function(button, records) {
@@ -144,7 +144,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             handler  : Ext.Function.bind(me.onPrintTestPageButton, me, [ me ]),
             scope    : me,
             disabled : true,
-            selectionChangeConfig : {
+            selectionConfig : {
                 minSelection : 1,
                 maxSelection : 1
             }
@@ -157,7 +157,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             handler  : Ext.Function.bind(me.onCancelJobsButton, me, [ me ]),
             scope    : me,
             disabled : true,
-            selectionChangeConfig : {
+            selectionConfig : {
                 minSelection : 1,
                 maxSelection : 1
             }
