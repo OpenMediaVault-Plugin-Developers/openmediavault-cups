@@ -97,9 +97,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             scope    : me,
             disabled : true,
             selectionConfig : {
-                minSelection : 1,
-                maxSelection : 1,
-                enableFn     : function(button, records) {
+                minSelections : 1,
+                maxSelections : 1,
+                enabledFn     : function(button, records) {
                     var record = records[0];
                     var state = record.get("PrinterState");
 
@@ -120,9 +120,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             scope    : me,
             disabled : true,
             selectionConfig : {
-                minSelection : 1,
-                maxSelection : 1,
-                enableFn     : function(button, records) {
+                minSelections : 1,
+                maxSelections : 1,
+                enabledFn     : function(button, records) {
                     var record = records[0];
                     var state = record.get("PrinterState");
 
@@ -145,8 +145,8 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             scope    : me,
             disabled : true,
             selectionConfig : {
-                minSelection : 1,
-                maxSelection : 1
+                minSelections : 1,
+                maxSelections : 1
             }
         },{
             id       : me.getId() + "-cancel",
@@ -158,8 +158,8 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             scope    : me,
             disabled : true,
             selectionConfig : {
-                minSelection : 1,
-                maxSelection : 1
+                minSelections : 1,
+                maxSelections : 1
             }
         },{
             xtype : "tbseparator"
