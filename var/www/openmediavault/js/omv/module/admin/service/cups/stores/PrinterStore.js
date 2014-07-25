@@ -31,9 +31,8 @@ Ext.define("OMV.module.admin.service.cups.stores.PrinterStore", {
     autoLoad   : true,
     remoteSort : false,
     model      : OMV.data.Model.createImplicit({
-        idProperty   : "uuid",
-        totalPoperty : "total",
-        fields       : [
+        idProperty : "uuid",
+        fields     : [
             { name : "uuid" },
             { name : "PrinterInfo" },
             { name : "PrinterLocation" },
