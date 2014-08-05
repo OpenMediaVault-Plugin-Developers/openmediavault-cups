@@ -77,7 +77,7 @@ case "$1" in
             omv-mkconf cups
 
             # Restart cups
-            /etc/init.d/cups restart
+            invoke-rc.d cups restart
 
             # Avahi files
             /usr/local/bin/omvcups-avahi.py
@@ -90,7 +90,7 @@ case "$1" in
 
             if [ "$(omv_config_get "//services/smb/enable")" = "1" ]; then
                 if [ "$(md5sum /etc/samba/smb.conf)" != "${HASH}" ]; then
-                    /etc/init.d/samba restart
+                    invoke-rc.d samba restart
                 fi
             fi
         fi
