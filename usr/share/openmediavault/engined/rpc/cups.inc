@@ -65,7 +65,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     private function resync()
     {
         # Regenerate service definitions
-        $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
+        $cmd = "/usr/local/bin/omvcups-avahi.py 2>&1";
         OMVUtil::exec($cmd, $output, $result);
 
         if ($result !== 0) {
@@ -514,7 +514,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             $args = "";
         }
 
-        $cmd = "sudo /usr/local/bin/omvcups.py {$fn} {$args} 2>&1";
+        $cmd = "/usr/local/bin/omvcups.py {$fn} {$args} 2>&1";
         OMVUtil::exec($cmd, $output, $result);
         $output = implode("\n", $output);
 
