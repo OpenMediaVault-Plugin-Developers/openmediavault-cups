@@ -1,3 +1,10 @@
+openmediavault-cups (1.0.9) unstable; urgency=low
+
+  * Fix incompatability error with latest omv loader
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 05 Dec 2014 07:06:36 -0600
+
 openmediavault-cups (1.0.8) unstable; urgency=low
 
   * Various Javascript fixes 
