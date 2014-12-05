@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-cups\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 13:29-0600\n"
+"PO-Revision-Date: 2014-11-22 13:21+0000\n"
+"Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>\n"
+"Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-cups/language/ko_KR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko_KR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid ""
+"<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
+"devices."
+msgstr "<i>실험용</i>. 애플 iOS 기기와의 호환되는 'AirPrint'를 제공합니다."
+
+msgid "Active"
+msgstr "활성"
+
+msgid "Add printer"
+msgstr "프린터 추가"
+
+msgid "AirPrint capable Apple iOS devices"
+msgstr "AirPrint 가능한 애플 iOS 기기"
+
+msgid "All"
+msgstr "모두"
+
+msgid "Are you sure you want to cancel all printing jobs on"
+msgstr "정말로 모든 인쇄 작업의 취소를 원하십니까?"
+
+msgid "Are you sure you want to cancel the selected printing job?"
+msgstr "정말로 선택된 인쇄 작업의 취소를 원하십니까?"
+
+msgid "Cancel"
+msgstr "취소"
+
+msgid "Cancel job"
+msgstr "작업 취소"
+
+msgid "Cancel jobs"
+msgstr "작업 취소"
+
+msgid "Cancelling job ..."
+msgstr "작업 취소 중 ..."
+
+msgid "Completed"
+msgstr "완료됨"
+
+msgid "Confirmation"
+msgstr "확인"
+
+msgid "Created"
+msgstr "생성됨"
+
+msgid "Date & Time"
+msgstr "날짜 & 시간"
+
+msgid "Description"
+msgstr "상세"
+
+msgid "Edit printer"
+msgstr "프린터 편집"
+
+msgid "Enable"
+msgstr "활성화"
+
+msgid "Enable AirPrint"
+msgstr "AirPrint 활성화"
+
+msgid "Enable SMB Sharing"
+msgstr "SMB 공유 활성화"
+
+msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
+msgstr "OpenMediaVault의 SMB/CiFS 서비스를 통한 프린터 공유를 활성화합니다."
+
+msgid "Enables listing of remote printers when adding a printer."
+msgstr "프린터를 추가 할 때 원격 프린터의 목록 작성을 활성화합니다."
+
+msgid "Event"
+msgstr "이벤트"
+
+msgid "Finish"
+msgstr "끝내기"
+
+msgid "General Settings"
+msgstr "일반 설정"
+
+msgid "Host"
+msgstr "호스트"
+
+msgid "Idle"
+msgstr "유휴"
+
+msgid ""
+"If your printer is not listed here, try Make: Generic, Model: Generic "
+"Postscript Printer. If there is more than one driver for your make / model "
+"choose one that is labeled (recommended) if available, or experiment to find"
+" the driver that works best for you."
+msgstr "프린터가 이곳에 열거되어 있지 않은 경우, 제조사: Generic, 모델: Generic Postscript Printer를 시도합니다. 제조사 / 모델에 대해 하나 이상의 드라이버가 있는 경우 가능한 한 (권장) 표시된 것을 선택하거나, 또는 가장 적합한 드라이버를 찾기 위해 실험할 수 있습니다."
+
+msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
+msgstr "인터넷 인쇄 규약 (IPP) 공유 프린터의 URLs"
+
+msgid "Invalid printer name"
+msgstr "잘못된 프린터 이름"
+
+msgid "Job Id"
+msgstr "작업 ID"
+
+msgid "Jobs"
+msgstr "작업"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Location"
+msgstr "위치"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "Make"
+msgstr "제조사"
+
+msgid "Make and Model / Driver"
+msgstr "제조사와 모델 / 드라이버"
+
+msgid "Max Jobs"
+msgstr "최대 작업"
+
+msgid "May contain any printable characters except \"/\", \"#\" and space"
+msgstr "\"/\", \"#\" 그리고 공백을 제외한 모든 인쇄 가능한 문자를 포함 할 수 있습니다"
+
+msgid "Model / Driver"
+msgstr "모델 / 드라이버"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "Next"
+msgstr "다음"
+
+msgid "No printers found."
+msgstr "프린터를 찾을 수 없습니다."
+
+msgid ""
+"Once the number of print jobs reaches the limit, the oldest completed job is"
+" automatically purged from the system to make room for the new one. If all "
+"of the known jobs are still pending or active then the new job will be "
+"rejected."
+msgstr "인쇄 작업의 수가 한계에 도달하면, 가장 오래된 완료된 작업은 새로운 공간을 마련하기 위해 시스템으로부터 정리됩니다. 알려진 모든 작업이 여전히 보류 중이거나 활동하는 경우, 새 작업은 거부됩니다."
+
+msgid "Pages"
+msgstr "쪽"
+
+msgid "Pause printing"
+msgstr "인쇄 일시 정지"
+
+msgid "Paused"
+msgstr "일시 정지된"
+
+msgid "Pausing printer ..."
+msgstr "프린터 일시 정지 중 .."
+
+msgid "Previous"
+msgstr "이전"
+
+msgid "Print test page"
+msgstr "시험 쪽 인쇄"
+
+msgid "Printer"
+msgstr "프린터"
+
+msgid "Printer / Queue Name"
+msgstr "프린터 / 대기열 이름"
+
+msgid "Printer sharing"
+msgstr "프린터 공유"
+
+msgid "Printers"
+msgstr "프린터"
+
+msgid "Printing"
+msgstr "Printing"
+
+msgid "Printing Access Log"
+msgstr "접근 기록 인쇄 중"
+
+msgid "Printing Error Log"
+msgstr "오류 기록 인쇄 중"
+
+msgid "Printing test page ..."
+msgstr "시험 쪽 인쇄 중"
+
+msgid "Processing"
+msgstr "처리 중"
+
+msgid "Remote printers"
+msgstr "원격 프린터"
+
+msgid "Resume printing"
+msgstr "인쇄 재개 중"
+
+msgid "Resuming printer ..."
+msgstr "프린터 재개 중 ..."
+
+msgid "SMB Shared Printer Paths"
+msgstr "SMB 공유 프린터 경로"
+
+msgid "Saving ..."
+msgstr "저장 중 ..."
+
+msgid "Scanning for attached printers ..."
+msgstr "연결된 프린터 찾는 중 ..."
+
+msgid "Select a make ..."
+msgstr "제조사 선택 ..."
+
+msgid "Select a model ..."
+msgstr "모델 선택 ..."
+
+msgid "Select a printer ..."
+msgstr "프린터 선택 ..."
+
+msgid "Settings"
+msgstr "설정"
+
+msgid "Severity"
+msgstr "Severity"
+
+msgid "Show"
+msgstr "보이기"
+
+msgid "Size"
+msgstr "크기"
+
+msgid "State"
+msgstr "상태"
+
+msgid "Status"
+msgstr "상태"
+
+msgid "Unknown"
+msgstr "모름"
+
+msgid "User"
+msgstr "사용자"
+
+msgid ""
+"Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
+"printers using their OpenMediaVault username / password."
+msgstr "OpenMediaVault 그룹 <b>lpadmin</b>의 사용자는 OpenMediaVault 사용자 이름 / 암호를 사용하여 프린터를 관리 할 수 있습니다."
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Wizard"
+msgstr "마법사"
