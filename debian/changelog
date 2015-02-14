@@ -1,3 +1,9 @@
+openmediavault-cups (1.1) stable; urgency=medium
+
+  * Update packaging and paths.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 14 Feb 2015 13:20:07 +0000
+
 openmediavault-cups (1.0.8) unstable; urgency=low
 
   * Various Javascript fixes 
