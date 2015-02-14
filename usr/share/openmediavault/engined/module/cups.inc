@@ -73,7 +73,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
      */
     public function applyConfig()
     {
-        $cmd = sprintf("sudo omv-mkconf %s 2>&1", $this->getName());
+        $cmd = sprintf("export LANG=C; omv-mkconf %s 2>&1", $this->getName());
 
         if (0 !== $this->exec($cmd, $output)) {
             throw new OMVException(
@@ -115,7 +115,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
 
     private function regenerateServiceDefinitions()
     {
-        $cmd = "sudo /usr/local/bin/omvcups-avahi.py 2>&1";
+        $cmd = "export LANG=C; omv-cups-avahi 2>&1";
 
         OMVUtil::exec($cmd, $output, $result);
         if ($result !== 0) {
