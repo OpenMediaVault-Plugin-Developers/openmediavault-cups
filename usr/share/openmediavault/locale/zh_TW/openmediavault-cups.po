@@ -3,88 +3,88 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2013-2014
+# kochin <kochinc@outlook.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-cups\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-16 13:29-0600\n"
-"PO-Revision-Date: 2014-11-14 19:48+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-cups/language/zh_CN/)\n"
+"PO-Revision-Date: 2014-11-21 14:33+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-cups/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid ""
 "<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS "
 "devices."
-msgstr "<i>试验性</i>。提供苹果 IOS 设备 'AirPrint' 兼容性。"
+msgstr "<i>實驗性</i>。對 Apple iOS 裝置提供 'AirPrint' 相容性。"
 
 msgid "Active"
-msgstr "激活"
+msgstr "作業中"
 
 msgid "Add printer"
-msgstr "添加打印"
+msgstr "新增印表機"
 
 msgid "AirPrint capable Apple iOS devices"
-msgstr "苹果 IOS 设备的 AirPrint 功能"
+msgstr "具有 AirPrint 功能的 Apple iOS 裝置"
 
 msgid "All"
 msgstr "全部"
 
 msgid "Are you sure you want to cancel all printing jobs on"
-msgstr "确定取消所有打印任务吗？"
+msgstr "您確定要取消全部列印工作在"
 
 msgid "Are you sure you want to cancel the selected printing job?"
-msgstr "确认取消选中的打印任务吗？"
+msgstr "您確定要取消所選擇的列印工作？"
 
 msgid "Cancel"
 msgstr "取消"
 
 msgid "Cancel job"
-msgstr "取消任务"
+msgstr "取消工作"
 
 msgid "Cancel jobs"
-msgstr "取消任务"
+msgstr "取消工作"
 
 msgid "Cancelling job ..."
-msgstr "取消任务中..."
+msgstr "取消工作中 ..."
 
 msgid "Completed"
 msgstr "完成"
 
 msgid "Confirmation"
-msgstr "确认"
+msgstr "確認"
 
 msgid "Created"
-msgstr "创建"
+msgstr "建立"
 
 msgid "Date & Time"
-msgstr "日期和时间"
+msgstr "日期與時間"
 
 msgid "Description"
-msgstr "描述"
+msgstr "說明文字"
 
 msgid "Edit printer"
-msgstr "编辑打印机"
+msgstr "編輯印表機"
 
 msgid "Enable"
-msgstr "启动"
+msgstr "啟用"
 
 msgid "Enable AirPrint"
-msgstr "启动AirPrint"
+msgstr "啟用 AirPrint"
 
 msgid "Enable SMB Sharing"
-msgstr "启动SMB共享"
+msgstr "啟用 SMB 共享"
 
 msgid "Enable sharing of printers over OpenMediaVault's SMB/CIFS service."
-msgstr "启用基于OpenMediaVault's SMB/CIFS 服务器的打印机共享。"
+msgstr "啟用透過 OpenMediaVault 的 SMB/CIFS 服務來分享印表機。"
 
 msgid "Enables listing of remote printers when adding a printer."
-msgstr "添加打印机时启用远程打印机列表。"
+msgstr "當新增一個印表機時，啟用遠端印表機的清單。"
 
 msgid "Event"
 msgstr "事件"
@@ -93,32 +93,32 @@ msgid "Finish"
 msgstr "完成"
 
 msgid "General Settings"
-msgstr "常规设置"
+msgstr "一般設定"
 
 msgid "Host"
-msgstr "主机"
+msgstr "主機"
 
 msgid "Idle"
-msgstr "闲置"
+msgstr "閒置"
 
 msgid ""
 "If your printer is not listed here, try Make: Generic, Model: Generic "
 "Postscript Printer. If there is more than one driver for your make / model "
 "choose one that is labeled (recommended) if available, or experiment to find"
 " the driver that works best for you."
-msgstr "如果你的打印机未在列表中，可以尝试品牌：通用，型号：普通PostScript打印机。如果有多个打印机型号/驱动选择那么选择(推荐)标签，或者根据经验尝试最适合你的驱动。"
+msgstr "如果您的印表機沒在清單中，試試 製造商: Generic，機型: Generic Postscript Printer。若您的 製造商 / 機型 有多於一個以上可用的驅動器，如有可能請選擇有標示 (recommended)，或實驗看看哪一個驅動器對您來說最好用。"
 
 msgid "Internet Printing Protocol (IPP) Shared Printer URLs"
-msgstr "互联网打印协议 (IPP) 共享打印机 URLs地址"
+msgstr "網際網路列印協定(IPP)共享印表機 URLs"
 
 msgid "Invalid printer name"
-msgstr "无效打印机名"
+msgstr "不合法的印表機名稱"
 
 msgid "Job Id"
-msgstr "任务ID"
+msgstr "工作 Id"
 
 msgid "Jobs"
-msgstr "任务"
+msgstr "工作"
 
 msgid "Linux"
 msgstr "Linux"
@@ -130,139 +130,139 @@ msgid "Mac OS X"
 msgstr "Mac OS X"
 
 msgid "Make"
-msgstr "品牌"
+msgstr "製造商"
 
 msgid "Make and Model / Driver"
-msgstr "品牌和型号 / 驱动"
+msgstr "製造商和機型 / 驅動器"
 
 msgid "Max Jobs"
-msgstr "最大任务数"
+msgstr "最多工作數"
 
 msgid "May contain any printable characters except \"/\", \"#\" and space"
-msgstr "除了“/” ，“＃” 和空格，可以包含任何可打印字符。"
+msgstr "可以含有任何可列印的字符，除了 \"/\"、\"#\" 和空白符號"
 
 msgid "Model / Driver"
-msgstr "模块 / 驱动"
+msgstr "機型 / 驅動器"
 
 msgid "Name"
-msgstr "名称"
+msgstr "名稱"
 
 msgid "Next"
 msgstr "下一步"
 
 msgid "No printers found."
-msgstr "未找到打印机。"
+msgstr "沒找到任何印表機。"
 
 msgid ""
 "Once the number of print jobs reaches the limit, the oldest completed job is"
 " automatically purged from the system to make room for the new one. If all "
 "of the known jobs are still pending or active then the new job will be "
 "rejected."
-msgstr "一旦打印任务数达到上限，最先完成的打印任务将从系统清除以给新任务腾出空间。如果所有已知任务处于挂起或者激活状态，那么新任务将被拒绝。"
+msgstr "一旦列印工作的個數超過了極限，最老已完成的工作會自動從系統中清除，讓出空間給新的工作。如果全部所知的工作都仍在等待中或作業中，則新的工作會被拒絕。"
 
 msgid "Pages"
-msgstr "页面"
+msgstr "頁數"
 
 msgid "Pause printing"
-msgstr "暂停打印"
+msgstr "暫停列印"
 
 msgid "Paused"
-msgstr "暂停"
+msgstr "已暫停"
 
 msgid "Pausing printer ..."
-msgstr "暂停打印..."
+msgstr "暫停印表機中 ..."
 
 msgid "Previous"
 msgstr "上一步"
 
 msgid "Print test page"
-msgstr "打印测试页"
+msgstr "列印測試頁"
 
 msgid "Printer"
-msgstr "打印机"
+msgstr "印表機"
 
 msgid "Printer / Queue Name"
-msgstr "打印机/队列名称"
+msgstr "印表機 / 佇列名稱"
 
 msgid "Printer sharing"
-msgstr "打印机共享"
+msgstr "印表機共享"
 
 msgid "Printers"
-msgstr "打印机"
+msgstr "印表機"
 
 msgid "Printing"
-msgstr "打印服务"
+msgstr "列印"
 
 msgid "Printing Access Log"
-msgstr "打印访问日志"
+msgstr "列印存取日誌"
 
 msgid "Printing Error Log"
-msgstr "打印错误日志"
+msgstr "列印錯誤日誌"
 
 msgid "Printing test page ..."
-msgstr "打印测试页"
+msgstr "列印測試頁中 ..."
 
 msgid "Processing"
-msgstr "进程"
+msgstr "處理中"
 
 msgid "Remote printers"
-msgstr "远程打印机"
+msgstr "遠端印表機"
 
 msgid "Resume printing"
-msgstr "恢复打印"
+msgstr "恢復列印"
 
 msgid "Resuming printer ..."
-msgstr "恢复打印..."
+msgstr "恢復印表機中 ..."
 
 msgid "SMB Shared Printer Paths"
-msgstr "SMB 共享打印机路径"
+msgstr "SMB 共享印表機路徑"
 
 msgid "Saving ..."
-msgstr "保存中..."
+msgstr "儲存中 ..."
 
 msgid "Scanning for attached printers ..."
-msgstr "扫描连接的打印机 ..."
+msgstr "掃描連接的印表機 ..."
 
 msgid "Select a make ..."
-msgstr "选择品牌 ..."
+msgstr "選擇製造商 ..."
 
 msgid "Select a model ..."
-msgstr "选择型号 ..."
+msgstr "選擇機型 ..."
 
 msgid "Select a printer ..."
-msgstr "选择打印机 ..."
+msgstr "選擇印表機 ..."
 
 msgid "Settings"
-msgstr "设置"
+msgstr "設定"
 
 msgid "Severity"
-msgstr "严重性"
+msgstr "嚴重性"
 
 msgid "Show"
-msgstr "显示"
+msgstr "顯示"
 
 msgid "Size"
 msgstr "大小"
 
 msgid "State"
-msgstr "状态"
+msgstr "狀態"
 
 msgid "Status"
-msgstr "状态"
+msgstr "狀態"
 
 msgid "Unknown"
 msgstr "未知"
 
 msgid "User"
-msgstr "用户"
+msgstr "用戶"
 
 msgid ""
 "Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer "
 "printers using their OpenMediaVault username / password."
-msgstr "可以使用 OpenMediaVault 用户名/密码在 <b>lpadmin</b> 管理打印机。"
+msgstr "屬於 <b>lpadmin</b> OpenMediaVault 群組的用戶能夠用他們的 OpenMediaVault 用戶名稱 / 密碼 來管理印表機。"
 
 msgid "Windows"
-msgstr "窗口"
+msgstr "Windows"
 
 msgid "Wizard"
-msgstr "向导"
+msgstr "精靈"
