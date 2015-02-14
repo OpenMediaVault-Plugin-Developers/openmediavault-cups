@@ -6,7 +6,7 @@ case "$1" in
     install)
         # Backup cups config
         if [ ! -e /etc/cups/cupsd.conf-orig ] && [ -e /etc/cups/cupsd.conf ]; then
-            /bin/cp /etc/cups/cupsd.conf /etc/cups/cupsd.conf-orig
+            /etc/cups/cupsd.conf /etc/cups/cupsd.conf-orig
         fi
     ;;
 

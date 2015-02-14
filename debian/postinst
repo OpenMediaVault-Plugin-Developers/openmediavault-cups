@@ -17,7 +17,7 @@ case "$1" in
 
         if ! omv_config_exists "${SERVICE_XPATH}/enable"; then
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
-            $(/etc/init.d/cups status > /dev/null && omv_config_update "${SERVICE_XPATH}/enable" "1") || /bin/true
+            $(/etc/init.d/cups status > /dev/null && omv_config_update "${SERVICE_XPATH}/enable" "1") || true
         fi
 
         if ! omv_config_exists "${SERVICE_XPATH}/airprint"; then
@@ -48,13 +48,6 @@ case "$1" in
         chgrp -R lpadmin /var/lib/samba/printers
         chmod -R g+w /var/lib/samba/printers
 
-        # Make sure python scripts are setup correctly
-        chown root /usr/local/bin/omvcups.py
-        chmod 700 /usr/local/bin/omvcups.py
-
-        chown root /usr/local/bin/omvcups-avahi.py
-        chmod 700 /usr/local/bin/omvcups-avahi.py
-
         # Check for en_US.UTF-8 locale
         if [ "$(grep -c '^\s*en_US.UTF-8' /etc/locale.gen)" = "0" ]; then
             # Just add it?
@@ -80,7 +73,7 @@ case "$1" in
             invoke-rc.d cups restart
 
             # Avahi files
-            /usr/local/bin/omvcups-avahi.py
+            omv-cups-avahi
 
             # Check for diff of samba config
             HASH="$(md5sum /etc/samba/smb.conf)"
@@ -94,8 +87,6 @@ case "$1" in
                 fi
             fi
         fi
-
-        pip install cloudprint
 
         # Activate package triggers. These triggers are only set during the
         # package installation.

@@ -1,4 +1,4 @@
 usr/share/openmediavault/* usr/share/openmediavault
-var/www/openmediavault/*   var/www/openmediavault
-usr/local/bin/*            usr/local/bin
-usr/share/cups/mime/*      usr/share/cups/mime
+var/www/openmediavault/* var/www/openmediavault
+usr/bin/* usr/bin
+usr/share/cups/mime/* usr/share/cups/mime
