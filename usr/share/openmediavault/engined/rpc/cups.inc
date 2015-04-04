@@ -99,7 +99,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $settingsObject["enable"] = boolval($object["enable"]);
         $settingsObject["enable_samba"] = boolval($object["enable_samba"]);
         $settingsObject["airprint"] = boolval($object["airprint"]);
-        $settingsObject["maxjobs"] = intval($object["maxjobs"]);
+        $settingsObject["max_jobs"] = intval($object["max_jobs"]);
         $settingsObject["remote_printers"] = boolval($object["remote_printers"]);
 
         return $settingsObject;
@@ -131,7 +131,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
                     "enable": { "type": "boolean" },
                     "enable_samba": { "type": "boolean" },
                     "airprint": { "type": "boolean" },
-                    "maxjobs": { "type": "integer" },
+                    "max_jobs": { "type": "integer" },
                     "remote_printers": { "type": "boolean" }
                 }
             }'
@@ -142,7 +142,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "enable" => boolval($params["enable"]),
             "enable_samba" => boolval($params["enable_samba"]),
             "airprint" => boolval($params["airprint"]),
-            "maxjobs" => $params["maxjobs"],
+            "max_jobs" => $params["max_jobs"],
             "remote_printers" => boolval($params["remote_printers"]),
         );
 

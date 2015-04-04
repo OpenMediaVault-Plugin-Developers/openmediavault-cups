@@ -69,7 +69,7 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 checked: false
             }, {
                 xtype: "numberfield",
-                name: "maxjobs",
+                name: "max_jobs",
                 fieldLabel: _("Max Jobs"),
                 minValue: 0,
                 maxValue: 65535,
