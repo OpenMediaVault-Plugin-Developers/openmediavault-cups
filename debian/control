@@ -8,12 +8,25 @@ XB-Plugin-Section: utilities
 
 Package: openmediavault-cups
 Architecture: all
-Depends: , openmediavault (>= 1.0.7), cups,
-  foomatic-filters, foomatic-db-engine, foomatic-db,
-  ghostscript-cups, hp-ppd, hpijs-ppds, locales, openprinting-ppds,
-  printer-driver-foo2zjs, printer-driver-gutenprint, printer-driver-hpcups,
-  printer-driver-splix,
-  python, python-cups, python-daemon, python-lxml,
-  python-pip, ${misc:Depends}
+Depends: openmediavault (>= 1.0.7),
+         cups,
+         foomatic-filters,
+         foomatic-db-engine,
+         foomatic-db,
+         ghostscript-cups,
+         hp-ppd,
+         hpijs-ppds,
+         locales,
+         openprinting-ppds,
+         printer-driver-foo2zjs,
+         printer-driver-gutenprint,
+         printer-driver-hpcups,
+         printer-driver-splix,
+         python,
+         python-cups,
+         python-daemon,
+         python-lxml,
+         python-pip,
+         ${misc:Depends}
 Description: OpenMediaVault CUPS (network printer server) plugin.
  Add CUPS functionality to OpenMediaVault.
