@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,31 +21,36 @@
 // require("js/omv/data/proxy/Rpc.js")
 
 Ext.define("OMV.module.admin.service.cups.stores.PrinterStore", {
-    extend   : "OMV.data.Store",
-    requires : [
+    extend: "OMV.data.Store",
+    requires: [
         "OMV.data.Model",
         "OMV.data.proxy.Rpc",
     ],
 
-    singleton  : true,
-    autoLoad   : true,
-    remoteSort : false,
-    model      : OMV.data.Model.createImplicit({
-        idProperty : "uuid",
-        fields     : [
-            { name : "uuid" },
-            { name : "PrinterInfo" },
-            { name : "PrinterLocation" },
-            { name : "PrinterMakeAndModel" },
-            { name : "PrinterState" },
-            { name : "PrinterStateMessage" }
-        ]
+    singleton: true,
+    autoLoad: true,
+    remoteSort: false,
+    model: OMV.data.Model.createImplicit({
+        idProperty: "uuid",
+        fields: [{
+            name: "uuid"
+        }, {
+            name: "PrinterInfo"
+        }, {
+            name: "PrinterLocation"
+        }, {
+            name: "PrinterMakeAndModel"
+        }, {
+            name: "PrinterState"
+        }, {
+            name: "PrinterStateMessage"
+        }]
     }),
-    proxy : {
-        type    : "rpc",
-        rpcData : {
-            service : "Cups",
-            method  : "getPrinters"
+    proxy: {
+        type: "rpc",
+        rpcData: {
+            service: "Cups",
+            method: "getPrinters"
         }
     }
 });

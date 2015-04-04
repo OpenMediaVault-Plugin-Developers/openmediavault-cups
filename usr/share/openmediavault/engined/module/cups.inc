@@ -2,7 +2,7 @@
 
 /**
  * Copyright (C)      2011 Ian Moore
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,13 +28,15 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
     OMVINotifyListener,
     OMVIModuleServiceStatus
 {
-    private function getXPath()
+    private function getXpath()
     {
-        return "//services/cups";
+        return "/config/services/cups";
     }
 
     /**
      * Get the module name.
+     *
+     * @return string
      */
     public function getName()
     {
@@ -43,18 +45,19 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
 
     /**
      * Get the status of the managed service.
+     *
+     * @return array
      */
     public function getStatus()
     {
         global $xmlConfig;
 
-        // Get the configuration object
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get($this->getXpath());
 
         if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
+                $this->getXpath()
             );
         }
 
@@ -69,7 +72,9 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
     }
 
     /**
-     * Create and update the configuration
+     * Generate the configuration.
+     *
+     * @return void
      */
     public function applyConfig()
     {
@@ -84,16 +89,21 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
         }
     }
 
+    /**
+     * Start the managed service.
+     *
+     * @return void
+     */
     public function startService()
     {
         global $xmlConfig;
 
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get($this->getXpath());
 
         if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
+                $this->getXpath()
             );
         }
 
@@ -107,17 +117,28 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
         $this->regenerateServiceDefinitions();
     }
 
+    /**
+     * Stop the managed service.
+     *
+     * @return void
+     */
     public function stopService()
     {
         $initd = new OMVSysVInitScript($this->getName(), false);
         $initd->exec();
     }
 
+    /**
+     * Generate Avahi service definitions for each printer.
+     *
+     * @return void
+     */
     private function regenerateServiceDefinitions()
     {
         $cmd = "export LANG=C; omv-cups-avahi 2>&1";
 
         OMVUtil::exec($cmd, $output, $result);
+
         if ($result !== 0) {
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
@@ -129,6 +150,10 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
 
     /**
      * Bind listeners.
+     *
+     * @param OMVNotifyDispatcher $dispatcher The dispatcher object.
+     *
+     * @return void
      */
     public function bindListeners(OMVNotifyDispatcher $dispatcher)
     {
@@ -143,46 +168,3 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
 // Register module.
 $moduleMgr = &OMVModuleMgr::getInstance();
 $moduleMgr->registerModule(new OMVModuleCups());
-
-// Register new logfile type
-OMVLogFile::registerType(
-    "cupsaccess",
-    array(
-        "filename" => "access_log",
-        "filepath" => "/var/log/cups/access_log",
-        "regex"    => "/^(.*?)\s+[^\s]+\s+(.*?)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-        "columns"  => array(
-            "host" => 1,
-            "user" => 2,
-            "date" => array(
-                "index" => 3,
-                "func"  => create_function(
-                    "\$v",
-                    "return strpdate(\$v,\"j/M/Y:G:i:s\");"
-                )
-            ),
-            "event" => 4
-        )
-    )
-);
-
-// Register new logfile type
-OMVLogFile::registerType(
-    "cupserror",
-    array(
-        "filename" => "error_log",
-        "filepath" => "/var/log/cups/error_log",
-        "regex"    => "/^(.)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-        "columns"  => array(
-            "severity" => 1,
-            "date"     => array(
-                "index" => 2,
-                "func"  => create_function(
-                    "\$v",
-                    "return strpdate(\$v,\"j/M/Y:G:i:s\");"
-                )
-            ),
-            "event" => 3
-        )
-    )
-);

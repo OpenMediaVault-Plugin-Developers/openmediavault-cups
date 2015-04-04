@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,50 +20,46 @@
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 
 Ext.define("OMV.module.admin.service.cups.window.Printer", {
-    extend : "OMV.workspace.window.Form",
-    uses   : [
+    extend: "OMV.workspace.window.Form",
+    uses: [
         "OMV.workspace.window.plugin.ConfigObject"
     ],
 
-    plugins : [{
-        ptype : "configobject"
+    plugins: [{
+        ptype: "configobject"
     }],
 
-    rpcService      : "Cups",
-    rpcGetMethod    : "getPrinter",
-    rpcSetMethod    : "setPrinter",
-    width           : 500,
-    height          : 200,
-    hideResetButton : true,
-    uuid            : null,
+    rpcService: "Cups",
+    rpcGetMethod: "getPrinter",
+    rpcSetMethod: "setPrinter",
+    width: 500,
+    height: 200,
+    hideResetButton: true,
+    uuid: null,
 
-    getFormItems : function () {
-        return [
-            {
-                xtype      : "textfield",
-                name       : "uuid",
-                fieldLabel : _("Name"),
-                readOnly   : true
-            },
-            {
-                xtype      : "textfield",
-                name       : "PrinterInfo",
-                fieldLabel : _("Description"),
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Human-readable description such as 'HP LaserJet with Duplexer'"),
-                }],
-                allowBlank : false
-            },
-            {
-                xtype      : "textfield",
-                name       : "PrinterLocation",
-                fieldLabel : "Location",
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Human-readable location such as 'Lab 1'")
-                }]
-            }
-        ];
+    getFormItems: function() {
+        return [{
+            xtype: "textfield",
+            name: "uuid",
+            fieldLabel: _("Name"),
+            readOnly: true
+        }, {
+            xtype: "textfield",
+            name: "PrinterInfo",
+            fieldLabel: _("Description"),
+            plugins: [{
+                ptype: "fieldinfo",
+                text: _("Human-readable description such as 'HP LaserJet with Duplexer'"),
+            }],
+            allowBlank: false
+        }, {
+            xtype: "textfield",
+            name: "PrinterLocation",
+            fieldLabel: "Location",
+            plugins: [{
+                ptype: "fieldinfo",
+                text: _("Human-readable location such as 'Lab 1'")
+            }]
+        }];
     }
 });
