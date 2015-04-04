@@ -38,8 +38,9 @@ case "$1" in
         chgrp -R lpadmin /var/lib/samba/printers
         chmod -R g+w /var/lib/samba/printers
 
-        # Check for en_US.UTF-8 locale and enable it.
-        # TODO: It has never been stated why this is done.
+        # Check for en_US.UTF-8 locale and enable it. This is to allow the use
+        # of unicode characters when setting different things (for example the
+        # printer name).
         if [ "$(grep -c '^\s*en_US.UTF-8' /etc/locale.gen)" = "0" ]; then
             # If the locale is not found in the file we need to add it. If it
             # does exist we can just uncomment it with the help of sed.
