@@ -19,7 +19,6 @@
  */
 
 require_once "openmediavault/error.inc";
-require_once "openmediavault/initscript.inc";
 require_once "openmediavault/notify.inc";
 require_once "openmediavault/rpc.inc";
 
@@ -189,8 +188,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             "role" => OMV_ROLE_ADMINISTRATOR
         ));
 
-        return $this->isRunning() ?
-            $this->runCupsCommand("getPrinters") : array();
+        try {
+            return $this->runCupsCommand("getPrinters");
+        } catch (Exception $e) {
+            return [];
+        }
     }
 
     /**
@@ -522,13 +524,13 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             $params["which"] = "not-completed";
         }
 
-        $jobs = array();
-
-        if ($this->isRunning()) {
+        try {
             $jobs = $this->runCupsCommand(
                 "getJobs",
                 array($params["which"])
             );
+        } catch (Exception $e) {
+            $jobs = array();
         }
 
         // Filter result.
@@ -542,7 +544,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Cancel a single job
+     * Cancel a single job.
      *
      * @param array $params
      * @param array $context
@@ -597,18 +599,6 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         );
 
         $this->runCupsCommand("cancelAllJobs", array($params["pname"]));
-    }
-
-    /**
-     * Check if CUPS is running.
-     *
-     * @return bool
-     */
-    private function isRunning()
-    {
-        $initd = new OMVSysVInitScript("cups");
-
-        return $initd->status() == 0;
     }
 
     /**
@@ -671,14 +661,16 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }
 
         $cmd = "export LANG=C; omv-cups {$command} {$args} 2>&1";
-        $result = $this->exec($cmd, $output);
-        $output = implode("\n", $output);
 
-        if (0 !== $result) {
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, $output);
+        if ($this->exec($cmd, $output) !== 0) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("", $output)
+            );
         }
 
-        $obj = json_decode($output, true);
+        $obj = json_decode(implode("", $output), true);
 
         if (!empty($obj["error"])) {
             throw new Exception($obj["error"]);
