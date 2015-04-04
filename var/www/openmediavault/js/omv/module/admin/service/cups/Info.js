@@ -21,190 +21,188 @@
 // require("js/omv/module/admin/service/cups/stores/PrinterStore.js")
 
 Ext.define("OMV.module.admin.service.cups.Info", {
-    extend : "OMV.workspace.form.Panel",
+    extend: "OMV.workspace.form.Panel",
 
-    autoLoadData    : false,
-    hideOkButton    : true,
-    hideResetButton : true,
-    mode            : "local",
+    autoLoadData: false,
+    hideOkButton: true,
+    hideResetButton: true,
+    mode: "local",
 
-    getFormItems : function() {
-        var me = this;
-
+    getFormItems: function() {
         return [{
-            xtype      : "fieldset",
-            autoScroll : true,
-            frame      : false,
-            border     : false,
-            disabled   : true,
-            items      : [{
-                // IPP shared printer list
-                xtype  : "fieldset",
-                name   : "ipp",
-                title  : _("Internet Printing Protocol (IPP) Shared Printer URLs"),
-                layout : "fit",
-                items  : [{
-                    xtype     : "box",
-                    html      : "",
-                    listeners : {
-                        afterrender : function(element) {
+            xtype: "fieldset",
+            autoScroll: true,
+            frame: false,
+            border: false,
+            disabled: true,
+            items: [{
+                // IPP shared printer list.
+                xtype: "fieldset",
+                name: "ipp",
+                title: _("Internet Printing Protocol (IPP) Shared Printer URLs"),
+                layout: "fit",
+                items: [{
+                    xtype: "box",
+                    html: "",
+                    listeners: {
+                        afterrender: function(element) {
                             var html;
 
-                            // Get printer store
-                            var store = me.getPrinterStore();
-                            html = me.renderPrinterList(element, store, true);
+                            // Get printer store.
+                            var store = this.getPrinterStore();
+                            html = this.renderPrinterList(element, store, true);
 
-                            // Update element
+                            // Update element.
                             element.update(html);
 
-                            // Listen for changes in the store
+                            // Listen for changes in the store.
                             // and update element when necessary
                             store.on("datachanged", function(thisStore) {
-                                html = me.renderPrinterList(element, thisStore, true);
+                                html = this.renderPrinterList(element, thisStore, true);
                                 element.update(html);
-                            });
-                        }
+                            }, this);
+                        },
+                        scope: this
                     }
                 }]
-            },{
-                // SMB shared printer list
-                xtype  : "fieldset",
-                name   : "smb",
-                title  : _("SMB Shared Printer Paths"),
-                layout : "fit",
-                items  : [{
-                    xtype     : "box",
-                    html      : "",
-                    listeners : {
-                        afterrender : function(element) {
+            }, {
+                // SMB shared printer list.
+                xtype: "fieldset",
+                name: "smb",
+                title: _("SMB Shared Printer Paths"),
+                layout: "fit",
+                items: [{
+                    xtype: "box",
+                    html: "",
+                    listeners: {
+                        afterrender: function(element) {
                             var html;
 
-                            // Get printer store
-                            var store = me.getPrinterStore();
-                            html = me.renderPrinterList(element, store);
+                            // Get printer store.
+                            var store = this.getPrinterStore();
+                            html = this.renderPrinterList(element, store);
 
-                            // Update element
+                            // Update element.
                             element.update(html);
 
-                            // Listen for changes in the store
-                            // and update element when necessary
+                            // Listen for changes in the store and update element when necessary.
                             store.on("datachanged", function(thisStore) {
-                                html = me.renderPrinterList(element, thisStore);
+                                html = this.renderPrinterList(element, thisStore);
                                 element.update(html);
-                            });
-                        }
+                            }, this);
+                        },
+                        scope: this
                     }
                 }]
-            },{
-                /* Windows sharing info */
-                xtype     : "fieldset",
-                layout    : "fit",
-                title     : _("Windows"),
-                style     : 'padding: 0 5px 10px 10px',
-                items     : [{
-                    border : false,
-                    html   : "<p>" +
-                             "NOTE: The instructions below may vary slightly depending on the version of Windows on which " +
-                             "the steps are being performed. Some logical deduction may be required on your part." +
-                             "</p>" +
-                             "<h3>Internet Printing Protocol (IPP)</h3>" +
-                             "<p>" +
-                             "Printers are shared to Windows via the IPP URL <b>http://" + location.hostname + ":631/printers/<i>PRINTER_NAME</i>.</b> " +
-                             "To add an IPP shared printer in Window\"s <b>Control Panel</b> click on <b>Devices and Printers</b> (or Printers and Faxes), click on <b>Add a Printer</b> " +
-                             "and choose to <b>Add a Network Printer</b>, click on " +
-                             "<b>The printer that I want isn't listed</b> (if a button with that label is presented), then select the option " +
-                             "labeled <b>Select a shared printer by name</b>. In the text box, you may enter the printer's <b>IPP</b> URL as listed above." +
-                             "</p>" +
-                             "<h3>SMB</h3>" +
-                             "<p>" +
-                             "If you have enabled printer sharing over SMB, printers may also be shared to Windows via the SMB path <b>\\\\" + location.hostname + "\\<i>PRINTER_NAME</i></b>" +
-                             "</p>" +
-                             "<p>" +
-                             "To add an SMB shared printer in Window's <b>Control Panel</b> click on <b>Devices and Printers</b> (or Printers and Faxes), click on <b>Add a Printer</b> " +
-                             "and choose to <B>Add a Network Printer</b>, select  <b>Browse for printer</b> (if a button with that label is presented) and select the printer " +
-                             "you would like to add. This may prompt you to select or install the printer's driver. After you have connected to a shared printer on the network, " +
-                             "you can use it as if it were attached to your computer. " +
-                             "</p>" +
-                             "<h3>Point and Print</h3>" +
-                             "<p>" +
-                             "Drivers can be made available for Windows clients over SMB to enable " +
-                             "'point-and-print' functionality. When a Windows client initially connects to a printer, " +
-                             "if a driver is available, it will automatically be downloaded and installed. To manage the SMB drivers installed on this server, follow these steps " +
-                             "on a computer running <b>Windows 7 or higher</b>:" +
-                             "</p>" +
-                             "<ol style='list-style: decimal; list-style-image: none; margin-left: 10px;'>" +
-                             "<li>Click&nbsp;<b>Start</b>, type <b>\\\\" + location.hostname + "</b>, and press Enter. - If prompted to log in, enter the " +
-                             "user name and password of an OpenMediaVault account that is part of the <b>lpadmin</b> gruop. This will ensure that " +
-                             "you will have administrative access to printers. You may close the resulting window.</li>" +
-                             "<li>Click on <b>Start</b>, type <b>printui /s /c\\\\192.168.1.66</b> , then press enter.</li>" +
-                             "<li>Click on the <b>Drivers</b> tab, &nbsp;click <b>Add</b>, and then click <b>Next</b>.</li>" +
-                             "<li>Click to select the&nbsp;check box&nbsp;for&nbsp;the appropriate processor architecture, and then click <b>Next</b>.</li>" +
-                             "<li>Select an in-box driver from the list, and then click <b>Next</b>.&nbsp;&nbsp;&nbsp;-&nbsp;<b>Note</b> " +
-                             "you may also choose <b>Have Disk</b> and select the driver from the installation media that came " +
-                             "with the printer.</li>" +
-                             "<li>Click <b>Finish </b>to complete the wizard.</li>" +
-                             "</ol>" +
-                             "<p>" +
-                             "Subsequent attempts to connect to the printer from a Windows computer should automatically install the appropriate printer driver." +
-                             "</p>"
+            }, {
+                /* Windows sharing info. */
+                xtype: "fieldset",
+                layout: "fit",
+                title: _("Windows"),
+                style: 'padding: 0 5px 10px 10px',
+                items: [{
+                    border: false,
+                    html: "<p>" +
+                        "NOTE: The instructions below may vary slightly depending on the version of Windows on which " +
+                        "the steps are being performed. Some logical deduction may be required on your part." +
+                        "</p>" +
+                        "<h3>Internet Printing Protocol (IPP)</h3>" +
+                        "<p>" +
+                        "Printers are shared to Windows via the IPP URL <b>http://" + location.hostname + ":631/printers/<i>PRINTER_NAME</i>.</b> " +
+                        "To add an IPP shared printer in Window\"s <b>Control Panel</b> click on <b>Devices and Printers</b> (or Printers and Faxes), click on <b>Add a Printer</b> " +
+                        "and choose to <b>Add a Network Printer</b>, click on " +
+                        "<b>The printer that I want isn't listed</b> (if a button with that label is presented), then select the option " +
+                        "labeled <b>Select a shared printer by name</b>. In the text box, you may enter the printer's <b>IPP</b> URL as listed above." +
+                        "</p>" +
+                        "<h3>SMB</h3>" +
+                        "<p>" +
+                        "If you have enabled printer sharing over SMB, printers may also be shared to Windows via the SMB path <b>\\\\" + location.hostname + "\\<i>PRINTER_NAME</i></b>" +
+                        "</p>" +
+                        "<p>" +
+                        "To add an SMB shared printer in Window's <b>Control Panel</b> click on <b>Devices and Printers</b> (or Printers and Faxes), click on <b>Add a Printer</b> " +
+                        "and choose to <B>Add a Network Printer</b>, select  <b>Browse for printer</b> (if a button with that label is presented) and select the printer " +
+                        "you would like to add. This may prompt you to select or install the printer's driver. After you have connected to a shared printer on the network, " +
+                        "you can use it as if it were attached to your computer. " +
+                        "</p>" +
+                        "<h3>Point and Print</h3>" +
+                        "<p>" +
+                        "Drivers can be made available for Windows clients over SMB to enable " +
+                        "'point-and-print' functionality. When a Windows client initially connects to a printer, " +
+                        "if a driver is available, it will automatically be downloaded and installed. To manage the SMB drivers installed on this server, follow these steps " +
+                        "on a computer running <b>Windows 7 or higher</b>:" +
+                        "</p>" +
+                        "<ol style='list-style: decimal; list-style-image: none; margin-left: 10px;'>" +
+                        "<li>Click&nbsp;<b>Start</b>, type <b>\\\\" + location.hostname + "</b>, and press Enter. - If prompted to log in, enter the " +
+                        "user name and password of an OpenMediaVault account that is part of the <b>lpadmin</b> gruop. This will ensure that " +
+                        "you will have administrative access to printers. You may close the resulting window.</li>" +
+                        "<li>Click on <b>Start</b>, type <b>printui /s /c\\\\192.168.1.66</b> , then press enter.</li>" +
+                        "<li>Click on the <b>Drivers</b> tab, &nbsp;click <b>Add</b>, and then click <b>Next</b>.</li>" +
+                        "<li>Click to select the&nbsp;check box&nbsp;for&nbsp;the appropriate processor architecture, and then click <b>Next</b>.</li>" +
+                        "<li>Select an in-box driver from the list, and then click <b>Next</b>.&nbsp;&nbsp;&nbsp;-&nbsp;<b>Note</b> " +
+                        "you may also choose <b>Have Disk</b> and select the driver from the installation media that came " +
+                        "with the printer.</li>" +
+                        "<li>Click <b>Finish </b>to complete the wizard.</li>" +
+                        "</ol>" +
+                        "<p>" +
+                        "Subsequent attempts to connect to the printer from a Windows computer should automatically install the appropriate printer driver." +
+                        "</p>"
                 }]
-            },{
-                // OS X sharing info
-                xtype     : "fieldset",
-                layout    : "fit",
-                title     : _("Mac OS X"),
-                style     : 'padding: 0 5px 10px 10px',
-                items     : [{
-                    border : false,
-                    html   : "<p>" +
-                             "Shared printers should automatically be available to add in Mac OS X in <b>System Preferences</b> -&gt; <b>Print & Fax</b>. If not, " +
-                             "you can manually add a printer's IPP URL by clicking on <b>IP</b> in the toolbar and selecting the following values:" +
-                             "</p>" +
-                             "<ul>" +
-                             "<li><b>Protocol:</b> Internet Printing Protocol - IPP</li>" +
-                             "<li><b>Address:</b> " + location.hostname + "</li>" +
-                             "<li><b>Queue:</b> printers/PRINTER_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(be sure to replace <i>PRINTER_NAME</i> with actual name of printer)</li>" +
-                             "</ul>" +
-                             "<p>" +
-                             "If you have enabled printer sharing over SMB, the printer may also be available in the Windows section of the <b>Print & Fax</b> dialog." +
-                             "</p>"
+            }, {
+                // OS X sharing info.
+                xtype: "fieldset",
+                layout: "fit",
+                title: _("Mac OS X"),
+                style: 'padding: 0 5px 10px 10px',
+                items: [{
+                    border: false,
+                    html: "<p>" +
+                        "Shared printers should automatically be available to add in Mac OS X in <b>System Preferences</b> -&gt; <b>Print & Fax</b>. If not, " +
+                        "you can manually add a printer's IPP URL by clicking on <b>IP</b> in the toolbar and selecting the following values:" +
+                        "</p>" +
+                        "<ul>" +
+                        "<li><b>Protocol:</b> Internet Printing Protocol - IPP</li>" +
+                        "<li><b>Address:</b> " + location.hostname + "</li>" +
+                        "<li><b>Queue:</b> printers/PRINTER_NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(be sure to replace <i>PRINTER_NAME</i> with actual name of printer)</li>" +
+                        "</ul>" +
+                        "<p>" +
+                        "If you have enabled printer sharing over SMB, the printer may also be available in the Windows section of the <b>Print & Fax</b> dialog." +
+                        "</p>"
                 }]
-            },{
-                // Linux sharing info
-                xtype     : "fieldset",
-                layout    : "fit",
-                title     : _("Linux"),
-                style     : 'padding: 0 5px 10px 10px',
-                items     : [{
-                    border : false,
-                    html   : "<p>" +
-                             "Consult your window environment's (Gnome, KDE, etc..) or distribution's documentation on adding a shared printer. Printers shared by this system are discoverable and should " +
-                             "appear when Linux searches for networked printers." +
-                             "</p>"
+            }, {
+                // Linux sharing info.
+                xtype: "fieldset",
+                layout: "fit",
+                title: _("Linux"),
+                style: 'padding: 0 5px 10px 10px',
+                items: [{
+                    border: false,
+                    html: "<p>" +
+                        "Consult your window environment's (Gnome, KDE, etc..) or distribution's documentation on adding a shared printer. Printers shared by this system are discoverable and should " +
+                        "appear when Linux searches for networked printers." +
+                        "</p>"
                 }]
-            },{
-                // iOS sharing info
-                xtype     : "fieldset",
-                layout    : "fit",
-                title     : _("AirPrint capable Apple iOS devices"),
-                style     : 'padding: 0 5px 10px 10px',
-                items     : [{
-                    border : false,
-                    html   : "<p>" +
-                             "If you have enabled AirPrint support, shared printers should be available in the print dialog of the device." +
-                             "</p>"
-               }]
+            }, {
+                // iOS sharing info.
+                xtype: "fieldset",
+                layout: "fit",
+                title: _("AirPrint capable Apple iOS devices"),
+                style: 'padding: 0 5px 10px 10px',
+                items: [{
+                    border: false,
+                    html: "<p>" +
+                        "If you have enabled AirPrint support, shared printers should be available in the print dialog of the device." +
+                        "</p>"
+                }]
             }]
         }];
     },
 
-    getPrinterStore : function() {
+    getPrinterStore: function() {
         return OMV.module.admin.service.cups.stores.PrinterStore;
     },
 
-    renderPrinterList : function(element, printerStore, isIppList) {
-        var me       = this,
-            listHtml = "";
+    renderPrinterList: function(element, printerStore, isIppList) {
+        var listHtml = "";
 
         printerStore.each(function(item, index, count) {
             var link;
@@ -218,23 +216,23 @@ Ext.define("OMV.module.admin.service.cups.Info", {
                 link = "\\\\" + location.hostname + "\\" + uuid;
             }
 
-            listHtml = listHtml + me.generateHtmlTagWithText("li", link);
-        }, me);
+            listHtml = listHtml + this.generateHtmlTagWithText("li", link);
+        }, this);
 
-        listHtml = me.generateHtmlTagWithText("ul", listHtml);
+        listHtml = this.generateHtmlTagWithText("ul", listHtml);
 
         return listHtml;
     },
 
-    generateHtmlTagWithText : function(tag, text) {
+    generateHtmlTagWithText: function(tag, text) {
         return "<" + tag + ">" + text + "</" + tag + ">";
     }
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "info",
-    path      : "/service/cups",
-    text      : _("Printer sharing"),
-    position  : 40,
-    className : "OMV.module.admin.service.cups.Info"
+    id: "info",
+    path: "/service/cups",
+    text: _("Printer sharing"),
+    position: 40,
+    className: "OMV.module.admin.service.cups.Info"
 });

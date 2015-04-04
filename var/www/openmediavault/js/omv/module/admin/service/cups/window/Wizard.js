@@ -20,63 +20,59 @@
 // require("js/omv/window/MessageBox.js")
 
 Ext.define("OMV.module.admin.service.cups.window.Wizard", {
-    extend   : "OMV.window.Window",
-    requires : [
+    extend: "OMV.window.Window",
+    requires: [
         "OMV.Rpc"
     ],
-    uses : [
+    uses: [
         "OMV.window.MessageBox"
     ],
 
-    title     : _("Wizard"),
-    itemId    : "wizard",
-    layout    : "fit",
-    width     : 500,
-    height    : 320,
-    submitMsg : _("Saving ..."),
-    mode      : "remote",
+    title: _("Wizard"),
+    itemId: "wizard",
+    layout: "fit",
+    width: 500,
+    height: 320,
+    submitMsg: _("Saving ..."),
+    mode: "remote",
 
-    defaults : {
-        border : false
+    defaults: {
+        border: false
     },
 
-    constructor : function(config) {
-        var me = this;
-
-        me.callParent(arguments);
-        me.addEvents(
+    constructor: function(config) {
+        this.callParent(arguments);
+        this.addEvents(
             "beforesubmit",
             "submit",
             "exception"
         );
     },
 
-    initComponent : function() {
-        var me = this;
-
-        Ext.apply(me, {
-            items : [{
-                xtype    : "form",
-                itemId   : "wizard-form",
-                layout   : "card",
-                defaults : {
-                    border    : false,
-                    bodyStyle : "padding: 10px;",
-                    anchor    : "100%"
+    initComponent: function() {
+        Ext.apply(this, {
+            items: [{
+                xtype: "form",
+                itemId: "wizard-form",
+                layout: "card",
+                defaults: {
+                    border: false,
+                    bodyStyle: "padding: 10px;",
+                    anchor: "100%"
                 },
-                bbar  : me.getBbarItems(),
-                items : me.getCardItems()
+                bbar: this.getBbarItems(),
+                items: this.getCardItems()
             }]
         });
 
-        me.callParent(arguments);
+        this.callParent(arguments);
     },
 
-    navigate : function(button, direction) {
-        var form   = button.up("#wizard-form");
+    navigate: function(button, direction) {
+        var form = button.up("#wizard-form");
         var layout = form.getLayout();
 
-        // Call isValid to validate fields
+        // Call isValid to validate fields.
         form.isValid();
         var isValid = true;
         var fields = layout.activeItem.query("field");
@@ -91,8 +87,8 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
         if (direction === "prev" || isValid)
             layout[direction]();
 
-        var prev   = form.down("#wizard-prev");
-        var next   = form.down("#wizard-next");
+        var prev = form.down("#wizard-prev");
+        var next = form.down("#wizard-next");
         var submit = form.down("#wizard-submit");
 
         prev.setDisabled(!layout.getPrev());
@@ -107,109 +103,101 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
         }
     },
 
-    getBbarItems : function() {
-        var me = this;
-
+    getBbarItems: function() {
         return [{
-            itemId   : "wizard-prev",
-            text     : _("Previous"),
-            handler  : function(button) {
-                me.navigate(button, "prev");
+            itemId: "wizard-prev",
+            text: _("Previous"),
+            handler: function(button) {
+                this.navigate(button, "prev");
             },
-            disabled : true
+            scope: this,
+            disabled: true
         }, "->", {
-            itemId  : "wizard-next",
-            text    : _("Next"),
-            handler : function(button) {
-                me.navigate(button, "next");
-            }
-        },{
-            itemId  : "wizard-submit",
-            text    : _("Finish"),
-            handler : function() {
-                me.onFinishButton();
+            itemId: "wizard-next",
+            text: _("Next"),
+            handler: function(button) {
+                this.navigate(button, "next");
             },
-            hidden  : true
-        },{
-            itemId  : "wizard-cancel",
-            text    : _("Cancel"),
-            handler : function() {
-                me.close();
-            }
+            scope: this
+        }, {
+            itemId: "wizard-submit",
+            text: _("Finish"),
+            handler: function() {
+                this.onFinishButton();
+            },
+            scope: this,
+            hidden: true
+        }, {
+            itemId: "wizard-cancel",
+            text: _("Cancel"),
+            handler: function() {
+                this.close();
+            },
+            scope: this
         }];
     },
 
-    getCardItems : function() {
+    getCardItems: function() {
         return [];
     },
 
-    getForm : function() {
-        var me = this;
-        return me.down("#wizard-form").getForm();
+    getForm: function() {
+        return this.down("#wizard-form").getForm();
     },
 
-    getFormValues : function() {
-        var me = this;
-
-        return me.getForm().getValues();
+    getFormValues: function() {
+        return this.getForm().getValues();
     },
 
-    findField : function(id) {
-        var me = this;
-        var basicForm = me.getForm();
-
-        return basicForm.findField(id);
+    findField: function(id) {
+        return this.getForm().findField(id);
     },
 
-    onFinishButton : function() {
-        var me = this;
-        var form = me.down("#wizard-form").getForm();
+    onFinishButton: function() {
+        var form = this.down("#wizard-form").getForm();
 
         if (form.isValid()) {
-            me.doSubmit();
+            this.doSubmit();
         }
     },
 
-    doSubmit : function() {
-        var me = this;
-
-        if (me.mode === "remote") {
+    doSubmit: function() {
+        if (this.mode === "remote") {
             var rpcOptions = {
-                scope       : me,
-                callback    : me.onSubmit,
-                relayErrors : true,
-                rpcData     : {
-                    service : me.rpcService,
-                    method  : me.rpcSetMethod || "set",
-                    params  : me.getFormValues()
+                scope: this,
+                callback: this.onSubmit,
+                relayErrors: true,
+                rpcData: {
+                    service: this.rpcService,
+                    method: this.rpcSetMethod || "set",
+                    params: this.getFormValues()
                 }
             };
 
-            if(me.fireEvent("beforesubmit", me, rpcOptions) === false)
+            if (this.fireEvent("beforesubmit", this, rpcOptions) === false) {
                 return;
+            }
 
             // Display waiting dialog.
-            OMV.MessageBox.wait(null, me.submitMsg);
+            OMV.MessageBox.wait(null, this.submitMsg);
 
             // Execute RPC.
             OMV.Rpc.request(rpcOptions);
         } else {
-            me.fireEvent("submit", me. me.getFormValues());
-            me.close();
+            this.fireEvent("submit", this.this.getFormValues());
+            this.close();
         }
     },
 
-    onSubmit : function(id, success, response) {
-        var me = this;
-
+    onSubmit: function(id, success, response) {
         OMV.MessageBox.updateProgress(1);
         OMV.MessageBox.hide();
 
-        if(success) {
-            me.fireEvent("submit", me, me.getFormValues(), response);
-            me.close();
+        if (success) {
+            this.fireEvent("submit", this, this.getFormValues(), response);
+            this.close();
         } else {
-            me.fireEvent("exception", me, response);
+            this.fireEvent("exception", this, response);
             OMV.MessageBox.error(null, response);
         }
     }
