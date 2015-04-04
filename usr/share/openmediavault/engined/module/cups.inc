@@ -138,9 +138,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
     {
         $cmd = "export LANG=C; omv-cups-avahi 2>&1";
 
-        OMVUtil::exec($cmd, $output, $result);
-
-        if ($result !== 0) {
+        if ($this->exec($cmd, $output) !== 0) {
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
