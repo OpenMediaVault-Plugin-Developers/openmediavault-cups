@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once "openmediavault/log.inc";
+
 // Register new logfile type.
 OMVLogFile::registerType(
     "cupsaccess",

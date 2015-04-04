@@ -21,13 +21,14 @@
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
 require_once "openmediavault/initscript.inc";
-require_once "openmediavault/log.inc";
 require_once "openmediavault/module.inc";
 
 class OMVModuleCups extends OMVModuleServiceAbstract implements
-    OMVINotifyListener,
-    OMVIModuleServiceStatus
+    OMVIModuleServiceStatus,
+    OMVINotifyListener
 {
+    private $eventMessagePath = "org.openmediavault.services.cups";
+
     private function getXpath()
     {
         return "/config/services/cups";
@@ -64,8 +65,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
         $initd = new OMVSysVInitScript($this->getName());
 
         return array(
-            "name"    => $this->getName(),
-            "title"   => gettext("Printing"),
+            "name" => $this->getName(),
+            "title" => gettext("Printing"),
             "enabled" => boolval($object["enable"]),
             "running" => $initd->status() == 0
         );
@@ -159,7 +160,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
     {
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.cups",
+            $this->eventMessagePath,
             array($this, "setDirty")
         );
     }

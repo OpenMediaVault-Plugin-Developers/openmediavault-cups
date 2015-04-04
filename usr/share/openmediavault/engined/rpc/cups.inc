@@ -21,22 +21,33 @@
 require_once "openmediavault/error.inc";
 require_once "openmediavault/initscript.inc";
 require_once "openmediavault/notify.inc";
-require_once "openmediavault/object.inc";
 require_once "openmediavault/rpc.inc";
-require_once "openmediavault/util.inc";
 
 class OMVRpcServiceCups extends OMVRpcServiceAbstract
 {
-    private function getXPath()
+    private $eventMessagePath = "org.openmediavault.services.cups";
+    private $sambaEventMessagePath = "org.openmediavault.services.smb";
+
+    private function getXpath()
     {
-        return "//services/cups";
+        return "/config/services/cups";
     }
 
+    /**
+     * Get the name of the RPC service.
+     *
+     * @return string
+     */
     public function getName()
     {
         return "Cups";
     }
 
+    /**
+     * Initialize the RPC service.
+     *
+     * @return void
+     */
     public function initialize()
     {
         $this->registerMethod("getSettings");
@@ -60,19 +71,13 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Resync avahi service definitions
+     * Get the main settings.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
      */
-    private function resync()
-    {
-        # Regenerate service definitions
-        $cmd = "export LANG=C; omv-cups-avahi 2>&1";
-        OMVUtil::exec($cmd, $output, $result);
-
-        if ($result !== 0) {
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-        }
-    }
-
     public function getSettings($params, $context)
     {
         global $xmlConfig;
@@ -83,24 +88,32 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Get the configuration object.
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get($this->getXpath());
         if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
+                $this->getXpath()
             );
         }
 
-        // Modify result data
-        $settingsObject["enable"]          = boolval($object["enable"]);
-        $settingsObject["enable_samba"]    = boolval($object["enable_samba"]);
-        $settingsObject["airprint"]        = boolval($object["airprint"]);
-        $settingsObject["maxjobs"]         = intval($object["maxjobs"]);
+        // Modify result data.
+        $settingsObject["enable"] = boolval($object["enable"]);
+        $settingsObject["enable_samba"] = boolval($object["enable_samba"]);
+        $settingsObject["airprint"] = boolval($object["airprint"]);
+        $settingsObject["maxjobs"] = intval($object["maxjobs"]);
         $settingsObject["remote_printers"] = boolval($object["remote_printers"]);
 
         return $settingsObject;
     }
 
+    /**
+     * Set the main settings.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
+     */
     public function setSettings($params, $context)
     {
         global $xmlConfig;
@@ -114,44 +127,59 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "enable"          : { "type" : "boolean" },
-                    "enable_samba"    : { "type" : "boolean" },
-                    "airprint"        : { "type" : "boolean" },
-                    "maxjobs"         : { "type" : "integer" },
-                    "remote_printers" : { "type" : "boolean" }
+                "type": "object",
+                "properties": {
+                    "enable": { "type": "boolean" },
+                    "enable_samba": { "type": "boolean" },
+                    "airprint": { "type": "boolean" },
+                    "maxjobs": { "type": "integer" },
+                    "remote_printers": { "type": "boolean" }
                 }
             }'
         );
 
-        // Prepare configuration data
+        // Prepare configuration data.
         $object = array(
-            "enable"          => array_boolval($params, "enable"),
-            "enable_samba"    => array_boolval($params, "enable_samba"),
-            "airprint"        => array_boolval($params, "airprint"),
-            "maxjobs"         => $params["maxjobs"],
-            "remote_printers" => array_boolval($params, "remote_printers"),
+            "enable" => boolval($params["enable"]),
+            "enable_samba" => boolval($params["enable_samba"]),
+            "airprint" => boolval($params["airprint"]),
+            "maxjobs" => $params["maxjobs"],
+            "remote_printers" => boolval($params["remote_printers"]),
         );
 
-        // Set configuration object
-        if (false === $xmlConfig->replace($this->getXPath(), $object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $this->getXPath());
+        // Set configuration object.
+        if (false === $xmlConfig->replace($this->getXpath(), $object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXpath()
+            );
         }
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.cups", $object);
+        $dispatcher->notify(
+            OMV_NOTIFY_MODIFY,
+            $this->eventMessagePath,
+            $object
+        );
 
-        $oldConf = $xmlConfig->get($this->getXPath());
+        $oldConfig = $xmlConfig->get($this->getXpath());
 
-        if ($oldConf["enable"] != $object["enable"]) {
+        if ($oldConfig["enable"] != $object["enable"]) {
             $this->notifySamba($object["enable"]);
         }
 
         return $object;
     }
 
+    /**
+     * Get all printers.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
+     */
     public function getPrinters($params, $context)
     {
         global $xmlConfig;
@@ -166,7 +194,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Get a specific printer
+     * Get a single printer.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
      */
     public function getPrinter($params, $context)
     {
@@ -179,9 +212,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "uuid" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "uuid": { "type": "string" }
                 }
             }'
         );
@@ -189,6 +222,14 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         return $this->runCupsCommand("getPrinter", array($params["uuid"]));
     }
 
+    /**
+     * Set a single printer.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
+     */
     public function setPrinter($params, $context)
     {
         // Validate the RPC caller context.
@@ -200,11 +241,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "uuid"            : { "type" : "string" },
-                    "PrinterLocation" : { "type" : "string" , "optional" : true },
-                    "PrinterInfo"     : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "uuid": { "type": "string" },
+                    "PrinterLocation": { "type": "string" , "optional": true },
+                    "PrinterInfo": { "type": "string" }
                 }
             }'
         );
@@ -220,7 +261,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Add a printer
+     * Add a printer.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function addPrinter($params, $context)
     {
@@ -233,24 +279,24 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "device"      : { "type" : "string" },
-                    "ppd"         : { "type" : "string" },
-                    "name"        : { "type" : "string" },
-                    "location"    : { "type" : "string", "optional" : true },
-                    "description" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "device": { "type": "string" },
+                    "ppd": { "type": "string" },
+                    "name": { "type": "string" },
+                    "location": { "type": "string", "optional": true },
+                    "description": { "type": "string" }
                 }
             }'
         );
 
-        // Search for existing printer with that name
+        // Search for existing printer with that name.
         $printer = null;
 
         try {
             $printer = $this->getPrinter($params["name"]);
         } catch (Exception $e) {
-            // Nothing
+            // Nothing.
         }
 
         if ($printer) {
@@ -272,12 +318,16 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             )
         );
 
-        // Resync services
-        $this->resync();
+        $this->regenerateServiceDefinitions();
     }
 
     /**
-     * Delete a printer
+     * Delete a printer.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function deletePrinter($params, $context)
     {
@@ -290,9 +340,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "pname" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "pname": { "type": "string" }
                 }
             }'
         );
@@ -301,7 +351,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Send a test page to printer
+     * Print a test page.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function printTestPage($params, $context)
     {
@@ -314,9 +369,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "pname" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "pname": { "type": "string" }
                 }
             }'
         );
@@ -325,7 +380,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Resume printing
+     * Resume printing.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function resumePrinting($params, $context)
     {
@@ -338,9 +398,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "pname" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "pname": { "type": "string" }
                 }
             }'
         );
@@ -349,7 +409,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Pause printing
+     * Pause printing.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function pausePrinting($params, $context)
     {
@@ -362,9 +427,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "pname" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "pname": { "type": "string" }
                 }
             }'
         );
@@ -373,7 +438,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Get a list of makes and models
+     * Get a list of printer makes and models.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
      */
     public function getMakesModels($params, $context)
     {
@@ -386,7 +456,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Get a list of directly connected devices
+     * Get a list of directly connected devices.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
      */
     public function findDirectPrinters($params, $context)
     {
@@ -403,12 +478,23 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         ));
 
         // Get the configuration object.
-        $scanForRemotePrinters = $xmlConfig->get($this->getXPath() . "/remote_printers");
+        $scanForRemotePrinters = $xmlConfig->get(
+            $this->getXpath() . "/remote_printers"
+        );
+
         $arg = $scanForRemotePrinters ? "--network" : "--no-network";
 
         return $this->runCupsCommand("findDirectPrinters", array($arg));
     }
 
+    /**
+     * Get jobs.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return array
+     */
     public function getJobs($params, $context)
     {
         // Validate the RPC caller context.
@@ -420,18 +506,18 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "start"     : { "type" : "integer" },
-                    "limit"     : {' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . '},
-                    "sortfield" : {' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . '},
-                    "sortdir"   : {' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . '},
-                    "which"     : { "type" : "string", "optional" : true }
+                "type": "object",
+                "properties": {
+                    "start": { "type": "integer" },
+                    "limit": {' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . '},
+                    "sortfield": {' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . '},
+                    "sortdir": {' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . '},
+                    "which": { "type": "string", "optional": true }
                 }
             }'
         );
 
-        // Default to showing only not completed jobs
+        // Default to showing only not completed jobs.
         if (isset($params["which"]) === false) {
             $params["which"] = "not-completed";
         }
@@ -445,7 +531,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             );
         }
 
-        // Filter result
+        // Filter result.
         return $this->applyFilter(
             $jobs,
             $params["start"],
@@ -457,6 +543,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
     /**
      * Cancel a single job
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function cancelJob($params, $context)
     {
@@ -469,9 +560,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "jobid" : { "type" : "integer" }
+                "type": "object",
+                "properties": {
+                    "jobid": { "type": "integer" }
                 }
             }'
         );
@@ -480,7 +571,12 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Cancel all jobs for printer
+     * Cancel all jobs for printer.
+     *
+     * @param array $params
+     * @param array $context
+     *
+     * @return void
      */
     public function cancelJobs($params, $context)
     {
@@ -493,9 +589,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         $this->validateMethodParams(
             $params,
             '{
-                "type"       : "object",
-                "properties" : {
-                    "pname" : { "type" : "string" }
+                "type": "object",
+                "properties": {
+                    "pname": { "type": "string" }
                 }
             }'
         );
@@ -504,9 +600,71 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     }
 
     /**
-     * Run a cups command
+     * Check if CUPS is running.
+     *
+     * @return bool
      */
-    private function runCupsCommand($fn, $args = array())
+    private function isRunning()
+    {
+        $initd = new OMVSysVInitScript("cups");
+
+        return $initd->status() == 0;
+    }
+
+    /**
+     * Notify Samba about configuration changes.
+     *
+     * @param bool $enabled Indicate if CUPS is enabled or not.
+     *
+     * @return void
+     */
+    private function notifySamba($enabled)
+    {
+        global $xmlConfig;
+
+        $object = $xmlConfig->get("/config/services/smb");
+
+        $dispatcher->notify(
+            OMV_NOTIFY_MODIFY,
+            $this->sambaEventMessagePath,
+            $object
+        );
+
+        // If we're enabled, make sure sharing is enabled.
+        if ($enabled) {
+            $this->runCupsCommand("enableSharing");
+        }
+    }
+
+    /**
+     * Generate Avahi service definitions for each printer.
+     *
+     * @return void
+     */
+    private function regenerateServiceDefinitions()
+    {
+        $cmd = "export LANG=C; omv-cups-avahi 2>&1";
+
+        OMVUtil::exec($cmd, $output, $result);
+
+        if ($result !== 0) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
+    }
+
+    /**
+     * Run a CUPS command and return the result.
+     *
+     * @param string $command The command to run.
+     * @param array $args The arguments.
+     *
+     * @return array|object
+     */
+    private function runCupsCommand($command, $args = array())
     {
         if (count($args)) {
             $args = implode(" ", array_map("escapeshellarg", $args));
@@ -514,8 +672,8 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             $args = "";
         }
 
-        $cmd = "export LANG=C; omv-cups {$fn} {$args} 2>&1";
-        OMVUtil::exec($cmd, $output, $result);
+        $cmd = "export LANG=C; omv-cups {$command} {$args} 2>&1";
+        $result = $this->exec($cmd, $output);
         $output = implode("\n", $output);
 
         if (0 !== $result) {
@@ -529,25 +687,6 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }
 
         return $obj;
-    }
-
-    private function notifySamba($enabled)
-    {
-        global $xmlConfig;
-
-        $object = $xmlConfig->get("//services/smb");
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.smb", $object);
-
-        // If we're enabled, make sure sharing is enabled
-        if ($enabled) {
-            $this->runCupsCommand("enableSharing");
-        }
-    }
-
-    private function isRunning()
-    {
-        $initd = new OMVSysVInitScript("cups");
-        return $initd->status() == 0;
     }
 }
 
