@@ -7,11 +7,12 @@ set -e
 
 case "$1" in
     purge)
-        omv_config_delete "//services/cups"
-        omv-mkconf samba
+        omv_config_delete "/config/services/cups"
     ;;
 
     remove)
+        # TODO: Refine this.
+        omv-mkconf samba
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)

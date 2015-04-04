@@ -7,85 +7,54 @@ set -e
 
 case "$1" in
     configure)
+        # Set the default settings of the service package to those expected
+        # by OpenMediaVault.
+        if [ -z "${2}" ]; then
+            invoke-rc.d --force cups stop
+            update-rc.d cups disable >/dev/null
+        fi
+
         SERVICE_XPATH_NAME="cups"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
         # Check for XML config
         if ! omv_config_exists "${SERVICE_XPATH}"; then
-            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}" ""
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/enable"; then
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
-            $(/etc/init.d/cups status > /dev/null && omv_config_update "${SERVICE_XPATH}/enable" "1") || true
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/airprint"; then
-            omv_config_add_element "${SERVICE_XPATH}" "airprint" "1"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/enable_samba"; then
+            omv_config_add_element "${SERVICE_XPATH}" "airprint" "1"en
             omv_config_add_element "${SERVICE_XPATH}" "enable_samba" "1"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/maxjobs"; then
             omv_config_add_element "${SERVICE_XPATH}" "maxjobs" "100"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/remote_printers"; then
             omv_config_add_element "${SERVICE_XPATH}" "remote_printers" "0"
         fi
 
-        # Add lpadmin group
+        # Add lpadmin group.
         groupadd -f lpadmin
+        omv_config_update "//system/usermanagement/groups/group[name='lpadmin']/comment" "Printer administrators."
 
-        omv_config_update "//system/usermanagement/groups/group[name='lpadmin']/comment" "Printer Administrators"
-
-        # Silently add OMV admin to lpadmin group
+        # Silently add OpenMediaVault admin user to lpadmin group.
         usermod -G lpadmin -a admin
 
-        # For samba printer driver share
+        # Set permissions for samba printer driver sharing.
         chgrp -R lpadmin /var/lib/samba/printers
         chmod -R g+w /var/lib/samba/printers
 
-        # Check for en_US.UTF-8 locale
+        # Check for en_US.UTF-8 locale and enable it.
+        # TODO: It has never been stated why this is done.
         if [ "$(grep -c '^\s*en_US.UTF-8' /etc/locale.gen)" = "0" ]; then
-            # Just add it?
+            # If the locale is not found in the file we need to add it. If it
+            # does exist we can just uncomment it with the help of sed.
             if [ "$(grep -c '^\s*#\s*en_US.UTF-8' /etc/locale.gen)" = "0" ]; then
                 echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
-            # Uncomment it
             else
-                cat /etc/locale.gen | sed -e 's/^\s*#\s*\(en_US.UTF-8.*\)/\1/g' >/tmp/locale-gen.$$
-                mv /tmp/locale-gen.$$ /etc/locale.gen
+                tempFile=$(mktemp)
+
+                cat /etc/locale.gen | sed -e 's/^\s*#\s*\(en_US.UTF-8.*\)/\1/g' > ${tempFile}
+                cat ${tempFile} > /etc/locale.gen
+
+                rm ${tempFile}
             fi
 
             locale-gen
-        fi
-
-        # Perform actions if we're enabled
-        if [ "$(omv_config_get "${SERVICE_XPATH}/enable")" = "1" ]; then
-            cupsctl --no-remote-printers
-
-            # Generate cups config
-            omv-mkconf cups
-
-            # Restart cups
-            invoke-rc.d cups restart
-
-            # Avahi files
-            omv-cups-avahi
-
-            # Check for diff of samba config
-            HASH="$(md5sum /etc/samba/smb.conf)"
-
-            # Generate samba config
-            omv-mkconf samba
-
-            if [ "$(omv_config_get "//services/smb/enable")" = "1" ]; then
-                if [ "$(md5sum /etc/samba/smb.conf)" != "${HASH}" ]; then
-                    invoke-rc.d samba restart
-                fi
-            fi
         fi
 
         # Activate package triggers. These triggers are only set during the
