@@ -666,7 +666,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
-                implode("", $output)
+                implode("\n", $output)
             );
         }
 
