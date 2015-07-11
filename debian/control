@@ -26,7 +26,6 @@ Depends: openmediavault (>= 1.0.7),
          python-cups,
          python-daemon,
          python-lxml,
-         python-pip,
          ${misc:Depends}
 Description: OpenMediaVault CUPS (network printer server) plugin.
  Add CUPS functionality to OpenMediaVault.
