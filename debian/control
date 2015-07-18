@@ -8,7 +8,7 @@ XB-Plugin-Section: utilities
 
 Package: openmediavault-cups
 Architecture: all
-Depends: openmediavault (>= 1.0.7),
+Depends: openmediavault (>= 2.1),
          cups,
          foomatic-filters,
          foomatic-db-engine,
