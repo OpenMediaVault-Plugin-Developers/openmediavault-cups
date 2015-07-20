@@ -96,8 +96,7 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     }),
                     listeners: {
                         scope: this,
-                        select: function(combo, records) {
-                            var record = records.pop();
+                        select: function(combo, record) {
                             var deviceInfo = record.get("DeviceInfo");
                             var nameField = this.findField("name");
                             var descriptionField = this.findField("description");
@@ -150,10 +149,9 @@ Ext.define("OMV.module.admin.service.cups.window.PrinterWizard", {
                     }),
                     listeners: {
                         scope: this,
-                        select: function(combo, records) {
+                        select: function(combo, record) {
                             var modelCombo = this.findField("ppd");
                             var modelStore = modelCombo.getStore();
-                            var record = records.pop();
 
                             modelStore.removeAll();
 
