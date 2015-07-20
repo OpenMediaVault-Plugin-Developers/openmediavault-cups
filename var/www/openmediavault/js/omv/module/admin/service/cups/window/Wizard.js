@@ -40,15 +40,6 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
         border: false
     },
 
-    constructor: function(config) {
-        this.callParent(arguments);
-        this.addEvents(
-            "beforesubmit",
-            "submit",
-            "exception"
-        );
-    },
-
     initComponent: function() {
         Ext.apply(this, {
             items: [{
