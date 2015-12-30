@@ -1,3 +1,9 @@
+openmediavault-cups (3.0) stable; urgency=low
+
+  * OMV 3.0 release. 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 30 Dec 2015 20:14:15 +0100
+
 openmediavault-cups (2.1) stable; urgency=medium
 
   * Update packaging and paths.
