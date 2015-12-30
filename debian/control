@@ -8,8 +8,7 @@ XB-Plugin-Section: utilities
 
 Package: openmediavault-cups
 Architecture: all
-Depends: openmediavault (>= 2.1),
-         cups,
+Depends: cups,
          foomatic-filters,
          foomatic-db-engine,
          foomatic-db,
@@ -17,6 +16,7 @@ Depends: openmediavault (>= 2.1),
          hp-ppd,
          hpijs-ppds,
          locales,
+         openmediavault (>= 3.0),
          openprinting-ppds,
          printer-driver-foo2zjs,
          printer-driver-gutenprint,

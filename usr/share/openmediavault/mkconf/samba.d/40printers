@@ -22,12 +22,12 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 # Only if enabled
-if [ "$(omv_config_get "//services/cups/enable")" != "1" ]; then
+if [ "$(omv_config_get "/config/services/cups/enable")" != "1" ]; then
     exit 0
 fi
 
 # Only samba if enabled
-if [ "$(omv_config_get "//services/cups/enable_samba")" != "1" ]; then
+if [ "$(omv_config_get "/config/services/cups/enable_samba")" != "1" ]; then
     exit 0
 fi
 

@@ -22,42 +22,42 @@ require_once "openmediavault/log.inc";
 // Register new logfile type.
 OMVLogFile::registerType(
     "cupsaccess",
-    array(
+    [
         "filename" => "access_log",
         "filepath" => "/var/log/cups/access_log",
         "regex" => "/^(.*?)\s+[^\s]+\s+(.*?)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-        "columns" => array(
+        "columns" => [
             "host" => 1,
             "user" => 2,
-            "date" => array(
+            "date" => [
                 "index" => 3,
                 "func"  => create_function(
                     "\$v",
                     "return strpdate(\$v,\"j/M/Y:G:i:s\");"
                 )
-            ),
+            ],
             "event" => 4
-        )
-    )
+        ]
+    ]
 );
 
 // Register new logfile type.
 OMVLogFile::registerType(
     "cupserror",
-    array(
+    [
         "filename" => "error_log",
         "filepath" => "/var/log/cups/error_log",
         "regex" => "/^(.)\s+\[(.+?)\s+.*?\]\s+(.*)$/",
-        "columns" => array(
+        "columns" => [
             "severity" => 1,
-            "date" => array(
+            "date" => [
                 "index" => 2,
                 "func" => create_function(
                     "\$v",
                     "return strpdate(\$v,\"j/M/Y:G:i:s\");"
                 )
-            ),
+            ],
             "event" => 3
-        )
-    )
+        ]
+    ]
 );

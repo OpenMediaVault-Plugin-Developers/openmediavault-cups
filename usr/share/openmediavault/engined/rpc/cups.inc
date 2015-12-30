@@ -18,15 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
 require_once "openmediavault/notify.inc";
-require_once "openmediavault/rpc.inc";
+require_once "openmediavault/rpcservice.inc";
 
 class OMVRpcServiceCups extends OMVRpcServiceAbstract
 {
     private $eventMessagePath = "org.openmediavault.services.cups";
     private $sambaEventMessagePath = "org.openmediavault.services.smb";
 
+    /**
+     * Get the service configuration XPath.
+     *
+     * @return string
+     */
     private function getXpath()
     {
         return "/config/services/cups";
@@ -82,9 +88,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Get the configuration object.
         $object = $xmlConfig->get($this->getXpath());
@@ -95,7 +101,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             );
         }
 
-        // Modify result data.
+        // Modify the result data.
         $settingsObject["enable"] = boolval($object["enable"]);
         $settingsObject["enable_samba"] = boolval($object["enable_samba"]);
         $settingsObject["airprint"] = boolval($object["airprint"]);
@@ -118,9 +124,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -137,14 +143,14 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        // Prepare configuration data.
-        $object = array(
+        // Prepare the configuration data.
+        $object = [
             "enable" => boolval($params["enable"]),
             "enable_samba" => boolval($params["enable_samba"]),
             "airprint" => boolval($params["airprint"]),
             "max_jobs" => $params["max_jobs"],
             "remote_printers" => boolval($params["remote_printers"]),
-        );
+        ];
 
         // Set configuration object.
         if (false === $xmlConfig->replace($this->getXpath(), $object)) {
@@ -154,7 +160,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             );
         }
 
-        // Notify configuration changes
+        // Notify about the configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
         $dispatcher->notify(
             OMV_NOTIFY_MODIFY,
@@ -184,9 +190,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         try {
             return $this->runCupsCommand("getPrinters");
@@ -206,9 +212,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function getPrinter($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -221,7 +227,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        return $this->runCupsCommand("getPrinter", array($params["uuid"]));
+        return $this->runCupsCommand("getPrinter", [$params["uuid"]]);
     }
 
     /**
@@ -235,9 +241,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function setPrinter($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -254,11 +260,11 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $this->runCupsCommand(
             "setPrinter",
-            array(
+            [
                 $params["uuid"],
                 $params["PrinterInfo"],
                 $params["PrinterLocation"]
-            )
+            ]
         );
     }
 
@@ -273,9 +279,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function addPrinter($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -302,7 +308,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }
 
         if ($printer) {
-            throw new Exception("A printer with the name {$params['name']} already exists.");
+            throw new Exception("A printer with the name {$params["name"]} already exists.");
         }
 
         if (empty($params["location"])) {
@@ -311,13 +317,13 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $this->runCupsCommand(
             "addPrinter",
-            array(
+            [
                 $params["name"],
                 $params["ppd"],
                 $params["description"],
                 $params["location"],
                 $params["device"]
-            )
+            ]
         );
 
         $this->regenerateServiceDefinitions();
@@ -334,9 +340,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function deletePrinter($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -349,7 +355,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("deletePrinter", array($params["pname"]));
+        $this->runCupsCommand("deletePrinter", [$params["pname"]]);
     }
 
     /**
@@ -363,9 +369,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function printTestPage($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -378,7 +384,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("printTestPage", array($params["pname"]));
+        $this->runCupsCommand("printTestPage", [$params["pname"]]);
     }
 
     /**
@@ -392,9 +398,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function resumePrinting($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -407,7 +413,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("resumePrinting", array($params["pname"]));
+        $this->runCupsCommand("resumePrinting", [$params["pname"]]);
     }
 
     /**
@@ -421,9 +427,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function pausePrinting($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -436,7 +442,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("pausePrinting", array($params["pname"]));
+        $this->runCupsCommand("pausePrinting", [$params["pname"]]);
     }
 
     /**
@@ -450,9 +456,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function getMakesModels($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         return $this->runCupsCommand("getMakesModels");
     }
@@ -468,16 +474,16 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function findDirectPrinters($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Get the configuration object.
         $scanForRemotePrinters = $xmlConfig->get(
@@ -486,7 +492,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
 
         $arg = $scanForRemotePrinters ? "--network" : "--no-network";
 
-        return $this->runCupsCommand("findDirectPrinters", array($arg));
+        return $this->runCupsCommand("findDirectPrinters", [$arg]);
     }
 
     /**
@@ -500,9 +506,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function getJobs($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -525,12 +531,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
         }
 
         try {
-            $jobs = $this->runCupsCommand(
-                "getJobs",
-                array($params["which"])
-            );
+            $jobs = $this->runCupsCommand("getJobs", [$params["which"]]);
         } catch (Exception $e) {
-            $jobs = array();
+            $jobs = [];
         }
 
         // Filter result.
@@ -554,9 +557,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function cancelJob($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -569,7 +572,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("cancelJob", array($params["jobid"]));
+        $this->runCupsCommand("cancelJob", [$params["jobid"]]);
     }
 
     /**
@@ -583,9 +586,9 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
     public function cancelJobs($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array(
+        $this->validateMethodContext($context, [
             "role" => OMV_ROLE_ADMINISTRATOR
-        ));
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -598,7 +601,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             }'
         );
 
-        $this->runCupsCommand("cancelAllJobs", array($params["pname"]));
+        $this->runCupsCommand("cancelAllJobs", [$params["pname"]]);
     }
 
     /**
@@ -639,7 +642,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
-                implode("\n", $output)
+                implode(PHP_EOL, $output)
             );
         }
     }
@@ -652,7 +655,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
      *
      * @return array|object
      */
-    private function runCupsCommand($command, $args = array())
+    private function runCupsCommand($command, $args = [])
     {
         if (count($args)) {
             $args = implode(" ", array_map("escapeshellarg", $args));
@@ -666,7 +669,7 @@ class OMVRpcServiceCups extends OMVRpcServiceAbstract
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
-                implode("\n", $output)
+                implode(PHP_EOL, $output)
             );
         }
 

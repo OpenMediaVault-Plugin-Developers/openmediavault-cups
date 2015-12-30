@@ -20,8 +20,9 @@
 
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
-require_once "openmediavault/initscript.inc";
 require_once "openmediavault/module.inc";
+require_once "openmediavault/notify.inc";
+require_once "openmediavault/systemctl.inc";
 
 class OMVModuleCups extends OMVModuleServiceAbstract implements
     OMVIModuleServiceStatus,
@@ -29,6 +30,11 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
 {
     private $eventMessagePath = "org.openmediavault.services.cups";
 
+    /**
+     * Get the service configuration XPath.
+     *
+     * @return string
+     */
     private function getXpath()
     {
         return "/config/services/cups";
@@ -48,6 +54,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
      * Get the status of the managed service.
      *
      * @return array
+     *
+     * @throws OMVException
      */
     public function getStatus()
     {
@@ -62,14 +70,14 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
             );
         }
 
-        $initd = new OMVSysVInitScript($this->getName());
+        $systemCtl = new OMVSystemCtl($this->getName());
 
-        return array(
+        return [
             "name" => $this->getName(),
             "title" => gettext("Printing"),
             "enabled" => boolval($object["enable"]),
-            "running" => $initd->status() == 0
-        );
+            "running" => $systemCtl->isActive()
+        ];
     }
 
     /**
@@ -85,7 +93,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
-                implode("\n", $output)
+                implode(PHP_EOL, $output)
             );
         }
     }
@@ -94,6 +102,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
      * Start the managed service.
      *
      * @return void
+     *
+     * @throws OMVException
      */
     public function startService()
     {
@@ -112,8 +122,8 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
             return;
         }
 
-        $initd = new OMVSysVInitScript($this->getName(), true);
-        $initd->exec();
+        $systemCtl = new OMVSystemCtl($this->getName());
+        $systemCtl->enable(true);
 
         $this->regenerateServiceDefinitions();
     }
@@ -125,14 +135,16 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
      */
     public function stopService()
     {
-        $initd = new OMVSysVInitScript($this->getName(), false);
-        $initd->exec();
+        $systemCtl = new OMVSystemCtl($this->getName());
+        $systemCtl->disable(true);
     }
 
     /**
      * Generate Avahi service definitions for each printer.
      *
      * @return void
+     *
+     * @throws OMVException
      */
     private function regenerateServiceDefinitions()
     {
@@ -142,7 +154,7 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
             throw new OMVException(
                 OMVErrorMsg::E_EXEC_FAILED,
                 $cmd,
-                implode("\n", $output)
+                implode(PHP_EOL, $output)
             );
         }
     }
@@ -151,7 +163,6 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
      * Bind listeners.
      *
      * @param OMVNotifyDispatcher $dispatcher The dispatcher object.
-     *
      * @return void
      */
     public function bindListeners(OMVNotifyDispatcher $dispatcher)
@@ -159,11 +170,11 @@ class OMVModuleCups extends OMVModuleServiceAbstract implements
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
             $this->eventMessagePath,
-            array($this, "setDirty")
+            [$this, "setDirty"]
         );
     }
 }
 
-// Register module.
+// Register the module.
 $moduleMgr = &OMVModuleMgr::getInstance();
 $moduleMgr->registerModule(new OMVModuleCups());

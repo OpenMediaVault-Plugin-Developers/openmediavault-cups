@@ -7,11 +7,11 @@ set -e
 
 case "$1" in
     configure)
-        # Set the default settings of the service package to those expected
-        # by OpenMediaVault.
+        # Set the default settings of the service package to those expected by
+        # OpenMediaVault.
         if [ -z "${2}" ]; then
-            invoke-rc.d --force cups stop
-            update-rc.d cups disable >/dev/null
+            systemctl stop cups.service
+            systemctl disable cups.service
         fi
 
         SERVICE_XPATH_NAME="cups"
