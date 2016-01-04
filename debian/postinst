@@ -10,8 +10,8 @@ case "$1" in
         # Set the default settings of the service package to those expected by
         # OpenMediaVault.
         if [ -z "${2}" ]; then
-            systemctl stop cups.service
-            systemctl disable cups.service
+            deb-systemd-helper disable cups.service >/dev/null || true
+            deb-systemd-invoke stop cups.service >/dev/null || true
         fi
 
         SERVICE_XPATH_NAME="cups"

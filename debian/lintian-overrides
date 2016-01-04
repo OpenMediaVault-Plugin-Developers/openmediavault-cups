@@ -1,9 +1,4 @@
 dir-or-file-in-var-www
 
-# Package manages other package.
-postrm-does-not-call-updaterc.d-for-init.d-script
-init.d-script-not-marked-as-conffile
-init.d-script-not-included-in-package
-
 # Additional overrides.
 binary-without-manpage
