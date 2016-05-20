@@ -1,3 +1,9 @@
+openmediavault-cups (3.1.1) stable; urgency=medium
+
+  * OMV 3.0.15 compatibility.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 20 May 2016 14:49:24 +0200
+
 openmediavault-cups (3.0) stable; urgency=low
 
   * OMV 3.0 release. 
@@ -13,7 +19,7 @@ openmediavault-cups (2.1) stable; urgency=medium
 
 openmediavault-cups (1.0.9) unstable; urgency=low
 
-  * Fix incompatability error with latest omv loader
+  * Fix incompatibility error with latest omv loader
   * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 05 Dec 2014 07:06:36 -0600
