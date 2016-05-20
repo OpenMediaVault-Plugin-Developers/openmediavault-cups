@@ -22,12 +22,12 @@
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 
-Ext.define("OMV.module.admin.service.cups.Jobs", {
-    extend: "OMV.workspace.grid.Panel",
+Ext.define('OMV.module.admin.service.cups.Jobs', {
+    extend: 'OMV.workspace.grid.Panel',
     requires: [
-        "OMV.data.Store",
-        "OMV.data.Model",
-        "OMV.data.proxy.Rpc"
+        'OMV.data.Store',
+        'OMV.data.Model',
+        'OMV.data.proxy.Rpc'
     ],
 
     hideAddButton: true,
@@ -39,17 +39,17 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
     rememberSelected: false,
 
     columns: [{
-        header: _("Job Id"),
+        header: _('Job Id'),
         sortable: true,
-        dataIndex: "JobId",
+        dataIndex: 'JobId',
         width: 60,
         renderer: function(value, metaData, record) {
-            return record.get("PrinterUri").replace(/.*\//, "") + " " + value;
+            return record.get('PrinterUri').replace(/.*\//, '') + ' ' + value;
         }
     }, {
-        header: _("Created"),
+        header: _('Created'),
         sortable: true,
-        dataIndex: "TimeAtCreation",
+        dataIndex: 'TimeAtCreation',
         flex: 1,
         renderer: function(value) {
             var myTime = new Date();
@@ -57,38 +57,38 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             return myTime.toLocaleString();
         }
     }, {
-        header: _("Name"),
+        header: _('Name'),
         sortable: true,
-        dataIndex: "JobName",
+        dataIndex: 'JobName',
         flex: 1
     }, {
-        header: _("User"),
+        header: _('User'),
         sortable: true,
-        dataIndex: "JobOriginatingUserName",
+        dataIndex: 'JobOriginatingUserName',
         width: 80,
         renderer: function(value, metaData, record) {
-            return value + "@" + record.get("JobOriginatingHostName");
+            return value + '@' + record.get('JobOriginatingHostName');
         }
     }, {
-        header: _("Size"),
+        header: _('Size'),
         sortable: true,
-        dataIndex: "JobKOctets",
+        dataIndex: 'JobKOctets',
         width: 60,
         renderer: function(value) {
-            return value + "k";
+            return value + 'k';
         }
     }, {
-        header: _("Pages"),
+        header: _('Pages'),
         sortable: true,
-        dataIndex: "JobMediaSheetsCompleted",
+        dataIndex: 'JobMediaSheetsCompleted',
         width: 60,
         renderer: function(value) {
-            return (value ? value : "Unknown");
+            return (value ? value : 'Unknown');
         }
     }, {
-        header: _("State"),
+        header: _('State'),
         sortable: true,
-        dataIndex: "JobState",
+        dataIndex: 'JobState',
         flex: 1,
         renderer: function(value, metaData, record) {
             // IPP_JOB_ABORTED = 8
@@ -100,69 +100,69 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
             // IPP_JOB_STOPPED = 6
             switch (parseInt(value, 10)) {
                 case 8:
-                    return _("Aborted");
+                    return _('Aborted');
                 case 7:
-                    return _("Canceled");
+                    return _('Canceled');
                 case 9:
                     var myTime = new Date();
-                    myTime.setTime(record.get("TimeAtCompleted") * 1000);
-                    return _("Completed") + " " + myTime.toLocaleString();
+                    myTime.setTime(record.get('TimeAtCompleted') * 1000);
+                    return _('Completed') + ' ' + myTime.toLocaleString();
                 case 4:
-                    return _("Held");
+                    return _('Held');
                 case 3:
-                    return _("Pending");
+                    return _('Pending');
                 case 5:
-                    return _("Processing");
+                    return _('Processing');
                 case 6:
-                    return _("Stopped");
+                    return _('Stopped');
             }
 
-            return _("Unknown") + " (" + value + ")";
+            return _('Unknown') + ' (' + value + ')';
         }
     }],
 
     initComponent: function() {
         Ext.apply(this, {
-            store: Ext.create("OMV.data.Store", {
+            store: Ext.create('OMV.data.Store', {
                 autoLoad: true,
                 model: OMV.data.Model.createImplicit({
-                    idProperty: "JobId",
+                    idProperty: 'JobId',
                     fields: [{
-                        name: "JobId"
+                        name: 'JobId'
                     }, {
-                        name: "JobName"
+                        name: 'JobName'
                     }, {
-                        name: "JobOriginatingUserName"
+                        name: 'JobOriginatingUserName'
                     }, {
-                        name: "JobOriginatingHostName"
+                        name: 'JobOriginatingHostName'
                     }, {
-                        name: "JobKOctets"
+                        name: 'JobKOctets'
                     }, {
-                        name: "TimeAtCompleted"
+                        name: 'TimeAtCompleted'
                     }, {
-                        name: "TimeAtCreation"
+                        name: 'TimeAtCreation'
                     }, {
-                        name: "JobMediaSheetsCompleted"
+                        name: 'JobMediaSheetsCompleted'
                     }, {
-                        name: "JobState"
+                        name: 'JobState'
                     }, {
-                        name: "PrinterUri"
+                        name: 'PrinterUri'
                     }]
                 }),
                 proxy: {
-                    type: "rpc",
+                    type: 'rpc',
                     rpcData: {
-                        service: "Cups",
-                        method: "getJobs"
+                        service: 'Cups',
+                        method: 'getJobs'
                     },
                     extraParams: {
-                        which: "not-completed"
+                        which: 'not-completed'
                     }
                 },
                 remoteSort: true,
                 sorters: [{
-                    direction: "DESC",
-                    property: "JobId"
+                    direction: 'DESC',
+                    property: 'JobId'
                 }]
             })
         });
@@ -174,11 +174,11 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
         var items = this.callParent(arguments);
 
         Ext.Array.push(items, [{
-            id: this.getId() + "-cancel",
-            xtype: "button",
-            text: _("Cancel job"),
-            icon: "images/erase.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-cancel',
+            xtype: 'button',
+            text: _('Cancel job'),
+            icon: 'images/erase.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onCancelButton, this),
             scope: this,
             disabled: true,
@@ -187,7 +187,7 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                 maxSelections: 1,
                 enabledFn: function(button, records) {
                     var record = records[0];
-                    var state = record.get("JobState");
+                    var state = record.get('JobState');
 
                     if (state >= 3 && state <= 5) {
                         return true;
@@ -197,46 +197,46 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
                 }
             }
         }, {
-            xtype: "tbseparator"
+            xtype: 'tbseparator'
         }, {
-            xtype: "tbspacer",
+            xtype: 'tbspacer',
             width: 20
         }, {
-            xtype: "label",
-            text: _("Show") + ": "
+            xtype: 'label',
+            text: _('Show') + ': '
         }, {
-            xtype: "tbspacer",
+            xtype: 'tbspacer',
             width: 5
         }, {
-            xtype: "combo",
-            name: "statusfilter",
-            queryMode: "local",
-            store: Ext.create("Ext.data.ArrayStore", {
+            xtype: 'combo',
+            name: 'statusfilter',
+            queryMode: 'local',
+            store: Ext.create('Ext.data.ArrayStore', {
                 fields: [
-                    "value",
-                    "text"
+                    'value',
+                    'text'
                 ],
                 data: [
-                    ["all", _("All")],
-                    ["not-completed", _("Active")],
-                    ["completed", _("Completed")]
+                    ['all', _('All')],
+                    ['not-completed', _('Active')],
+                    ['completed', _('Completed')]
                 ]
             }),
-            displayField: "text",
-            valueField: "value",
+            displayField: 'text',
+            valueField: 'value',
             editable: false,
-            triggerAction: "all",
-            value: "not-completed",
+            triggerAction: 'all',
+            value: 'not-completed',
             listeners: {
                 select: function(combo) {
                     var store = this.getStore();
                     var value = combo.getValue();
 
                     store.setProxy({
-                        type: "rpc",
+                        type: 'rpc',
                         rpcData: {
-                            service: "Cups",
-                            method: "getJobs"
+                            service: 'Cups',
+                            method: 'getJobs'
                         },
                         extraParams: {
                             which: value
@@ -255,28 +255,28 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
     onCancelButton: function() {
         var record = this.getSelected();
 
-        this.doCancel(record.get("JobId"));
+        this.doCancel(record.get('JobId'));
     },
 
     doCancel: function(jobId) {
         Ext.MessageBox.show({
-            title: _("Confirmation"),
-            msg: _("Are you sure you want to cancel the selected printing job?"),
+            title: _('Confirmation'),
+            msg: _('Are you sure you want to cancel the selected printing job?'),
             buttons: Ext.MessageBox.YESNO,
             fn: function(answer) {
-                if (answer == "no") {
+                if (answer == 'no') {
                     return;
                 }
 
                 // Display waiting dialog
-                OMV.MessageBox.wait(null, _("Cancelling job ..."));
+                OMV.MessageBox.wait(null, _('Cancelling job ...'));
 
                 OMV.Rpc.request({
                     scope: this,
                     callback: onCancel,
                     rpcData: {
-                        service: "Cups",
-                        method: "cancelJob",
+                        service: 'Cups',
+                        method: 'cancelJob',
                         params: {
                             jobid: jobId
                         }
@@ -301,9 +301,9 @@ Ext.define("OMV.module.admin.service.cups.Jobs", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id: "jobs",
-    path: "/service/cups",
-    text: _("Jobs"),
+    id: 'jobs',
+    path: '/service/cups',
+    text: _('Jobs'),
     position: 30,
-    className: "OMV.module.admin.service.cups.Jobs"
+    className: 'OMV.module.admin.service.cups.Jobs'
 });

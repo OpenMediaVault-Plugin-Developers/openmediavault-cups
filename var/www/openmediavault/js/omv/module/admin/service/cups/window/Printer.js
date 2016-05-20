@@ -19,19 +19,19 @@
 // require("js/omv/workspace/window/Form.js")
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 
-Ext.define("OMV.module.admin.service.cups.window.Printer", {
-    extend: "OMV.workspace.window.Form",
+Ext.define('OMV.module.admin.service.cups.window.Printer', {
+    extend: 'OMV.workspace.window.Form',
     uses: [
-        "OMV.workspace.window.plugin.ConfigObject"
+        'OMV.workspace.window.plugin.ConfigObject'
     ],
 
     plugins: [{
-        ptype: "configobject"
+        ptype: 'configobject'
     }],
 
-    rpcService: "Cups",
-    rpcGetMethod: "getPrinter",
-    rpcSetMethod: "setPrinter",
+    rpcService: 'Cups',
+    rpcGetMethod: 'getPrinter',
+    rpcSetMethod: 'setPrinter',
     width: 500,
     height: 200,
     hideResetButton: true,
@@ -39,26 +39,26 @@ Ext.define("OMV.module.admin.service.cups.window.Printer", {
 
     getFormItems: function() {
         return [{
-            xtype: "textfield",
-            name: "uuid",
-            fieldLabel: _("Name"),
+            xtype: 'textfield',
+            name: 'uuid',
+            fieldLabel: _('Name'),
             readOnly: true
         }, {
-            xtype: "textfield",
-            name: "PrinterInfo",
-            fieldLabel: _("Description"),
+            xtype: 'textfield',
+            name: 'PrinterInfo',
+            fieldLabel: _('Description'),
             plugins: [{
-                ptype: "fieldinfo",
-                text: _("Human-readable description such as 'HP LaserJet with Duplexer'"),
+                ptype: 'fieldinfo',
+                text: _('Human-readable description such as "HP LaserJet with Duplexer"'),
             }],
             allowBlank: false
         }, {
-            xtype: "textfield",
-            name: "PrinterLocation",
-            fieldLabel: "Location",
+            xtype: 'textfield',
+            name: 'PrinterLocation',
+            fieldLabel: 'Location',
             plugins: [{
-                ptype: "fieldinfo",
-                text: _("Human-readable location such as 'Lab 1'")
+                ptype: 'fieldinfo',
+                text: _('Human-readable location such as "Lab 1"')
             }]
         }];
     }

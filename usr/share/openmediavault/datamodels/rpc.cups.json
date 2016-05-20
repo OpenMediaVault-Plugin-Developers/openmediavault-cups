@@ -1,0 +1,137 @@
+[{
+    "type": "rpc",
+    "id": "rpc.cups.setsettings",
+    "params": {
+        "type": "object",
+        "properties": {
+            "enable": {
+                "type": "boolean",
+                "required": true
+            },
+            "enable_samba": {
+                "type": "boolean",
+                "required": true
+            },
+            "airprint": {
+                "type": "boolean",
+                "required": true
+            },
+            "max_jobs": {
+                "type": "integer",
+                "required": true
+            },
+            "remote_printers": {
+                "type": "boolean",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.getprinter",
+    "params": {
+        "type": "object",
+        "properties": {
+            "uuid": {
+                "type": "string",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.setprinter",
+    "params": {
+        "type": "object",
+        "properties": {
+            "uuid": {
+                "type": "string",
+                "required": true
+            },
+            "PrinterLocation": {
+                "type": "string"
+            },
+            "PrinterInfo": {
+                "type": "string",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.addprinter",
+    "params": {
+        "type": "object",
+        "properties": {
+            "device": {
+                "type": "string",
+                "required": true
+            },
+            "ppd": {
+                "type": "string",
+                "required": true
+            },
+            "name": {
+                "type": "string",
+                "required": true
+            },
+            "location": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.printername",
+    "params": {
+        "type": "object",
+        "properties": {
+            "pname": {
+                "type": "string",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.getjobs",
+    "params": {
+        "type": "object",
+        "properties": {
+            "start": {
+                "type": "integer",
+                "required": true
+            },
+            "limit": {
+                "type": ["integer", "null"],
+                "required": true
+            },
+            "sortfield": {
+                "type": ["string", "null"]
+            },
+            "sortdir": {
+                "type": ["string", "null"],
+                "enum": ["asc", "ASC", "desc", "DESC"]
+            },
+            "which": {
+                "type": "string"
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.cups.canceljob",
+    "params": {
+        "type": "object",
+        "properties": {
+            "jobid": {
+                "type": "integer",
+                "required": true
+            }
+        }
+    }
+}]

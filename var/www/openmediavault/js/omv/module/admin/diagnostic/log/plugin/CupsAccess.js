@@ -20,53 +20,53 @@
 // require("js/omv/module/admin/diagnostic/log/plugin/Plugin.js")
 // require("js/omv/util/Format.js")
 
-Ext.define("OMV.module.admin.diagnostic.log.plugin.Cups", {
-    extend: "OMV.module.admin.diagnostic.log.plugin.Plugin",
-    alias: "omv.plugin.diagnostic.log.cups.access",
+Ext.define('OMV.module.admin.diagnostic.log.plugin.Cups', {
+    extend: 'OMV.module.admin.diagnostic.log.plugin.Plugin',
+    alias: 'omv.plugin.diagnostic.log.cups.access',
 
-    id: "cupsaccess",
-    text: _("Printing Access Log"),
+    id: 'cupsaccess',
+    text: _('Printing Access Log'),
     stateful: true,
-    stateId: "053eba40-6374-11e3-949a-0800200c9a66",
+    stateId: '053eba40-6374-11e3-949a-0800200c9a66',
     columns: [{
-        text: _("Date & Time"),
+        text: _('Date & Time'),
         sortable: true,
-        dataIndex: "date",
-        stateId: "date",
+        dataIndex: 'date',
+        stateId: 'date',
         renderer: OMV.util.Format.localeTimeRenderer()
     }, {
-        text: _("Host"),
+        text: _('Host'),
         sortable: true,
-        dataIndex: "host",
-        stateId: "host",
+        dataIndex: 'host',
+        stateId: 'host',
         flex: 1
     }, {
-        text: _("User"),
+        text: _('User'),
         sortable: true,
-        dataIndex: "user",
-        stateId: "user",
+        dataIndex: 'user',
+        stateId: 'user',
         flex: 1
     }, {
-        text: _("Event"),
+        text: _('Event'),
         sortable: true,
-        dataIndex: "event",
-        stateId: "event",
+        dataIndex: 'event',
+        stateId: 'event',
         flex: 1
     }],
     rpcParams: {
-        id: "cupsaccess"
+        id: 'cupsaccess'
     },
     rpcFields: [{
-        name: "date",
-        type: "string"
+        name: 'date',
+        type: 'string'
     }, {
-        name: "host",
-        type: "string"
+        name: 'host',
+        type: 'string'
     }, {
-        name: "user",
-        type: "string"
+        name: 'user',
+        type: 'string'
     }, {
-        name: "event",
-        type: "string"
+        name: 'event',
+        type: 'string'
     }]
 });

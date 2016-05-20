@@ -22,12 +22,12 @@
 // require("js/omv/module/admin/service/cups/window/PrinterWizard.js")
 // require("js/omv/module/admin/service/cups/window/Printer.js")
 
-Ext.define("OMV.module.admin.service.cups.Printers", {
-    extend: "OMV.workspace.grid.Panel",
+Ext.define('OMV.module.admin.service.cups.Printers', {
+    extend: 'OMV.workspace.grid.Panel',
     requires: [
-        "OMV.module.admin.service.cups.stores.PrinterStore",
-        "OMV.module.admin.service.cups.window.PrinterWizard",
-        "OMV.module.admin.service.cups.window.Printer"
+        'OMV.module.admin.service.cups.stores.PrinterStore',
+        'OMV.module.admin.service.cups.window.PrinterWizard',
+        'OMV.module.admin.service.cups.window.Printer'
     ],
 
     hideRefreshButton: false,
@@ -35,45 +35,45 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     rememberSelected: false,
 
     columns: [{
-        header: _("Printer / Queue Name"),
-        dataIndex: "uuid",
+        header: _('Printer / Queue Name'),
+        dataIndex: 'uuid',
         flex: 1
     }, {
-        header: _("Description"),
-        dataIndex: "PrinterInfo",
+        header: _('Description'),
+        dataIndex: 'PrinterInfo',
         flex: 1
     }, {
-        header: _("Location"),
-        dataIndex: "PrinterLocation",
+        header: _('Location'),
+        dataIndex: 'PrinterLocation',
         flex: 1
     }, {
-        header: _("Make and Model / Driver"),
-        dataIndex: "PrinterMakeAndModel",
+        header: _('Make and Model / Driver'),
+        dataIndex: 'PrinterMakeAndModel',
         flex: 1
     }, {
-        header: _("Status"),
+        header: _('Status'),
         width: 300,
-        dataIndex: "PrinterState",
+        dataIndex: 'PrinterState',
         renderer: function(value, row, record) {
             switch (parseInt(value, 10)) {
                 case 3:
-                    value = _("Idle");
+                    value = _('Idle');
                     break;
                 case 4:
-                    value = _("Processing");
+                    value = _('Processing');
                     break;
                 case 5:
-                    value = _("Paused");
+                    value = _('Paused');
                     break;
                 default:
-                    value = _("Unknown");
+                    value = _('Unknown');
                     break;
             }
 
-            var message = record.get("PrinterStateMessage");
+            var message = record.get('PrinterStateMessage');
 
             if (message)
-                value += " (" + message + ")";
+                value += ' (' + message + ')';
 
             return value;
         }
@@ -85,13 +85,13 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
         var items = this.callParent(arguments);
 
         Ext.Array.push(items, [{
-            xtype: "tbseparator"
+            xtype: 'tbseparator'
         }, {
-            id: this.getId() + "-resume",
-            xtype: "button",
-            text: _("Resume printing"),
-            icon: "images/play.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-resume',
+            xtype: 'button',
+            text: _('Resume printing'),
+            icon: 'images/play.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onResumePrintingButton, this),
             scope: this,
             disabled: true,
@@ -100,9 +100,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 maxSelections: 1,
                 enabledFn: function(button, records) {
                     var record = records[0];
-                    var state = record.get("PrinterState");
+                    var state = record.get('PrinterState');
 
-                    if (record.get("PrinterState") !== 5) {
+                    if (record.get('PrinterState') !== 5) {
                         return false;
                     }
 
@@ -110,11 +110,11 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 }
             }
         }, {
-            id: this.getId() + "-pause",
-            xtype: "button",
-            text: _("Pause printing"),
-            icon: "images/pause.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-pause',
+            xtype: 'button',
+            text: _('Pause printing'),
+            icon: 'images/pause.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onPausePrintingButton, this),
             scope: this,
             disabled: true,
@@ -123,9 +123,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 maxSelections: 1,
                 enabledFn: function(button, records) {
                     var record = records[0];
-                    var state = record.get("PrinterState");
+                    var state = record.get('PrinterState');
 
-                    if (record.get("PrinterState") === 5) {
+                    if (record.get('PrinterState') === 5) {
                         return false;
                     }
 
@@ -133,13 +133,13 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 }
             }
         }, {
-            xtype: "tbseparator"
+            xtype: 'tbseparator'
         }, {
-            id: this.getId() + "-test",
-            xtype: "button",
-            text: _("Print test page"),
-            icon: "images/cups.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-test',
+            xtype: 'button',
+            text: _('Print test page'),
+            icon: 'images/cups.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onPrintTestPageButton, this),
             scope: this,
             disabled: true,
@@ -148,11 +148,11 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 maxSelections: 1
             }
         }, {
-            id: this.getId() + "-cancel",
-            xtype: "button",
-            text: _("Cancel jobs"),
-            icon: "images/erase.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-cancel',
+            xtype: 'button',
+            text: _('Cancel jobs'),
+            icon: 'images/erase.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onCancelJobsButton, this),
             scope: this,
             disabled: true,
@@ -161,14 +161,14 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
                 maxSelections: 1
             }
         }, {
-            xtype: "tbseparator"
+            xtype: 'tbseparator'
         }, {
-            text: _("Advanced management"),
-            icon: "images/preferences.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            text: _('Advanced management'),
+            icon: 'images/preferences.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: function() {
-                var href = Ext.String.format("http://{0}:631", location.hostname);
-                window.open(href, "_blank");
+                var href = Ext.String.format('http://{0}:631', location.hostname);
+                window.open(href, '_blank');
             }
         }]);
 
@@ -176,7 +176,7 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     },
 
     onAddButton: function() {
-        Ext.create("OMV.module.admin.service.cups.window.PrinterWizard", {
+        Ext.create('OMV.module.admin.service.cups.window.PrinterWizard', {
             listeners: {
                 scope: this,
                 submit: function() {
@@ -189,9 +189,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     onEditButton: function() {
         var record = this.getSelected();
 
-        Ext.create("OMV.module.admin.service.cups.window.Printer", {
-            title: _("Edit printer"),
-            uuid: record.get("uuid"),
+        Ext.create('OMV.module.admin.service.cups.window.Printer', {
+            title: _('Edit printer'),
+            uuid: record.get('uuid'),
             listeners: {
                 scope: this,
                 submit: function() {
@@ -206,10 +206,10 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
             scope: this,
             callback: this.onDeletion,
             rpcData: {
-                service: "Cups",
-                method: "deletePrinter",
+                service: 'Cups',
+                method: 'deletePrinter',
                 params: {
-                    pname: record.get("uuid")
+                    pname: record.get('uuid')
                 }
             }
         });
@@ -222,16 +222,16 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     },
 
     doResumePrinting: function(record) {
-        OMV.MessageBox.wait(null, _("Resuming printer ..."));
+        OMV.MessageBox.wait(null, _('Resuming printer ...'));
 
         OMV.Rpc.request({
             scope: this,
             callback: this.onDone,
             rpcData: {
-                service: "Cups",
-                method: "resumePrinting",
+                service: 'Cups',
+                method: 'resumePrinting',
                 params: {
-                    pname: record.get("uuid")
+                    pname: record.get('uuid')
                 }
             }
         });
@@ -244,16 +244,16 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     },
 
     doPausePrinting: function(record) {
-        OMV.MessageBox.wait(null, _("Pausing printer ..."));
+        OMV.MessageBox.wait(null, _('Pausing printer ...'));
 
         OMV.Rpc.request({
             scope: this,
             callback: this.onDone,
             rpcData: {
-                service: "Cups",
-                method: "pausePrinting",
+                service: 'Cups',
+                method: 'pausePrinting',
                 params: {
-                    pname: record.get("uuid")
+                    pname: record.get('uuid')
                 }
             }
         });
@@ -266,16 +266,16 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     },
 
     doPrintTestPage: function(record) {
-        OMV.MessageBox.wait(null, _("Printing test page ..."));
+        OMV.MessageBox.wait(null, _('Printing test page ...'));
 
         OMV.Rpc.request({
             scope: this,
             callback: this.onDone,
             rpcData: {
-                service: "Cups",
-                method: "printTestPage",
+                service: 'Cups',
+                method: 'printTestPage',
                 params: {
-                    pname: record.get("uuid")
+                    pname: record.get('uuid')
                 }
             }
         });
@@ -288,25 +288,25 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
     },
 
     doCancelJobs: function(record) {
-        var printerName = record.get("uuid");
+        var printerName = record.get('uuid');
 
         Ext.MessageBox.show({
-            title: _("Confirmation"),
-            msg: _("Are you sure you want to cancel all printing jobs on") + " " + printerName + "?",
+            title: _('Confirmation'),
+            msg: _('Are you sure you want to cancel all printing jobs on') + ' ' + printerName + '?',
             buttons: Ext.MessageBox.YESNO,
             fn: function(answer) {
-                if (answer == "no") {
+                if (answer == 'no') {
                     return;
                 }
 
-                OMV.MessageBox.wait(null, _("Cancelling job ..."));
+                OMV.MessageBox.wait(null, _('Cancelling job ...'));
 
                 OMV.Rpc.request({
                     scope: this,
                     callback: this.onDone,
                     rpcData: {
-                        service: "Cups",
-                        method: "cancelJobs",
+                        service: 'Cups',
+                        method: 'cancelJobs',
                         params: {
                             pname: printerName
                         }
@@ -331,9 +331,9 @@ Ext.define("OMV.module.admin.service.cups.Printers", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id: "printers",
-    path: "/service/cups",
-    text: _("Printers"),
+    id: 'printers',
+    path: '/service/cups',
+    text: _('Printers'),
     position: 20,
-    className: "OMV.module.admin.service.cups.Printers"
+    className: 'OMV.module.admin.service.cups.Printers'
 });

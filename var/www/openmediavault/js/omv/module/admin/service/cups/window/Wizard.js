@@ -19,22 +19,22 @@
 // require("js/omv/window/Window.js")
 // require("js/omv/window/MessageBox.js")
 
-Ext.define("OMV.module.admin.service.cups.window.Wizard", {
-    extend: "OMV.window.Window",
+Ext.define('OMV.module.admin.service.cups.window.Wizard', {
+    extend: 'OMV.window.Window',
     requires: [
-        "OMV.Rpc"
+        'OMV.Rpc'
     ],
     uses: [
-        "OMV.window.MessageBox"
+        'OMV.window.MessageBox'
     ],
 
-    title: _("Wizard"),
-    itemId: "wizard",
-    layout: "fit",
+    title: _('Wizard'),
+    itemId: 'wizard',
+    layout: 'fit',
     width: 500,
     height: 320,
-    submitMsg: _("Saving ..."),
-    mode: "remote",
+    submitMsg: _('Saving ...'),
+    mode: 'remote',
 
     defaults: {
         border: false
@@ -43,13 +43,13 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
     initComponent: function() {
         Ext.apply(this, {
             items: [{
-                xtype: "form",
-                itemId: "wizard-form",
-                layout: "card",
+                xtype: 'form',
+                itemId: 'wizard-form',
+                layout: 'card',
                 defaults: {
                     border: false,
-                    bodyStyle: "padding: 10px;",
-                    anchor: "100%"
+                    bodyStyle: 'padding: 10px;',
+                    anchor: '100%'
                 },
                 bbar: this.getBbarItems(),
                 items: this.getCardItems()
@@ -60,13 +60,13 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
     },
 
     navigate: function(button, direction) {
-        var form = button.up("#wizard-form");
+        var form = button.up('#wizard-form');
         var layout = form.getLayout();
 
         // Call isValid to validate fields.
         form.isValid();
         var isValid = true;
-        var fields = layout.activeItem.query("field");
+        var fields = layout.activeItem.query('field');
 
         for (var i = 0, j = fields.length; i < j; i++) {
             if (!fields[i].isValid()) {
@@ -75,12 +75,12 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
             }
         }
 
-        if (direction === "prev" || isValid)
+        if (direction === 'prev' || isValid)
             layout[direction]();
 
-        var prev = form.down("#wizard-prev");
-        var next = form.down("#wizard-next");
-        var submit = form.down("#wizard-submit");
+        var prev = form.down('#wizard-prev');
+        var next = form.down('#wizard-next');
+        var submit = form.down('#wizard-submit');
 
         prev.setDisabled(!layout.getPrev());
         next.setDisabled(!layout.getNext());
@@ -96,31 +96,31 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
 
     getBbarItems: function() {
         return [{
-            itemId: "wizard-prev",
-            text: _("Previous"),
+            itemId: 'wizard-prev',
+            text: _('Previous'),
             handler: function(button) {
-                this.navigate(button, "prev");
+                this.navigate(button, 'prev');
             },
             scope: this,
             disabled: true
-        }, "->", {
-            itemId: "wizard-next",
-            text: _("Next"),
+        }, '->', {
+            itemId: 'wizard-next',
+            text: _('Next'),
             handler: function(button) {
-                this.navigate(button, "next");
+                this.navigate(button, 'next');
             },
             scope: this
         }, {
-            itemId: "wizard-submit",
-            text: _("Finish"),
+            itemId: 'wizard-submit',
+            text: _('Finish'),
             handler: function() {
                 this.onFinishButton();
             },
             scope: this,
             hidden: true
         }, {
-            itemId: "wizard-cancel",
-            text: _("Cancel"),
+            itemId: 'wizard-cancel',
+            text: _('Cancel'),
             handler: function() {
                 this.close();
             },
@@ -133,7 +133,7 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
     },
 
     getForm: function() {
-        return this.down("#wizard-form").getForm();
+        return this.down('#wizard-form').getForm();
     },
 
     getFormValues: function() {
@@ -145,7 +145,7 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
     },
 
     onFinishButton: function() {
-        var form = this.down("#wizard-form").getForm();
+        var form = this.down('#wizard-form').getForm();
 
         if (form.isValid()) {
             this.doSubmit();
@@ -153,19 +153,19 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
     },
 
     doSubmit: function() {
-        if (this.mode === "remote") {
+        if (this.mode === 'remote') {
             var rpcOptions = {
                 scope: this,
                 callback: this.onSubmit,
                 relayErrors: true,
                 rpcData: {
                     service: this.rpcService,
-                    method: this.rpcSetMethod || "set",
+                    method: this.rpcSetMethod || 'set',
                     params: this.getFormValues()
                 }
             };
 
-            if (this.fireEvent("beforesubmit", this, rpcOptions) === false) {
+            if (this.fireEvent('beforesubmit', this, rpcOptions) === false) {
                 return;
             }
 
@@ -175,7 +175,7 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
             // Execute RPC.
             OMV.Rpc.request(rpcOptions);
         } else {
-            this.fireEvent("submit", this.this.getFormValues());
+            this.fireEvent('submit', this.this.getFormValues());
             this.close();
         }
     },
@@ -185,10 +185,10 @@ Ext.define("OMV.module.admin.service.cups.window.Wizard", {
         OMV.MessageBox.hide();
 
         if (success) {
-            this.fireEvent("submit", this, this.getFormValues(), response);
+            this.fireEvent('submit', this, this.getFormValues(), response);
             this.close();
         } else {
-            this.fireEvent("exception", this, response);
+            this.fireEvent('exception', this, response);
             OMV.MessageBox.error(null, response);
         }
     }

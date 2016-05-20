@@ -21,7 +21,7 @@ case "$1" in
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
-            omv_config_add_element "${SERVICE_XPATH}" "airprint" "1"en
+            omv_config_add_element "${SERVICE_XPATH}" "airprint" "0"
             omv_config_add_element "${SERVICE_XPATH}" "enable_samba" "1"
             omv_config_add_element "${SERVICE_XPATH}" "max_jobs" "100"
             omv_config_add_element "${SERVICE_XPATH}" "remote_printers" "0"
@@ -49,10 +49,10 @@ case "$1" in
             else
                 tempFile=$(mktemp)
 
-                cat /etc/locale.gen | sed -e 's/^\s*#\s*\(en_US.UTF-8.*\)/\1/g' > ${tempFile}
-                cat ${tempFile} > /etc/locale.gen
+                sed -e 's/^\s*#\s*\(en_US.UTF-8.*\)/\1/g' < /etc/locale.gen > "${tempFile}"
+                cat "${tempFile}" > /etc/locale.gen
 
-                rm ${tempFile}
+                rm "${tempFile}"
             fi
 
             locale-gen

@@ -20,37 +20,37 @@
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 
-Ext.define("OMV.module.admin.service.cups.stores.PrinterStore", {
-    extend: "OMV.data.Store",
+Ext.define('OMV.module.admin.service.cups.stores.PrinterStore', {
+    extend: 'OMV.data.Store',
     requires: [
-        "OMV.data.Model",
-        "OMV.data.proxy.Rpc",
+        'OMV.data.Model',
+        'OMV.data.proxy.Rpc',
     ],
 
     singleton: true,
     autoLoad: true,
     remoteSort: false,
     model: OMV.data.Model.createImplicit({
-        idProperty: "uuid",
+        idProperty: 'uuid',
         fields: [{
-            name: "uuid"
+            name: 'uuid'
         }, {
-            name: "PrinterInfo"
+            name: 'PrinterInfo'
         }, {
-            name: "PrinterLocation"
+            name: 'PrinterLocation'
         }, {
-            name: "PrinterMakeAndModel"
+            name: 'PrinterMakeAndModel'
         }, {
-            name: "PrinterState"
+            name: 'PrinterState'
         }, {
-            name: "PrinterStateMessage"
+            name: 'PrinterStateMessage'
         }]
     }),
     proxy: {
-        type: "rpc",
+        type: 'rpc',
         rpcData: {
-            service: "Cups",
-            method: "getPrinters"
+            service: 'Cups',
+            method: 'getPrinters'
         }
     }
 });

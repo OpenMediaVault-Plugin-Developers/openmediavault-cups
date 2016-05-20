@@ -19,28 +19,28 @@
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 
-Ext.define("OMV.module.admin.service.cups.Settings", {
-    extend: "OMV.workspace.form.Panel",
+Ext.define('OMV.module.admin.service.cups.Settings', {
+    extend: 'OMV.workspace.form.Panel',
 
-    rpcService: "Cups",
-    rpcGetMethod: "getSettings",
-    rpcSetMethod: "setSettings",
+    rpcService: 'Cups',
+    rpcGetMethod: 'getSettings',
+    rpcSetMethod: 'setSettings',
 
     initComponent: function() {
-        this.on("load", function() {
-            var checked = this.findField("enable").checked;
-            var parent = this.up("tabpanel");
+        this.on('load', function() {
+            var checked = this.findField('enable').checked;
+            var parent = this.up('tabpanel');
             var panels = [
-                _("Printers"),
-                _("Jobs"),
-                _("Printer sharing")
+                _('Printers'),
+                _('Jobs'),
+                _('Printer sharing')
             ];
 
             if (!parent)
                 return;
 
             Ext.Array.each(panels, function(title) {
-                var panel = parent.down("panel[title=" + title + "]");
+                var panel = parent.down('panel[title=' + title + ']');
 
                 if (panel) {
                     if (checked) {
@@ -57,20 +57,20 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
 
     getFormItems: function() {
         return [{
-            xtype: "fieldset",
-            title: _("General Settings"),
+            xtype: 'fieldset',
+            title: _('General Settings'),
             defaults: {
-                labelSeparator: ""
+                labelSeparator: ''
             },
             items: [{
-                xtype: "checkbox",
-                name: "enable",
-                fieldLabel: _("Enable"),
+                xtype: 'checkbox',
+                name: 'enable',
+                fieldLabel: _('Enable'),
                 checked: false
             }, {
-                xtype: "numberfield",
-                name: "max_jobs",
-                fieldLabel: _("Max Jobs"),
+                xtype: 'numberfield',
+                name: 'max_jobs',
+                fieldLabel: _('Max Jobs'),
                 minValue: 0,
                 maxValue: 65535,
                 value: 100,
@@ -78,41 +78,41 @@ Ext.define("OMV.module.admin.service.cups.Settings", {
                 allowDecimals: false,
                 allowNegative: false,
                 plugins: [{
-                    ptype: "fieldinfo",
-                    text: _("Once the number of print jobs reaches the limit, the oldest completed job is automatically purged from the system to make room for the new one. If all of the known jobs are still pending or active then the new job will be rejected.")
+                    ptype: 'fieldinfo',
+                    text: _('Once the number of print jobs reaches the limit, the oldest completed job is automatically purged from the system to make room for the new one. If all of the known jobs are still pending or active then the new job will be rejected.')
                 }]
             }, {
-                xtype: "checkbox",
-                name: "enable_samba",
-                fieldLabel: _("Enable SMB Sharing"),
-                boxLabel: _("Enable sharing of printers over OpenMediaVault's SMB/CIFS service."),
+                xtype: 'checkbox',
+                name: 'enable_samba',
+                fieldLabel: _('Enable SMB Sharing'),
+                boxLabel: _('Enable sharing of printers over OpenMediaVault\'s SMB/CIFS service.'),
                 checked: true
             }, {
-                xtype: "checkbox",
-                name: "airprint",
-                fieldLabel: _("Enable AirPrint"),
-                boxLabel: _("<i>Experimental</i>. Provides 'AirPrint' compatibility with Apple iOS devices."),
+                xtype: 'checkbox',
+                name: 'airprint',
+                fieldLabel: _('Enable AirPrint'),
+                boxLabel: _('<i>Experimental</i>. Provides "AirPrint" compatibility with Apple iOS devices.'),
                 checked: false
             }, {
-                xtype: "checkbox",
-                name: "remote_printers",
-                fieldLabel: _("Remote printers"),
-                boxLabel: _("Enables listing of remote printers when adding a printer."),
+                xtype: 'checkbox',
+                name: 'remote_printers',
+                fieldLabel: _('Remote printers'),
+                boxLabel: _('Enables listing of remote printers when adding a printer.'),
                 checked: false
             }, {
                 border: false,
-                html: "<p>" +
-                    _("Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.") +
-                    "</p>"
+                html: '<p>' +
+                    _('Users in the <b>lpadmin</b> OpenMediaVault group will be able to administer printers using their OpenMediaVault username / password.') +
+                    '</p>'
             }]
         }];
     }
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id: "settings",
-    path: "/service/cups",
-    text: _("Settings"),
+    id: 'settings',
+    path: '/service/cups',
+    text: _('Settings'),
     position: 10,
-    className: "OMV.module.admin.service.cups.Settings"
+    className: 'OMV.module.admin.service.cups.Settings'
 });

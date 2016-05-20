@@ -1,0 +1,31 @@
+{
+    "type": "config",
+    "id": "conf.service.cups",
+    "title": "CUPS",
+    "queryinfo": {
+        "xpath": "/config/services/cups",
+        "iterable": false
+    },
+    "properties": {
+        "enable": {
+            "type": "boolean",
+            "default": false
+        },
+        "enable_samba": {
+            "type": "boolean",
+            "default": true
+        },
+        "airprint": {
+            "type": "boolean",
+            "default": false
+        },
+        "max_jobs": {
+            "type": "integer",
+            "default": 100
+        },
+        "remote_printers": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
