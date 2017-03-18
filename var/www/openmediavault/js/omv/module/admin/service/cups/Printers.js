@@ -35,22 +35,27 @@ Ext.define('OMV.module.admin.service.cups.Printers', {
     rememberSelected: false,
 
     columns: [{
+        xtype: "textcolumn",
         header: _('Printer / Queue Name'),
         dataIndex: 'uuid',
         flex: 1
     }, {
+        xtype: "textcolumn",
         header: _('Description'),
         dataIndex: 'PrinterInfo',
         flex: 1
     }, {
+        xtype: "textcolumn",
         header: _('Location'),
         dataIndex: 'PrinterLocation',
         flex: 1
     }, {
+        xtype: "textcolumn",
         header: _('Make and Model / Driver'),
         dataIndex: 'PrinterMakeAndModel',
         flex: 1
     }, {
+        xtype: "textcolumn",
         header: _('Status'),
         width: 300,
         dataIndex: 'PrinterState',

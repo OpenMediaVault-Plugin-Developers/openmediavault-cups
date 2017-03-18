@@ -39,6 +39,7 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
     rememberSelected: false,
 
     columns: [{
+        xtype: "textcolumn",
         header: _('Job Id'),
         sortable: true,
         dataIndex: 'JobId',
@@ -47,6 +48,7 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
             return record.get('PrinterUri').replace(/.*\//, '') + ' ' + value;
         }
     }, {
+        xtype: "textcolumn",
         header: _('Created'),
         sortable: true,
         dataIndex: 'TimeAtCreation',
@@ -57,11 +59,13 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
             return myTime.toLocaleString();
         }
     }, {
+        xtype: "textcolumn",
         header: _('Name'),
         sortable: true,
         dataIndex: 'JobName',
         flex: 1
     }, {
+        xtype: "textcolumn",
         header: _('User'),
         sortable: true,
         dataIndex: 'JobOriginatingUserName',
@@ -70,6 +74,7 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
             return value + '@' + record.get('JobOriginatingHostName');
         }
     }, {
+        xtype: "textcolumn",
         header: _('Size'),
         sortable: true,
         dataIndex: 'JobKOctets',
@@ -78,6 +83,7 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
             return value + 'k';
         }
     }, {
+        xtype: "textcolumn",
         header: _('Pages'),
         sortable: true,
         dataIndex: 'JobMediaSheetsCompleted',
@@ -86,6 +92,7 @@ Ext.define('OMV.module.admin.service.cups.Jobs', {
             return (value ? value : 'Unknown');
         }
     }, {
+        xtype: "textcolumn",
         header: _('State'),
         sortable: true,
         dataIndex: 'JobState',

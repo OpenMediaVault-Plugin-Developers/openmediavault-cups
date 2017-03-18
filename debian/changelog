@@ -1,3 +1,9 @@
+openmediavault-cups (3.1.2) stable; urgency=low
+
+  * Improve foreign content handling
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 18 Mar 2017 09:41:28 -0500
+
 openmediavault-cups (3.1.1) stable; urgency=medium
 
   * OMV 3.0.15 compatibility.
