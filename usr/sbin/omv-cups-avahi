@@ -178,7 +178,7 @@ def genPrinterService(p, v, airprint):
                     if not kv.find(':') > 0:
                         continue
 
-                    [k, val] = kv.split(':')
+                    [k, val] = kv.split(':', 1)
 
                     if k == 'MFG':
                         manuf = val
