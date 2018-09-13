@@ -117,7 +117,7 @@ def genPrinterService(p, v, airprint):
         port_no = uri.port
 
     if not port_no:
-        port_no = self.port
+        port_no = port
 
     if not port_no:
         port_no = cups.getPort()
